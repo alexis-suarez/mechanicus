@@ -1,32 +1,75 @@
-<div class="container-fluid">
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+<!-- Main div Container -->
+<div class="container-fluid mt-5">
+  <!-- -->
+  <div class="row">
+    <div class="col-2">
+      <!-- Botton to register new Client -->
+      <button class="btn btn-block btn-primary" (click)="newClient()">Nuevo</button>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-6">
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+    </div>
+  </div>
+  <!-- Table of Clients -->
+  <div class="table-responsive mt-5">
+    <table class="table table-hover table-striped table-borderless table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">RFC</th>
+          <th scope="col">Télefono</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- List of Clients -->
+        <tr *ngFor="let item of getList()">
+          <th scope="row">1</th>
+          <td>{{ item.name }}</td>
+          <td>{{ item.rfc }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.email }}</td>
+          <td class="align-middle">
+            <!-- Botton to edite a Client -->
+            <button class="btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
+            <!-- Botton to delete a Client -->
+            <button class="btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+<!-- Modal to register new Client -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#InsertModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="InsertModal" tabindex="-1" role="dialog" aria-labelledby="InsertModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="InsertModalTitle">Registro Nuevo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <!-- Botton to Cancel -->
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <!-- Botton to Register -->
+          <button type="button" class="btn btn-success">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
