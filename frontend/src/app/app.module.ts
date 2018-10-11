@@ -15,6 +15,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ClientFormComponent } from './components/pages/client/client-form/client-form.component';
 import { ClientViewComponent } from './components/pages/client/client-view/client-view.component';
+import { ServiceViewComponent } from './components/pages/service/service-view/service-view.component';
+import { ServiceFormComponent } from './components/pages/service/service-form/service-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ClientViewComponent } from './components/pages/client/client-view/clien
     FooterComponent,
     SidebarComponent,
     ClientFormComponent,
-    ClientViewComponent
+    ClientViewComponent,
+    ServiceViewComponent,
+    ServiceFormComponent
   ],
   imports: [
     BrowserModule,
