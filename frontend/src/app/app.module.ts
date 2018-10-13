@@ -17,6 +17,8 @@ import { ClientFormComponent } from './components/pages/client/client-form/clien
 import { ClientViewComponent } from './components/pages/client/client-view/client-view.component';
 import { ServiceViewComponent } from './components/pages/service/service-view/service-view.component';
 import { ServiceFormComponent } from './components/pages/service/service-form/service-form.component';
+import { EmployeeViewComponent } from './components/pages/employee/employee-view/employee-view.component';
+import { EmployeeFormComponent } from './components/pages/employee/employee-form/employee-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ServiceFormComponent } from './components/pages/service/service-form/se
     ClientFormComponent,
     ClientViewComponent,
     ServiceViewComponent,
-    ServiceFormComponent
+    ServiceFormComponent,
+    EmployeeViewComponent,
+    EmployeeFormComponent
   ],
   imports: [
     BrowserModule,
