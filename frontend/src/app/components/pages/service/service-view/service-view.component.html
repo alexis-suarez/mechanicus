@@ -1,3 +1,108 @@
-<p>
-  service-view works!
-</p>
+<!-- Main div Container -->
+<div class="container-fluid mt-3 shadow-lg p-3 mb-5 bg-white rounded">
+    <!-- -->
+    <div class="row">
+      <div class="col-2">
+        <!-- Botton to register new Service -->
+        <button class="btn btn-primary" (click)="newService()"><i class="fas fa-plus"></i></button>
+      </div>
+      <div class="col-4"><h3>Servicios</h3></div>
+      <div class="col-6">
+          <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+      </div>
+    </div>
+    <!-- Table of Services -->
+    <div class="table-responsive">
+      <table class="table table-hover table-striped table-borderless table-sm">
+        <thead class="thead-dark text-center">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Automovil</th>
+            <th scope="col">Fecha de Ingreso</th>
+            <th scope="col">Fecha de Salida</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- List of Services -->
+          <tr *ngFor="let item of getList()">
+            <th scope="row">1</th>
+            <td>{{ item.name }}</td>
+            <td>{{ item.rfc }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.email }}</td>
+            <td class="d-flex justify-content-center">
+              <!-- Botton to edite a Service -->
+              <button class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
+              <!-- Botton to delete a Service -->
+              <button class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Modal to register new Service -->
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#InsertModal">
+    Launch demo modal
+  </button>
+    
+  <!-- Modal -->
+  <div class="modal fade" id="InsertModal" tabindex="-1" role="dialog" aria-labelledby="InsertModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="InsertModalTitle">Nuevo Servicio</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Form to Register -->
+          <app-service-form></app-service-form>
+        </div>
+        <div class="modal-footer">
+          <!-- Botton to Cancel -->
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <!-- Botton to Register -->
+          <button type="button" class="btn btn-success">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal to delete a Service -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DeleteModal">
+    Launch demo modal
+  </button>
+      
+  <!-- Modal -->
+  <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title" id="DeleteModalTitle">¿Seguro que desea Borrar el Service...?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- <div class="modal-body">
+        </div> -->
+        <div class="modal-footer d-flex justify-content-center">
+          <div class="row">
+            <div class="col">
+              <!-- Botton to Cancel -->
+              <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+            <div class="col">
+              <!-- Botton to Register -->
+              <button type="button" class="btn btn-block btn btn-danger">Borrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

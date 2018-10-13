@@ -38,7 +38,7 @@ export class ClientViewComponent implements OnInit {
   }
 
   public newClient(): void {
-    
+    //
   }
 
 }
