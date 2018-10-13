@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeViewComponent implements OnInit {
 
+  private list: any[];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public getList(): any {
+    return this.list;
+  }
+
+  public newEmployee(): void {
+    //
   }
 
 }

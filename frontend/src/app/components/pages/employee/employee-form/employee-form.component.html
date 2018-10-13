@@ -1,3 +1,67 @@
-<p>
-  employee-form works!
-</p>
+<form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="inputName">Nombre</label>
+          <input type="text" class="form-control" id="inputName" placeholder="...">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="inputRFC">RFC</label>
+          <input type="text" class="form-control" id="inputRFC" placeholder="..." maxlength="18">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="inputCURP">CURP</label>
+          <input type="text" class="form-control" id="inputCURP" placeholder="..." maxlength="18">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="inputNSS">NSS</label>
+          <input type="text" class="form-control" id="inputNSS" placeholder="..." maxlength="13">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputBirthdate">Fecha de Nacimiento</label>
+        <input type="text" class="form-control" id="inputBirthdate" placeholder="...">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputRole">Puesto</label>
+        <input type="text" class="form-control" id="inputRole" placeholder="...">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputSalary">Salario</label>
+        <input type="text" class="form-control" id="inputSalary" placeholder="...">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputPhone">Télefono</label>
+        <input type="text" class="form-control" id="inputPhone" placeholder="Télefono / Móvil" maxlength="10">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputEmail">Correo Electronico</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Dirección</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">Ciudad ó Municipio</label>
+        <input type="text" class="form-control" id="inputCity" placeholder="...">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">Estado</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Código Postal</label>
+        <input type="text" class="form-control" id="inputZip" placeholder="00000">
+      </div>
+    </div>
+  </form>
