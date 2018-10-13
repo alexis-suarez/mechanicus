@@ -22,3 +22,7 @@
 .op-5 {
     opacity: 1;
 }
+
+.uppercase {
+    text-transform: uppercase;
+}
