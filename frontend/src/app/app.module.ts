@@ -19,6 +19,7 @@ import { ServiceViewComponent } from './components/pages/service/service-view/se
 import { ServiceFormComponent } from './components/pages/service/service-form/service-form.component';
 import { EmployeeViewComponent } from './components/pages/employee/employee-view/employee-view.component';
 import { EmployeeFormComponent } from './components/pages/employee/employee-form/employee-form.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { EmployeeFormComponent } from './components/pages/employee/employee-form
     ServiceViewComponent,
     ServiceFormComponent,
     EmployeeViewComponent,
-    EmployeeFormComponent
+    EmployeeFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
