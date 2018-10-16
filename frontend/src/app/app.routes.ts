@@ -6,21 +6,38 @@ import { ClientViewComponent } from './components/pages/client/client-view/clien
 import { ServiceViewComponent } from './components/pages/service/service-view/service-view.component';
 import { EmployeeViewComponent } from './components/pages/employee/employee-view/employee-view.component';
 
+import { AuthGuardService } from './services/auth-guard.service';
+
 const app_routes: Routes = [
     // Home Route
-    { path: 'home', component: HomeComponent },
+    { path: 'home',
+      component: HomeComponent,
+      // canActivate: [ AuthGuardService ]
+    },
 
     // Login Route
-    { path: 'login', component: LoginComponent },
+    { path: 'login',
+      component: LoginComponent,
+      // canActivate: [ AuthGuardService ]
+    },
 
     // Client Route
-    { path: 'client-view', component: ClientViewComponent},
+    { path: 'client-view',
+      component: ClientViewComponent,
+      canActivate: [ AuthGuardService ]
+    },
 
     // Service Route
-    { path: 'service-view', component: ServiceViewComponent},
+    { path: 'service-view',
+      component: ServiceViewComponent,
+      canActivate: [ AuthGuardService ]
+    },
 
     // Employee Route
-    { path: 'employee-view', component: EmployeeViewComponent},
+    { path: 'employee-view',
+      component: EmployeeViewComponent,
+      canActivate: [ AuthGuardService ]
+    },
 
     // Default Route
     { path: '**', pathMatch: 'full', redirectTo: 'home'}
