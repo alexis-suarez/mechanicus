@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// Charts
+import { ChartsModule } from 'ng2-charts';
+
 // Routes
 import { app_routing } from './app.routes';
 
@@ -24,27 +27,30 @@ import { ServiceFormComponent } from './components/pages/service/service-form/se
 import { EmployeeViewComponent } from './components/pages/employee/employee-view/employee-view.component';
 import { EmployeeFormComponent } from './components/pages/employee/employee-form/employee-form.component';
 import { SettingsViewComponent } from './components/pages/settings/settings-view/settings-view.component';
+import { AnalyticsViewComponent } from './components/pages/analytics/analytics-view/analytics-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    LoginComponent,
     HeaderComponent,
     NavbarComponent,
-    HomeComponent,
     FooterComponent,
     SidebarComponent,
+    BackgroundComponent,
     ClientFormComponent,
     ClientViewComponent,
     ServiceViewComponent,
     ServiceFormComponent,
     EmployeeViewComponent,
     EmployeeFormComponent,
-    LoginComponent,
-    BackgroundComponent,
-    SettingsViewComponent
+    SettingsViewComponent,
+    AnalyticsViewComponent
   ],
   imports: [
     BrowserModule,
+    ChartsModule,
     app_routing
   ],
   providers: [
