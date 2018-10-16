@@ -1,6 +1,10 @@
 #particles-js {
-    background-attachment: fixed;
-    background-position: center; 
-    background-repeat: no-repeat;
-    background-size: cover
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-position: 50% 50%;
+    z-index: -5;
+
+    left: 0;
+    top: 0;
 }
