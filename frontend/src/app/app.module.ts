@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { app_routing } from './app.routes';
 
 // Services
+import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -41,7 +43,10 @@ import { LoginComponent } from './components/login/login.component';
     BrowserModule,
     app_routing
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
