@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { AnalyticsViewComponent } from './components/pages/analytics/analytics-view/analytics-view.component';
 import { ClientViewComponent } from './components/pages/client/client-view/client-view.component';
 import { ServiceViewComponent } from './components/pages/service/service-view/service-view.component';
 import { EmployeeViewComponent } from './components/pages/employee/employee-view/employee-view.component';
@@ -43,6 +44,12 @@ const app_routes: Routes = [
     // Settings Route
     { path: 'settings-view',
       component: SettingsViewComponent,
+      canActivate: [ AuthGuardService ]
+    },
+
+    // Analitics Route
+    { path: 'analytics-view',
+      component: AnalyticsViewComponent,
       canActivate: [ AuthGuardService ]
     },
 
