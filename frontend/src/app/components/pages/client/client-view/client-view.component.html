@@ -26,7 +26,7 @@
       </thead>
       <tbody>
         <!-- List of Clients -->
-        <tr *ngFor="let item of getList()">
+        <tr *ngFor="let item of getList(); let i of index;">
           <th scope="row">1</th>
           <td>{{ item.name }}</td>
           <td>{{ item.rfc }}</td>
@@ -36,7 +36,7 @@
             <!-- Botton to edite a Client -->
             <button class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
             <!-- Botton to delete a Client -->
-            <button class="ml-1 btn-sm btn btn-danger" data-toggle="modal" data-target="#DeleteModal"><i class="fas fa-trash-alt"></i></button>
+            <button (click)="getIndex(i)" class="ml-1 btn-sm btn btn-danger" data-toggle="modal" data-target="#DeleteModal"><i class="fas fa-trash-alt"></i></button>
           </td>
         </tr>
       </tbody>
@@ -88,7 +88,7 @@
           </div>
           <div class="col">
             <!-- Botton to Register -->
-            <button type="button" class="btn btn-block btn btn-danger">Borrar</button>
+            <button (click)="delClient();" type="button" class="btn btn-block btn btn-danger" data-dismiss="modal">Borrar</button>
           </div>
         </div>
       </div>
