@@ -25,7 +25,7 @@
         <a class="nav-link" [routerLink]="['employee-view']">Empleados</a>
       </li>
       <li *ngIf="getAuth().isAuthenticated()" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['home']">Ajustes</a>
+        <a class="nav-link" [routerLink]="['settings-view']">Ajustes</a>
       </li>
       <li *ngIf="getAuth().isAuthenticated()" class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['home']">Análisis</a>

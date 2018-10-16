@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ClientViewComponent } from './components/pages/client/client-view/client-view.component';
 import { ServiceViewComponent } from './components/pages/service/service-view/service-view.component';
 import { EmployeeViewComponent } from './components/pages/employee/employee-view/employee-view.component';
+import { SettingsViewComponent } from './components/pages/settings/settings-view/settings-view.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
 
@@ -36,6 +37,12 @@ const app_routes: Routes = [
     // Employee Route
     { path: 'employee-view',
       component: EmployeeViewComponent,
+      canActivate: [ AuthGuardService ]
+    },
+
+    // Settings Route
+    { path: 'settings-view',
+      component: SettingsViewComponent,
       canActivate: [ AuthGuardService ]
     },
 
