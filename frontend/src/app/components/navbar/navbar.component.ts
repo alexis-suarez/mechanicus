@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 // Variables for jQuery
 declare var $: any;
@@ -11,17 +12,33 @@ declare var $jQuery: any;
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public auth: AuthService) {
+    // auth.handleAuthentication();
+  }
 
   ngOnInit() {
+    // if (this.auth.userProfile) {
+    //   this.profile = this.auth.userProfile;
+    // } else {
+    //   this.auth.getProfile((err, profile) => {
+    //     this.profile = profile;
+    //   });
+    // }
   }
 
-  public show(): void {
-    $jQuery(document).ready( function() {
-      $('#sidebarCollapse').on('click', function() {
-        $('#sidebar').toggleClass('active');
-      });
-    });
+  public signIn(): void {
+    //
   }
 
+  public signOut(): void {
+    //
+  }
+
+  public getAuth(): AuthService {
+    return this.auth;
+  }
+
+  public singOut(): void {
+    this.auth.logout();
+  }
 }
