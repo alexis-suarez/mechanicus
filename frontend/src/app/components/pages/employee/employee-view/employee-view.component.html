@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-2">
         <!-- Botton to register new Employee -->
-        <button class="btn btn-primary" (click)="newEmployee()"><i class="fas fa-plus"></i></button>
+        <button class="btn btn-primary" (click)="newEmployee()" data-toggle="modal" data-target="#InsertModal"><i class="fas fa-plus"></i></button>
       </div>
       <div class="col-4"><h3>Empleados</h3></div>
       <div class="col-6">
@@ -36,7 +36,7 @@
               <!-- Botton to edite a Employee -->
               <button class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
               <!-- Botton to delete a Employee -->
-              <button class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+              <button class="ml-1 btn-sm btn btn-danger" data-toggle="modal" data-target="#DeleteModal"><i class="fas fa-trash-alt"></i></button>
             </td>
           </tr>
         </tbody>
@@ -45,12 +45,6 @@
   </div>
   
   <!-- Modal to register new Employee -->
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#InsertModal">
-    Launch demo modal
-  </button>
-    
-  <!-- Modal -->
   <div class="modal fade" id="InsertModal" tabindex="-1" role="dialog" aria-labelledby="InsertModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
@@ -75,11 +69,6 @@
   </div>
   
   <!-- Modal to delete a Employee -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DeleteModal">
-    Launch demo modal
-  </button>
-      
-  <!-- Modal -->
   <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
