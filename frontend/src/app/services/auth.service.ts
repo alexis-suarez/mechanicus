@@ -51,6 +51,10 @@ export class AuthService {
     this.status = true;
   }
 
+  public logint(): void {
+    this.status = true;
+  }
+
   public logout(): void {
     // // Remove tokens and expiry time from localStorage
     // localStorage.removeItem('access_token');

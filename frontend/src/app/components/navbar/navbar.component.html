@@ -35,13 +35,13 @@
     <form class="form-inline my-2 my-lg-0 text-white">
       <!-- Sign out -->
       <div *ngIf="getAuth().isAuthenticated()">
-        <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="../../../assets/img/user.png" width="30" height="30" class="d-inline-block align-top rounded-circle img-thumbnail img-fluid" alt="">
         username
-        <button (click)="singOut()" type="button" class="btn btn-danger">sign-out <i class="fas fa-sign-out-alt"></i></button>
+        <button (click)="signOut()" type="button" class="btn btn-danger btn-sm">sign-out <i class="fas fa-sign-out-alt"></i></button>
       </div>
       <!-- Sign int -->
       <div *ngIf="!getAuth().isAuthenticated()">
-        <button type="button" class="btn btn-secondary btn-sm">Sign in <i class="fas fa-sign-in-alt"></i></button>
+        <button (click)="signIn()" type="button" class="btn btn-secondary btn-sm">Sign in <i class="fas fa-sign-in-alt"></i></button>
       </div>
     </form>
   </div>
