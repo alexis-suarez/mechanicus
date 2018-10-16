@@ -27,18 +27,14 @@ export class NavbarComponent implements OnInit {
   }
 
   public signIn(): void {
-    //
+    this.auth.logint();
   }
 
   public signOut(): void {
-    //
+    this.auth.logout();
   }
 
   public getAuth(): AuthService {
     return this.auth;
-  }
-
-  public singOut(): void {
-    this.auth.logout();
   }
 }
