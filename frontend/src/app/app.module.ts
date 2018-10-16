@@ -23,6 +23,7 @@ import { EmployeeViewComponent } from './components/pages/employee/employee-view
 import { EmployeeFormComponent } from './components/pages/employee/employee-form/employee-form.component';
 import { LoginComponent } from './components/login/login.component';
 import { BackgroundComponent } from './components/background/background.component';
+import { SettingsViewComponent } from './components/pages/settings/settings-view/settings-view.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BackgroundComponent } from './components/background/background.componen
     EmployeeViewComponent,
     EmployeeFormComponent,
     LoginComponent,
-    BackgroundComponent
+    BackgroundComponent,
+    SettingsViewComponent
   ],
   imports: [
     BrowserModule,
