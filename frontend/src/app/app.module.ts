@@ -28,6 +28,10 @@ import { EmployeeViewComponent } from './components/pages/employee/employee-view
 import { EmployeeFormComponent } from './components/pages/employee/employee-form/employee-form.component';
 import { SettingsViewComponent } from './components/pages/settings/settings-view/settings-view.component';
 import { AnalyticsViewComponent } from './components/pages/analytics/analytics-view/analytics-view.component';
+import { LineChartComponent } from './components/pages/analytics/charts/line-chart/line-chart.component';
+import { RadarChartComponent } from './components/pages/analytics/charts/radar-chart/radar-chart.component';
+import { PolarAreaChartComponent } from './components/pages/analytics/charts/polar-area-chart/polar-area-chart.component';
+import { BarChartComponent } from './components/pages/analytics/charts/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,11 @@ import { AnalyticsViewComponent } from './components/pages/analytics/analytics-v
     EmployeeViewComponent,
     EmployeeFormComponent,
     SettingsViewComponent,
-    AnalyticsViewComponent
+    AnalyticsViewComponent,
+    LineChartComponent,
+    RadarChartComponent,
+    PolarAreaChartComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
