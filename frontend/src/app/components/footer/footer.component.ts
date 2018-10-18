@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +10,7 @@ export class FooterComponent implements OnInit {
 
   private year: number;
 
-  constructor() {
+  constructor(private auth: AuthService) {
     this.year = new Date().getFullYear();
   }
 
@@ -20,4 +21,7 @@ export class FooterComponent implements OnInit {
     return this.year;
   }
 
+  public getAuth(): AuthService {
+    return this.auth;
+  }
 }
