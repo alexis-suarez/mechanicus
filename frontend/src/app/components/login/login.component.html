@@ -1,16 +1,25 @@
-<form class="form-signin text-center">
-  <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
-  <div class="form-group">
-    <input type="UserName" id="inputUserName" class="form-control text-center" placeholder="Usuario" required autofocus>
+<!-- Main div Container -->
+<div class="container mt-3 p-3">
+  <div *ngIf="!getAuth().isAuthenticated()" class="row">
+      <div class="col"></div>
+      <div class="op-4 col-xl-6 col-lg-8 col-sm-10 col-12 mx-auto mt-5 shadow-lg p-3 mb-5 bg-white rounded">
+        <form class="form-signin text-center">
+          <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+          <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+          <div class="form-group">
+            <input type="UserName" id="inputUserName" class="form-control text-center" placeholder="Usuario" required autofocus>
+          </div>
+          <div class="form-group">
+            <input type="password" id="inputPassword" class="form-control text-center" placeholder="Contraseña" required>
+          </div>
+          <div class="checkbox mb-3">
+            <label>
+            <input type="checkbox" value="remember-me"> Remember me
+            </label>
+            </div>
+            <button (click)="signIn()" class="btn btn-lg btn btn-success btn-block" type="button">Sign in</button>
+        </form>
+      </div>
+      <div class="col"></div>
   </div>
-  <div class="form-group">
-    <input type="password" id="inputPassword" class="form-control text-center" placeholder="Contraseña" required>
-  </div>
-  <div class="checkbox mb-3">
-    <label>
-    <input type="checkbox" value="remember-me"> Remember me
-    </label>
-    </div>
-    <button (click)="signIn()" class="btn btn-lg btn btn-success btn-block" type="button">Sign in</button>
-</form>
+</div>

@@ -14,7 +14,7 @@ const app_routes: Routes = [
     // Home Route
     { path: 'home',
       component: HomeComponent,
-      // canActivate: [ AuthGuardService ]
+      canActivate: [ AuthGuardService ]
     },
 
     // Login Route
@@ -54,7 +54,7 @@ const app_routes: Routes = [
     },
 
     // Default Route
-    { path: '**', pathMatch: 'full', redirectTo: 'home'}
+    { path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];
 
 export const app_routing = RouterModule.forRoot(app_routes);
