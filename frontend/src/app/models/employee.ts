@@ -1,12 +1,15 @@
 import { Address } from './address';
 
-export interface Client {
+export class Employee {
     id: string;
     name: string;
     address: Address;
-    auto: string[];
+    nss: string;
     rfc: string;
+    curp: string;
     phone: string;
-    email: string;
+    birthDate: Date;
+    salary: number;
+    role: string;
     status: boolean;
 }
