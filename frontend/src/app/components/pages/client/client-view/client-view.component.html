@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-2">
       <!-- Botton to register new Client -->
-      <button class="btn btn-primary" (click)="newClient()" data-toggle="modal" data-target="#InsertModal"><i class="fas fa-plus"></i></button>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#InsertModal"><i class="fas fa-plus"></i></button>
     </div>
     <div class="col-4"><h3>Clientes</h3></div>
     <div class="col-6">
@@ -62,7 +62,7 @@
         <!-- Botton to Cancel -->
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <!-- Botton to Register -->
-        <button type="button" class="btn btn-success">Guardar</button>
+        <button (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
       </div>
     </div>
   </div>

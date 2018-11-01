@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-client-view',
@@ -30,7 +31,7 @@ export class ClientViewComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private service: ClientService) { }
 
   ngOnInit() {
   }
@@ -44,7 +45,7 @@ export class ClientViewComponent implements OnInit {
   }
 
   public newClient(): void {
-    //
+    this.service.newClient();
   }
 
   public delClient(): void {
