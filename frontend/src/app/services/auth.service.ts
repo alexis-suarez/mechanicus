@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { User } from '../models/user';
 
 (window as any).global = window;
 
 @Injectable()
 export class AuthService {
 
-  private userProfile: any;
+  private profile: User;
   private auth0: any;
   private status: boolean;
+
+  public getProfile(): User {
+    return this.profile;
+  }
+
+  public getUserName(): string {
+    return this.profile.username;
+  }
 
   // auth0 = new auth0.WebAuth({
   //   clientID: 'B5nzRtCg0Ud2ftulWKzfWvUOY5amzReu',
@@ -61,7 +70,7 @@ export class AuthService {
     // localStorage.removeItem('id_token');
     // localStorage.removeItem('expires_at');
     // // Go back to the home route
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
     // Test
     this.status = false;
   }
@@ -75,21 +84,21 @@ export class AuthService {
     return this.status;
   }
 
-  public getProfile(cb): void {
-    const accessToken = localStorage.getItem('access_token');
-    if (!accessToken) {
-      throw new Error('Access Token must exist to fetch profile');
-    }
+  // public getProfile(cb): void {
+  //   const accessToken = localStorage.getItem('access_token');
+  //   if (!accessToken) {
+  //     throw new Error('Access Token must exist to fetch profile');
+  //   }
 
-    const self = this;
-    this.auth0.client.userInfo(accessToken, (err, profile) => {
+  //   const self = this;
+  //   this.auth0.client.userInfo(accessToken, (err, profile) => {
 
-    if (profile) {
-      self.userProfile = profile;
-    }
+  //   if (profile) {
+  //     self.profile = profile;
+  //   }
 
-    cb(err, profile);
-    });
-  }
+  //   cb(err, profile);
+  //   });
+  // }
 
 }
