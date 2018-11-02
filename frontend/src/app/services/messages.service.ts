@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import Swal from 'sweetalert2';
+import swal from 'sweetalert2';
+import { analyzeFileForInjectables } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,11 @@ export class MessagesService {
 
   constructor() { }
 
-  public alert(status: boolean, type: number): void {
+  public add(status: boolean, type: number): void {
     if (status !== false) {
       switch (type) {
         case 1: // Success
-          Swal({
+          swal({
             position: 'top-end',
             type: 'success',
             title: 'Correcto :D',
@@ -22,7 +23,7 @@ export class MessagesService {
           });
           break;
         case 2: // Error
-          Swal({
+          swal({
             position: 'top-end',
             type: 'error',
             title: 'Error :(',
@@ -31,7 +32,7 @@ export class MessagesService {
           });
           break;
         case 3: // Warning
-          Swal({
+          swal({
             position: 'top-end',
             type: 'warning',
             title: 'Your work has been saved',
@@ -40,7 +41,7 @@ export class MessagesService {
           });
           break;
         case 4: // Info
-          Swal({
+          swal({
             position: 'top-end',
             type: 'info',
             title: 'Your work has been saved',
@@ -49,7 +50,7 @@ export class MessagesService {
           });
           break;
         case 5: // Question
-          Swal({
+          swal({
             position: 'top-end',
             type: 'question',
             title: 'Your work has been saved',
@@ -61,7 +62,7 @@ export class MessagesService {
           break;
       }
     } else {
-      Swal({
+      swal({
         // position: 'top-end',
         type: 'error',
         title: 'Algo no esta bien :S',
@@ -69,5 +70,27 @@ export class MessagesService {
         timer: 1500
       });
     }
+  }
+
+  public del(): boolean {
+    swal({
+      title: '¿Seguro de Borrar?',
+      text: 'No se podrá recuperar despues',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, Eliminar!'
+    }).then((result) => {
+      if (result.value) {
+        swal(
+          '¡Borrado!',
+          'Se ha eliminado la información.',
+          'success'
+        );
+      }
+      return true;
+    });
+    return false;
   }
 }

@@ -3,4 +3,6 @@ export class Address {
     number: number;
     suburb: string;
     city: string;
+    state: string;
+    zip: string;
 }

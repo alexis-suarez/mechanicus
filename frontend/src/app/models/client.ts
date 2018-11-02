@@ -1,6 +1,6 @@
 import { Address } from './address';
 
-export interface Client {
+export class Client {
     id: string;
     name: string;
     address: Address;
@@ -8,5 +8,5 @@ export interface Client {
     rfc: string;
     phone: string;
     email: string;
-    status: boolean;
+    status = true;
 }

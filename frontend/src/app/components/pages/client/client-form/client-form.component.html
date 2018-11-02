@@ -1,43 +1,61 @@
-<form>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="inputName">Nombre de Cliente o Empresa</label>
-        <input type="text" class="form-control" id="inputName" placeholder="Cliente o Empresa" required>
-    </div>
-    <div class="form-group col-md-6">
-        <label for="inputRFC">RFC</label>
-        <input type="text" class="form-control" id="inputRFC" placeholder="RFC" required>
-    </div>
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title text-center" id="InsertModalTitle">Registro Nuevo</h5>
+    <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputPhone">Télefono</label>
-      <input type="text" class="form-control" id="inputPhone" placeholder="Télefono / Móvil" required>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail">Correo Electronico</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
-    </div>
+  <div class="modal-body">
+    <!-- Form to Register -->
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputName">Nombre de Cliente o Empresa</label>
+            <input [(ngModel)]="client.name" name="name" type="text" class="form-control" id="inputName" placeholder="Cliente o Empresa" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputRFC">RFC</label>
+            <input [(ngModel)]="client.rfc" name="rfc" type="text" class="form-control" id="inputRFC" placeholder="RFC" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputPhone">Télefono</label>
+          <input [(ngModel)]="client.phone" name="phone" type="tel" class="form-control" id="inputPhone" placeholder="Télefono / Móvil" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputEmail">Correo Electronico</label>
+          <input [(ngModel)]="client.email" name="email" type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">Dirección</label>
+        <input [(ngModel)]="address.street" name="street" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">Ciudad ó Municipio</label>
+          <input [(ngModel)]="address.city" name="city" type="text" class="form-control" id="inputCity" placeholder="..." required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState">Estado</label>
+          <select [(ngModel)]="address.state" name="state" id="inputState" class="form-control" required>
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip">Código Postal</label>
+          <input [(ngModel)]="address.zip" name="zip" type="number" class="form-control" id="inputZip" placeholder="00000" required>
+        </div>
+      </div>
+    </form>
   </div>
-  <div class="form-group">
-    <label for="inputAddress">Dirección</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+  <div class="modal-footer">
+    <!-- Botton to Cancel -->
+    <button (click)="clrModel()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+    <!-- Botton to Register -->
+    <button (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
   </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">Ciudad ó Municipio</label>
-      <input type="text" class="form-control" id="inputCity" placeholder="..." required>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">Estado</label>
-      <select id="inputState" class="form-control" required>
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Código Postal</label>
-      <input type="text" class="form-control" id="inputZip" placeholder="00000" required>
-    </div>
-  </div>
-</form>
+</div>
+
