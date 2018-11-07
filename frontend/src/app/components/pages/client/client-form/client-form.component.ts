@@ -12,7 +12,6 @@ import { ClientService } from 'src/app/services/client.service';
 export class ClientFormComponent implements OnInit {
 
   public client: Client;
-  public address: Address;
 
   constructor(private service: ClientService) { }
 
@@ -22,11 +21,10 @@ export class ClientFormComponent implements OnInit {
 
   public clrModel(): void {
     this.client = new Client();
-    this.address = new Address();
+    this.client.address = new Address();
   }
 
   public newClient(): void {
-    this.client.address = this.address;
     this.service.addList(this.client);
     this.clrModel();
   }

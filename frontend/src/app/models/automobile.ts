@@ -1,7 +1,7 @@
 export class Automobile {
+    id: number;
     brand: string;
     model: string;
-    cylinder: string;
     year: string;
     milage: number;
     cilinder: number;

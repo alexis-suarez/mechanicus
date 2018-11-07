@@ -27,9 +27,9 @@
         <!-- List of Clients -->
         <tr *ngFor="let client of getList(); let i of index;">
           <td>{{ client.name }}</td>
-          <td>{{ client.rfc }}</td>
-          <td>{{ client.phone }}</td>
-          <td>{{ client.email }}</td>
+          <td class="text-center">{{ client.rfc }}</td>
+          <td class="text-center">{{ client.phone }}</td>
+          <td class="text-center">{{ client.email }}</td>
           <td class="d-flex justify-content-center">
             <!-- Botton to edite a Client -->
             <button (click)="updClient(client.id)" class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
