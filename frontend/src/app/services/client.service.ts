@@ -53,11 +53,11 @@ export class ClientService {
   }
 
   public delClient(id: string): any {
-    return this.http.post<Response>(this.url + '', httpOptions);
+    return this.http.put<Response>(this.url + '', httpOptions);
   }
 
   public updClient(client: Client): any {
-    return this.http.post<Response>(this.url + '', httpOptions);
+    return this.http.put<Response>(this.url + '', httpOptions);
   }
 
   public getClient(): any {

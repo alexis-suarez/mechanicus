@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import swal from 'sweetalert2';
-import { analyzeFileForInjectables } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +71,7 @@ export class MessagesService {
     }
   }
 
-  public del(): boolean {
+  public del(): void {
     swal({
       title: '¿Seguro de Borrar?',
       text: 'No se podrá recuperar despues',
@@ -89,8 +88,6 @@ export class MessagesService {
           'success'
         );
       }
-      return true;
     });
-    return false;
   }
 }
