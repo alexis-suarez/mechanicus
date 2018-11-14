@@ -32,7 +32,7 @@
           <td class="text-center">{{ client.email }}</td>
           <td class="d-flex justify-content-center">
             <!-- Botton to edite a Client -->
-            <button (click)="updClient(client.id)" class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
+            <button (click)="updClient(client.id)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#InsertModal"><i class="fas fa-edit"></i></button>
             <!-- Botton to delete a Client -->
             <button (click)="delClient(client.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
           </td>
@@ -47,7 +47,7 @@
 
 <!-- Modal to register new Client -->
 <div class="modal fade" id="InsertModal" tabindex="-1" role="dialog" aria-labelledby="InsertModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <!-- form -->
     <app-client-form></app-client-form>
   </div>

@@ -7,15 +7,15 @@
   </div>
   <div class="modal-body">
     <!-- Form to Register -->
-    <form>
+    <form #client.valid>
       <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputName">Nombre de Cliente o Empresa</label>
-            <input [(ngModel)]="client.name" name="name" type="text" class="form-control" id="inputName" placeholder="Cliente o Empresa" required>
+            <input [(ngModel)]="client.name" name="name" type="text" class="form-control text-uppercase" id="inputName" placeholder="Cliente o Empresa" required>
         </div>
         <div class="form-group col-md-6">
             <label for="inputRFC">RFC</label>
-            <input [(ngModel)]="client.rfc" name="rfc" type="text" class="form-control" id="inputRFC" placeholder="RFC" required>
+            <input [(ngModel)]="client.rfc" name="rfc" type="text" class="form-control text-uppercase" id="inputRFC" placeholder="RFC" required>
         </div>
       </div>
       <div class="form-row">
@@ -25,21 +25,21 @@
         </div>
         <div class="form-group col-md-6">
           <label for="inputEmail">Correo Electronico</label>
-          <input [(ngModel)]="client.email" name="email" type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+          <input [(ngModel)]="client.email" name="email" type="email" class="form-control text-lowercase" id="inputEmail" placeholder="Email" required>
         </div>
       </div>
       <div class="form-group">
         <label for="inputAddress">Dirección</label>
-        <input [(ngModel)]="client.address.street" name="street" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+        <input [(ngModel)]="client.address.street" name="street" type="text" class="form-control text-uppercase" id="inputAddress" placeholder="1234 Main St" required>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputCity">Ciudad ó Municipio</label>
-          <input [(ngModel)]="client.address.city" name="city" type="text" class="form-control" id="inputCity" placeholder="..." required>
+          <input [(ngModel)]="client.address.city" name="city" type="text" class="form-control text-uppercase" id="inputCity" placeholder="..." required>
         </div>
         <div class="form-group col-md-4">
           <label for="inputState">Estado</label>
-          <select [(ngModel)]="client.address.state" name="state" id="inputState" class="form-control" required>
+          <select [(ngModel)]="client.address.state" name="state" id="inputState" class="form-control text-uppercase" required>
             <option selected>Choose...</option>
             <option>...</option>
           </select>
@@ -55,7 +55,7 @@
     <!-- Botton to Cancel -->
     <button (click)="clrModel()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
     <!-- Botton to Register -->
-    <button (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+    <button [disabled]="!client.valid" (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
   </div>
 </div>
 

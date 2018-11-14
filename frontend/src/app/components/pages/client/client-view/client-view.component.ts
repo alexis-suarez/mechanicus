@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
+// Models
 import { Client } from 'src/app/models/client';
+
+// Services
 import { ClientService } from 'src/app/services/client.service';
-import { MessagesService } from 'src/app/services/messages.service';
+
+// Sweet Alert2 Import
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-client-view',
@@ -11,8 +16,7 @@ import { MessagesService } from 'src/app/services/messages.service';
 })
 export class ClientViewComponent implements OnInit {
 
-  constructor(private service: ClientService,
-              private message: MessagesService) { }
+  constructor(private service: ClientService) { }
 
   ngOnInit() {
   }
@@ -27,7 +31,24 @@ export class ClientViewComponent implements OnInit {
 
   // Function for CRUD
   public delClient(id: string, index: number): void {
-    this.service.delList(index);
+    swal({
+      title: '¿Seguro de Borrar?',
+      text: 'No se podrá recuperar despues',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, Eliminar!'
+    }).then((result) => {
+      if (result.value) {
+        swal(
+          '¡Borrado!',
+          'Se ha eliminado la información.',
+          'success'
+        );
+        this.service.delList(index);
+      }
+    });
   }
 
   public updClient(id: string): void {
