@@ -1,6 +1,6 @@
 from django.urls import path, include
-from api.views import *
+from . import views
 
 urlpatterns = [
-    path('address', AddressList.as_view())
+
 ]

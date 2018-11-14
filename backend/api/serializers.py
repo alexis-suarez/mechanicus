@@ -1,7 +1,9 @@
-from rest_framework import serializers
-from .models import Address
+from rest_framework import routers, serializers, viewsets
 
-class AddressSerializer(serializers.HyperlinkedModelSerializer):
+from .models import *
+
+# Serializers define the API representation.
+class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = {'id', 'street', 'suburb', 'city'}
+        fields = ('street', 'number', 'suburb', 'city', 'state', 'zip')
