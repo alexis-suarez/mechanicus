@@ -10,3 +10,6 @@ class Address(models.Model):
     city = models.TextField()
     state = models.TextField()
     zip = models.TextField()
+
+    def __str__(self):
+        return self.street + ", " + self.number
