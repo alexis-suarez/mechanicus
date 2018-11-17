@@ -19,6 +19,7 @@ export class ClientViewComponent implements OnInit {
   constructor(private service: ClientService) { }
 
   ngOnInit() {
+    this.viewClient();
   }
 
   public getList(): any {
@@ -59,7 +60,11 @@ export class ClientViewComponent implements OnInit {
     //
   }
 
-  public vieClient(): void {
-    //
+  public viewClient(): void {
+    this.service.viewClient().subscribe(response => {
+      this.service.setList(response.data);
+    }, error => {
+      console.log(error);
+    });
   }
 }

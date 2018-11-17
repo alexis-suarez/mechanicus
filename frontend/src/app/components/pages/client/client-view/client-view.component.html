@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <!-- List of Clients -->
-        <tr *ngFor="let client of getList(); let i of index;">
+        <tr *ngFor="let client of getList(); let i = index;">
           <td>{{ client.name }}</td>
           <td class="text-center">{{ client.rfc }}</td>
           <td class="text-center">{{ client.phone }}</td>

@@ -22,7 +22,7 @@ export class ClientService {
   private list: Array<Client>;
 
   // API URL
-  private url = 'http://';
+  private url = 'http://127.0.0.1:5000/api';
 
   constructor(private http: HttpClient) {
     this.list = [];
@@ -39,7 +39,11 @@ export class ClientService {
     }
   }
 
-  public getList(): any {
+  public setList(data: any): void {
+    this.list = data;
+  }
+
+  public getList(): Array<Client> {
     return this.list;
   }
 
@@ -64,7 +68,7 @@ export class ClientService {
     return this.http.get<Response>(this.url + '', httpOptions);
   }
 
-  public viwClient(): any {
-    return this.http.get<Response>(this.url + '', httpOptions);
+  public viewClient(): any {
+    return this.http.get<Response>(this.url + '/client/view', httpOptions);
   }
 }
