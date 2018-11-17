@@ -22,7 +22,7 @@ export class ClientService {
   private list: Array<Client>;
 
   // API URL
-  private url = 'http://127.0.0.1:5000/api';
+  private url = 'http://127.0.0.1:5000/api/client';
 
   constructor(private http: HttpClient) {
     this.list = [];
@@ -53,26 +53,26 @@ export class ClientService {
 
   // Http Request
   public newClient(client: Client): any {
-    return this.http.post<Response>(this.url + '', httpOptions);
+    return this.http.post<Response>(this.url, JSON.stringify(client), httpOptions);
   }
 
   public delClient(id: string): any {
-    return this.http.put<Response>(this.url + '', httpOptions);
+    return this.http.put<Response>(this.url, httpOptions);
   }
 
   public updClient(client: Client): any {
-    return this.http.put<Response>(this.url + '', httpOptions);
+    return this.http.put<Response>(this.url, httpOptions);
   }
 
   public getClient(id: string): any {
     const httpParams = new HttpParams().set('_id', id.toString());
-    return this.http.get<Response>(this.url + '/client/get', {
+    return this.http.get<Response>(this.url, {
       params: httpParams,
       responseType: 'json'
     });
   }
 
   public viewClient(): any {
-    return this.http.get<Response>(this.url + '/client/view', httpOptions);
+    return this.http.get<Response>(this.url, httpOptions);
   }
 }

@@ -59,7 +59,7 @@ export class ClientViewComponent implements OnInit {
   public getClient(id: string): void {
     this.service.getClient(id).subscribe(response => {
       console.log(id);
-      console.log(response);
+      console.log(response.data);
     }, error => {
       console.log(error);
     });

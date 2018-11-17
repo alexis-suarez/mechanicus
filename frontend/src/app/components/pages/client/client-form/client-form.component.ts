@@ -31,13 +31,25 @@ export class ClientFormComponent implements OnInit {
   }
 
   public newClient(): void {
-    this.service.addList(this.client);
-    swal({
-      position: 'top-end',
-      type: 'success',
-      title: 'Correcto :D',
-      showConfirmButton: false,
-      timer: 1500
+    console.log(this.client);
+    this.service.newClient(this.client).subscribe(response => {
+      console.log(response);
+      this.service.addList(this.client);
+      swal({
+        position: 'top-end',
+        type: 'success',
+        title: 'Correcto :D',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }, error => {
+      swal({
+        position: 'top-end',
+        type: 'error',
+        title: 'Error :(',
+        showConfirmButton: false,
+        timer: 1500
+      });
     });
     this.clrModel();
   }

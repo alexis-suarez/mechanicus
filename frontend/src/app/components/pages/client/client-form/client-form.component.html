@@ -7,7 +7,7 @@
   </div>
   <div class="modal-body">
     <!-- Form to Register -->
-    <form #client.valid>
+    <form #form="ngForm">
       <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputName">Nombre de Cliente o Empresa</label>
@@ -55,7 +55,7 @@
     <!-- Botton to Cancel -->
     <button (click)="clrModel()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
     <!-- Botton to Register -->
-    <button [disabled]="!client.valid" (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+    <button [disabled]="!form.form.valid" (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
   </div>
 </div>
 
