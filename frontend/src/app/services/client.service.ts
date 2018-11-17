@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Client } from '../models/client';
 import { Response } from '../models/response';
@@ -64,8 +64,12 @@ export class ClientService {
     return this.http.put<Response>(this.url + '', httpOptions);
   }
 
-  public getClient(): any {
-    return this.http.get<Response>(this.url + '', httpOptions);
+  public getClient(id: string): any {
+    const httpParams = new HttpParams().set('_id', id.toString());
+    return this.http.get<Response>(this.url + '/client/get', {
+      params: httpParams,
+      responseType: 'json'
+    });
   }
 
   public viewClient(): any {

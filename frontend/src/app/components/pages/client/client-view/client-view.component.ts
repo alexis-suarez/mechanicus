@@ -56,8 +56,13 @@ export class ClientViewComponent implements OnInit {
     //
   }
 
-  public getClient(): void {
-    //
+  public getClient(id: string): void {
+    this.service.getClient(id).subscribe(response => {
+      console.log(id);
+      console.log(response);
+    }, error => {
+      console.log(error);
+    });
   }
 
   public viewClient(): void {
