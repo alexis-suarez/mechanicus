@@ -50,16 +50,13 @@ class Client(Resource):
 class ClientOne(Resource):
     def get(self, id):
         try:
-            # parse = reqparse.RequestParser()
-            # parse.add_argument('id')
-            # args = parse.parse_args()
-            document = connector.collection('client').find({'_id':ObjectId(id)})
-            data = {'id':str(field['_id']),
-                    'name':field['name'],
-                    'rfc':field['rfc'],
-                    'phone':field['phone'],
-                    'email':field['email'],
-                    'status':field['status']}
+            document = connector.collection('client').find_one({'_id':ObjectId(id)})
+            data = {'id':str(document['_id']),
+                             'name':document['name'],
+                             'rfc':document['rfc'],
+                             'phone':document['phone'],
+                             'email':document['email'],
+                             'status':document['status']}
             response = {'message':'success', 'status':True, 'data':data}
             return jsonify(response)
         except:

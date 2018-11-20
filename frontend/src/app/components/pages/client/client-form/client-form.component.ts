@@ -43,6 +43,7 @@ export class ClientFormComponent implements OnInit {
         timer: 1500
       });
     }, error => {
+      console.log(error);
       swal({
         position: 'top-end',
         type: 'error',

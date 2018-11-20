@@ -66,11 +66,7 @@ export class ClientService {
   }
 
   public getClient(id: string): any {
-    const httpParams = new HttpParams().set('id', id);
-    return this.http.get<Response>('http://127.0.0.1:5000/api/client/', {
-      params: httpParams,
-      responseType: 'json'
-    });
+    return this.http.get<Response>(this.url + '/' + id);
   }
 
   public viewClient(): any {

@@ -5,7 +5,7 @@ from flask_restful import Resource
 # Connector to MongoDB
 from Connector import connector
 
-class Automobile(Resource):
+class Employee(Resource):
     def post(self):
         try:
             pass
@@ -32,7 +32,7 @@ class Automobile(Resource):
 
     def get(self):
         try:
-            document = connector.collection('automobile').find({'status':True})
+            document = connector.collection('employee').find({'status':True})
             data = []
             for field in document:
                 data.append({'':field['']})
