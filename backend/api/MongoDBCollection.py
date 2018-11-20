@@ -1,3 +1,4 @@
+# Importing driver for MongoDB
 import pymongo
 
 class MongoDBCollection():
@@ -24,6 +25,12 @@ class MongoDBCollection():
     def find(self):
         try:
             return self._collection.find()
+        except:
+            raise Exception("Error! trying to find all document")
+    
+    def find(self, query):
+        try:
+            return self._collection.find(query)
         except:
             raise Exception("Error! trying to find all document")
 

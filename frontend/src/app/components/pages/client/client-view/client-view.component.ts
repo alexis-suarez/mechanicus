@@ -19,13 +19,16 @@ export class ClientViewComponent implements OnInit {
   constructor(private service: ClientService) { }
 
   ngOnInit() {
+    // Load the data on the table
     this.viewClient();
   }
 
+  // Return the list
   public getList(): any {
     return this.service.getList();
   }
 
+  // Check if is Empty
   public isEmpty(): boolean {
     return this.service.isEmpty();
   }
@@ -58,7 +61,6 @@ export class ClientViewComponent implements OnInit {
 
   public getClient(id: string): void {
     this.service.getClient(id).subscribe(response => {
-      console.log(id);
       console.log(response.data);
     }, error => {
       console.log(error);

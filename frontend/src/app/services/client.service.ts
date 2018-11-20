@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
+// Models
 import { Client } from '../models/client';
 import { Response } from '../models/response';
 
-import { MessagesService } from './messages.service';
-
+// Header Options
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
     // 'Authorization': 'my-auth-token'
   })
 };
@@ -65,8 +66,8 @@ export class ClientService {
   }
 
   public getClient(id: string): any {
-    const httpParams = new HttpParams().set('_id', id.toString());
-    return this.http.get<Response>(this.url, {
+    const httpParams = new HttpParams().set('id', id);
+    return this.http.get<Response>('http://127.0.0.1:5000/api/client/', {
       params: httpParams,
       responseType: 'json'
     });

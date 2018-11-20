@@ -31,10 +31,10 @@ export class ClientFormComponent implements OnInit {
   }
 
   public newClient(): void {
-    console.log(this.client);
+    const data = this.client;
     this.service.newClient(this.client).subscribe(response => {
       console.log(response);
-      this.service.addList(this.client);
+      this.service.addList(data);
       swal({
         position: 'top-end',
         type: 'success',

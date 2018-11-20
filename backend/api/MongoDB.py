@@ -1,5 +1,7 @@
+# Importing driver for MongoDB
 import pymongo
 
+# Importing Class to Manages Collections of MongoDB
 from MongoDBCollection import MongoDBCollection
 
 class MongoDB():
