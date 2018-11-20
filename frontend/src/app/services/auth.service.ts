@@ -10,7 +10,6 @@ export class AuthService {
 
   private profile: User;
   private auth0: any;
-  private status: boolean;
 
   public getProfile(): User {
     return this.profile;
@@ -29,7 +28,6 @@ export class AuthService {
   // });
 
   constructor(public router: Router) {
-    this.status = false;
   }
 
   // public login(): void {
@@ -50,18 +48,19 @@ export class AuthService {
   //   });
   // }
 
-  private setSession(authResult): void {
+  private setSession(): void {
     // Set the time that the Access Token will expire at
     // const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     // localStorage.setItem('access_token', authResult.accessToken);
     // localStorage.setItem('id_token', authResult.idToken);
     // localStorage.setItem('expires_at', expiresAt);
     // Test
-    this.status = true;
+    localStorage.setItem('status', 'True');
+    this.router.navigate(['/home']);
   }
 
   public logint(): void {
-    this.status = true;
+    this.setSession();
   }
 
   public logout(): void {
@@ -69,10 +68,9 @@ export class AuthService {
     // localStorage.removeItem('access_token');
     // localStorage.removeItem('id_token');
     // localStorage.removeItem('expires_at');
+    localStorage.removeItem('status');
     // // Go back to the home route
     this.router.navigate(['/login']);
-    // Test
-    this.status = false;
   }
 
   public isAuthenticated(): boolean {
@@ -81,7 +79,7 @@ export class AuthService {
     // const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
     // return new Date().getTime() < expiresAt;
     // Test
-    return this.status;
+    return localStorage.getItem('status') === 'True';
   }
 
   // public getProfile(cb): void {

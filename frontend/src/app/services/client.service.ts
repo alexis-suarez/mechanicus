@@ -58,7 +58,7 @@ export class ClientService {
   }
 
   public delClient(id: string): any {
-    return this.http.put<Response>(this.url, httpOptions);
+    return this.http.delete<Response>(this.url + '/' + id, httpOptions);
   }
 
   public updClient(client: Client): any {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 // Models
 import { Client } from 'src/app/models/client';
@@ -17,7 +17,7 @@ import swal from 'sweetalert2';
 })
 export class ClientFormComponent implements OnInit {
 
-  public client: Client;
+  @Input() client: Client;
 
   constructor(private service: ClientService) { }
 

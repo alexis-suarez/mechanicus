@@ -34,13 +34,13 @@ class MongoDBCollection():
         except:
             raise Exception("Error! trying to find all document")
 
-    def update_one(self, object, query):
+    def update_one(self, where, value):
         try:
-            self._collection.update_one(query)
+            self._collection.update_one(where, value)
         except:
             raise Exception("Error! trying to update a document")
 
-    def delete_one(self, object, query):
+    def delete_one(self, query):
         try:
             self._collection.delete_one(query)
         except:

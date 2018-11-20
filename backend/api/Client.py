@@ -19,18 +19,6 @@ class Client(Resource):
         except:
             return jsonify({'message':'error', 'status':False})
 
-    def delete(self):
-        try:
-            pass
-        except:
-            return jsonify({'message':'error', 'status':False})
-
-    def put(self):
-        try:
-            pass
-        except:
-            return jsonify({'message':'error', 'status':False})
-
     def get(self):
         try:
             document = connector.collection('client').find({'status':True})
@@ -47,12 +35,28 @@ class Client(Resource):
         except:
             return jsonify({'message':'error', 'status':False})
 
-class ClientOne(Resource):
+class ClientParams(Resource):
+    def delete(self, id):
+        try:
+            where = {'_id':ObjectId(id)}
+            value = {'$set':{'status':False}}
+            connector.collection('client').update_one(where, value)
+            return jsonify({'message':'success', 'status':True})
+        except:
+            return jsonify({'message':'error', 'status':False})
+
+    def put(self, id):
+        try:
+            return jsonify({'message':'success', 'status':True, 'data':id})
+        except:
+            return jsonify({'message':'error', 'status':False})
+
     def get(self, id):
         try:
             document = connector.collection('client').find_one({'_id':ObjectId(id)})
             data = {'id':str(document['_id']),
                              'name':document['name'],
+                             'address':document['address'],
                              'rfc':document['rfc'],
                              'phone':document['phone'],
                              'email':document['email'],

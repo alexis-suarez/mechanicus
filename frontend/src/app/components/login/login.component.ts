@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
+// Sweet Alert2 Import
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,6 +18,16 @@ export class LoginComponent implements OnInit {
 
   public signIn(): void {
     this.auth.logint();
+    const toast = swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+    toast({
+      type: 'success',
+      title: 'Inicio de Session ¡Exitoso!'
+    });
   }
 
   public signOut(): void {

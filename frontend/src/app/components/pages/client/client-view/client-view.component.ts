@@ -16,11 +16,14 @@ import swal from 'sweetalert2';
 })
 export class ClientViewComponent implements OnInit {
 
+  private client: Client;
+
   constructor(private service: ClientService) { }
 
   ngOnInit() {
     // Load the data on the table
     this.viewClient();
+    this.client = new Client();
   }
 
   // Return the list
@@ -31,6 +34,11 @@ export class ClientViewComponent implements OnInit {
   // Check if is Empty
   public isEmpty(): boolean {
     return this.service.isEmpty();
+  }
+
+  // Get Model
+  public getModel(): Client {
+    return this.client;
   }
 
   // Function for CRUD
@@ -45,12 +53,19 @@ export class ClientViewComponent implements OnInit {
       confirmButtonText: '¡Sí, Eliminar!'
     }).then((result) => {
       if (result.value) {
+        this.service.delClient(id).subscribe(response => {
+          console.log(response);
+          if (response.status) {
+            this.service.delList(index);
+          }
+        }, error => {
+          console.log(error);
+        });
         swal(
-          '¡Borrado!',
-          'Se ha eliminado la información.',
-          'success'
+          '¡Error!',
+          'Algo Salio Mal :(.',
+          'error'
         );
-        this.service.delList(index);
       }
     });
   }
@@ -62,6 +77,7 @@ export class ClientViewComponent implements OnInit {
   public getClient(id: string): void {
     this.service.getClient(id).subscribe(response => {
       console.log(response.data);
+      this.client = response.data;
     }, error => {
       console.log(error);
     });
