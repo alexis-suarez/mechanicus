@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Models
 import { Client } from 'src/app/models/client';
+import { Address } from 'src/app/models/address';
 
 // Services
 import { ClientService } from 'src/app/services/client.service';
@@ -23,6 +24,7 @@ export class ClientViewComponent implements OnInit {
   ngOnInit() {
     // Load the data on the table
     this.viewClient();
+    // Initialize Model
     this.client = new Client();
   }
 
@@ -41,7 +43,37 @@ export class ClientViewComponent implements OnInit {
     return this.client;
   }
 
+  public clrModel(): void {
+    this.client = new Client();
+    this.client.address = new Address();
+  }
+
   // Function for CRUD
+  public newClient(): void {
+    const data = this.client;
+    this.service.newClient(this.client).subscribe(response => {
+      console.log(response);
+      this.service.addList(data);
+      swal({
+        position: 'top-end',
+        type: 'success',
+        title: 'Correcto :D',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }, error => {
+      console.log(error);
+      swal({
+        position: 'top-end',
+        type: 'error',
+        title: 'Error :(',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    });
+    this.clrModel();
+  }
+
   public delClient(id: string, index: number): void {
     swal({
       title: '¿Seguro de Borrar?',

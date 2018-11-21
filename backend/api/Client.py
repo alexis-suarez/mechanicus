@@ -21,7 +21,7 @@ class Client(Resource):
 
     def get(self):
         try:
-            document = connector.collection('client').find({'status':True})
+            document = connector.collection('client').find({'status':True}, 'name', 1)
             data = []
             for field in document:
                 data.append({'id':str(field['_id']),

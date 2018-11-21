@@ -33,6 +33,18 @@ class MongoDBCollection():
             return self._collection.find(query)
         except:
             raise Exception("Error! trying to find all document")
+    
+    def find(self, query, value, direc):
+        try:
+            return self._collection.find(query).sort(value, direc)
+        except:
+            raise Exception("Error! trying to find all document")
+    
+    def update_one(self, query):
+        try:
+            self._collection.update_one(where, query)
+        except:
+            raise Exception("Error! trying to update a document")
 
     def update_one(self, where, value):
         try:

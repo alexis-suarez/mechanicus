@@ -1,13 +1,4 @@
-<div class="modal-content">
-  <div class="modal-header">
-    <h5 class="modal-title text-center" id="InsertModalTitle">Registro Nuevo</h5>
-    <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <!-- Form to Register -->
-    <form #form="ngForm">
+<form #form="ngForm">
       <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputName">Nombre de Cliente o Empresa</label>
@@ -50,12 +41,3 @@
         </div>
       </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <!-- Botton to Cancel -->
-    <button (click)="clrModel()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-    <!-- Botton to Register -->
-    <button [disabled]="!form.form.valid" (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
-  </div>
-</div>
-

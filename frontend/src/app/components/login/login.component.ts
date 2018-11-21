@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 3000
+      timer: 1000
     });
     toast({
       type: 'success',
