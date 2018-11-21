@@ -8,7 +8,7 @@ from Automobile import Automobile
 from Client import Client, ClientParams
 from Employee import Employee
 from Service import Service
-from User import User
+# from User import User
 
 # Flask Application and API
 app = Flask(__name__)
@@ -28,8 +28,8 @@ api.add_resource(Employee, '/api/employee')
 # Service
 api.add_resource(Service, '/api/service')
 # User
-api.add_resource(User, '/api/user')
-api.add_resource(User, '/api/user/<string:params>')
+# api.add_resource(User, '/api/user')
+# api.add_resource(User, '/api/user/<string:params>')
 
 if __name__ == "__main__":
     app.run(debug=True)

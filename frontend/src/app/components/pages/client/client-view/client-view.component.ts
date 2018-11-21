@@ -18,12 +18,14 @@ import swal from 'sweetalert2';
 export class ClientViewComponent implements OnInit {
 
   private client: Client;
+  public form: any;
 
   constructor(private service: ClientService) { }
 
   ngOnInit() {
     // Load the data on the table
     this.viewClient();
+
     // Initialize Model
     this.client = new Client();
   }
@@ -48,32 +50,11 @@ export class ClientViewComponent implements OnInit {
     this.client.address = new Address();
   }
 
-  // Function for CRUD
-  public newClient(): void {
-    const data = this.client;
-    this.service.newClient(this.client).subscribe(response => {
-      console.log(response);
-      this.service.addList(data);
-      swal({
-        position: 'top-end',
-        type: 'success',
-        title: 'Correcto :D',
-        showConfirmButton: false,
-        timer: 1500
-      });
-    }, error => {
-      console.log(error);
-      swal({
-        position: 'top-end',
-        type: 'error',
-        title: 'Error :(',
-        showConfirmButton: false,
-        timer: 1500
-      });
-    });
-    this.clrModel();
+  public setForm(value): void {
+    this.form = value;
   }
 
+  // Function for CRUD
   public delClient(id: string, index: number): void {
     swal({
       title: '¿Seguro de Borrar?',
@@ -94,9 +75,9 @@ export class ClientViewComponent implements OnInit {
           console.log(error);
         });
         swal(
-          '¡Error!',
-          'Algo Salio Mal :(.',
-          'error'
+          '¡Borrado!',
+          'Información Borrada Correctamente :D',
+          'success'
         );
       }
     });
