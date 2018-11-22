@@ -16,8 +16,9 @@ class Employee(Resource):
             connector.collection('employee').insert_one(data)
             response = {'message':'success', 'status':True, 'data':data}
             return jsonify(response)
-        except Exception as ex:
+        except:
             return jsonify({'message':'error', 'status':False, 'exception':ex.message})
+    
     def get(self):
         try:
             document = connector.collection('employee').find({'status':True})
