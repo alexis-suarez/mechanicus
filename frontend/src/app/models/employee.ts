@@ -8,8 +8,9 @@ export class Employee {
     rfc: string;
     curp: string;
     phone: string;
+    email: string;
     birthDate: Date;
     salary: number;
     role: string;
-    status: boolean;
+    status = true;
 }

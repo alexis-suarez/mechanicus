@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-2">
         <!-- Botton to register new Employee -->
-        <button class="btn btn-primary" (click)="newEmployee()" data-toggle="modal" data-target="#InsertModal"><i class="fas fa-plus"></i></button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#InsertModal"><i class="fas fa-plus"></i></button>
       </div>
       <div class="col-4"><h3>Empleados</h3></div>
       <div class="col-6">
@@ -16,9 +16,9 @@
       <table class="table table-hover table-striped table-borderless table-sm">
         <thead class="thead-dark text-center">
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">RFC</th>
+            <th scope="col">NSS</th>
             <th scope="col">Télefono</th>
             <th scope="col">Correo</th>
             <th scope="col">Acción</th>
@@ -26,71 +26,34 @@
         </thead>
         <tbody>
           <!-- List of Employees -->
-          <tr *ngFor="let item of getList()">
-            <th scope="row">1</th>
-            <td>{{ item.name }}</td>
-            <td>{{ item.rfc }}</td>
-            <td>{{ item.phone }}</td>
-            <td>{{ item.email }}</td>
+          <tr *ngFor="let employee of getList(); let i = index;">
+            <td>{{ employee.name }}</td>
+            <td class="text-center">{{ employee.rfc }}</td>
+            <td class="text-center">{{ employee.nss }}</td>
+            <td class="text-center">{{ employee.phone }}</td>
+            <td class="text-center">{{ employee.email }}</td>
             <td class="d-flex justify-content-center">
               <!-- Botton to edite a Employee -->
-              <button class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
+              <button (click)="getEmployee(employee.id)" class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
               <!-- Botton to delete a Employee -->
-              <button class="ml-1 btn-sm btn btn-danger" data-toggle="modal" data-target="#DeleteModal"><i class="fas fa-trash-alt"></i></button>
+              <button (click)="delEmployee(employee.id, i)" class="ml-1 btn-sm btn btn-danger" data-toggle="modal" data-target="#DeleteModal"><i class="fas fa-trash-alt"></i></button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
-  
-  <!-- Modal to register new Employee -->
-  <div class="modal fade" id="InsertModal" tabindex="-1" role="dialog" aria-labelledby="InsertModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-center" id="InsertModalTitle">Nuevo Empleado</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Form to Register -->
-          <app-employee-form></app-employee-form>
-        </div>
-        <div class="modal-footer">
-          <!-- Botton to Cancel -->
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <!-- Botton to Register -->
-          <button type="button" class="btn btn-success">Guardar</button>
-        </div>
-      </div>
+    <div *ngIf="!isEmpty()" class="alert alert-info text-center btn-block" role="alert">
+      ¡No hay información en la Aplicación!
     </div>
   </div>
   
-  <!-- Modal to delete a Employee -->
-  <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+  <!-- Modal From Employee -->
+  <div class="modal fade" id="InsertModal" tabindex="-1" role="dialog" aria-labelledby="InsertModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header text-center">
-          <h5 class="modal-title" id="DeleteModalTitle">¿Seguro que desea Borrar el Empleado...?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <!-- <div class="modal-body">
-        </div> -->
-        <div class="modal-footer d-flex justify-content-center">
-          <div class="row">
-            <div class="col">
-              <!-- Botton to Cancel -->
-              <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-            <div class="col">
-              <!-- Botton to Register -->
-              <button type="button" class="btn btn-block btn btn-danger">Borrar</button>
-            </div>
-          </div>
+        <div class="modal-body">
+          <!-- Form -->
+          <app-employee-form [employee]="getModel()"></app-employee-form>
         </div>
       </div>
     </div>

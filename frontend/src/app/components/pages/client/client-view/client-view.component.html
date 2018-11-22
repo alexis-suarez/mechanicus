@@ -40,17 +40,17 @@
       </tbody>
     </table>
   </div>
-  <!-- <div *ngIf="!isEmpty()" class="alert alert-info text-center btn-block" role="alert">
+  <div *ngIf="!isEmpty()" class="alert alert-info text-center btn-block" role="alert">
     ¡No hay información en la Aplicación!
-  </div> -->
+  </div>
 </div>
 
-<!-- Modal to register new Client -->
+<!-- Modal From Client -->
 <div class="modal fade" id="InsertModal" tabindex="-1" role="dialog" aria-labelledby="InsertModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <!-- form -->
+        <!-- Form -->
         <app-client-form [client]="getModel()"></app-client-form>
       </div>
     </div>

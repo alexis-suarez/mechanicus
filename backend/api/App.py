@@ -6,7 +6,7 @@ from flask_restful import Api
 # Resources
 from Automobile import Automobile
 from Client import Client, ClientParams
-from Employee import Employee
+from Employee import Employee, EmployeeParams
 from Service import Service
 # from User import User
 
@@ -25,6 +25,7 @@ api.add_resource(Client, '/api/client')
 api.add_resource(ClientParams, '/api/client/<string:id>')
 # Employee
 api.add_resource(Employee, '/api/employee')
+api.add_resource(EmployeeParams, '/api/employee/<string:id>')
 # Service
 api.add_resource(Service, '/api/service')
 # User

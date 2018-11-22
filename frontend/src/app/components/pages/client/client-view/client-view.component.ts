@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/models/client';
 import { Address } from 'src/app/models/address';
 
-// Services
+// Service
 import { ClientService } from 'src/app/services/client.service';
 
 // Sweet Alert2 Import
@@ -27,7 +27,7 @@ export class ClientViewComponent implements OnInit {
     this.viewClient();
 
     // Initialize Model
-    this.client = new Client();
+    this.clrModel();
   }
 
   // Return the list
@@ -45,11 +45,13 @@ export class ClientViewComponent implements OnInit {
     return this.client;
   }
 
+  // Clear and Initialize Model
   public clrModel(): void {
     this.client = new Client();
     this.client.address = new Address();
   }
 
+  // Set Form Status
   public setForm(value): void {
     this.form = value;
   }
@@ -98,6 +100,7 @@ export class ClientViewComponent implements OnInit {
 
   public viewClient(): void {
     this.service.viewClient().subscribe(response => {
+      console.log(response);
       this.service.setList(response.data);
     }, error => {
       console.log(error);

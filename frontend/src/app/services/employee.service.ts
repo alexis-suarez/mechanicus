@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // Models
-import { Client } from '../models/client';
+import { Employee } from '../models/employee';
 import { Response } from '../models/response';
 
 // Header Options
@@ -17,21 +17,21 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class ClientService {
+export class EmployeeService {
 
-  // Client List
-  private list: Array<Client>;
+  // Employee List
+  private list: Array<Employee>;
 
   // API URL
-  private url = 'http://127.0.0.1:5000/api/client';
+  private url = 'http://127.0.0.1:5000/api/employee';
 
   constructor(private http: HttpClient) {
     this.list = [];
   }
 
   // Function for List
-  public addList(client: Client): void {
-    this.list.push(client);
+  public addList(employee: Employee): void {
+    this.list.push(employee);
   }
 
   public delList(index: number): void {
@@ -44,7 +44,7 @@ export class ClientService {
     this.list = data;
   }
 
-  public getList(): Array<Client> {
+  public getList(): Array<Employee> {
     return this.list;
   }
 
@@ -53,23 +53,23 @@ export class ClientService {
   }
 
   // Http Request
-  public newClient(client: Client): any {
-    return this.http.post<Response>(this.url, JSON.stringify(client), httpOptions);
+  public newEmployee(employee: Employee): any {
+    return this.http.post<Response>(this.url, JSON.stringify(employee), httpOptions);
   }
 
-  public delClient(id: string): any {
+  public delEmployee(id: string): any {
     return this.http.delete<Response>(this.url + '/' + id, httpOptions);
   }
 
-  public updClient(client: Client): any {
+  public updEmployee(employee: Employee): any {
     return this.http.put<Response>(this.url, httpOptions);
   }
 
-  public getClient(id: string): any {
+  public getEmployee(id: string): any {
     return this.http.get<Response>(this.url + '/' + id);
   }
 
-  public viewClient(): any {
+  public viewEmployee(): any {
     return this.http.get<Response>(this.url, httpOptions);
   }
 }

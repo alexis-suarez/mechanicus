@@ -40,11 +40,11 @@ class MongoDBCollection():
     #     except:
     #         raise Exception("Error! trying to find all document")
     
-    def update_one(self, query):
-        try:
-            self._collection.update_one(where, query)
-        except:
-            raise Exception("Error! trying to update a document")
+    # def update_one(self, query):
+    #     try:
+    #         self._collection.update_one(where, query)
+    #     except:
+    #         raise Exception("Error! trying to update a document")
 
     def update_one(self, where, value):
         try:
