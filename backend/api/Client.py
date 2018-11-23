@@ -9,6 +9,7 @@ from bson.objectid import ObjectId
 from Connector import connector
 
 class Client(Resource):
+
     def post(self):
         try:
             data = request.get_json(force=True)
@@ -36,18 +37,13 @@ class Client(Resource):
             return jsonify({'message':'error', 'status':False})
 
 class ClientParams(Resource):
+
     def delete(self, id):
         try:
             where = {'_id':ObjectId(id)}
             value = {'$set':{'status':False}}
             connector.collection('client').update_one(where, value)
             return jsonify({'message':'success', 'status':True})
-        except:
-            return jsonify({'message':'error', 'status':False})
-
-    def put(self, id):
-        try:
-            return jsonify({'message':'success', 'status':True, 'data':id})
         except:
             return jsonify({'message':'error', 'status':False})
 

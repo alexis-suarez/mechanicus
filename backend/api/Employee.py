@@ -9,10 +9,10 @@ from bson.objectid import ObjectId
 from Connector import connector
 
 class Employee(Resource):
+
     def post(self):
         try:
             data = request.get_json(force=True)
-            # data = request.json(force=True)
             connector.collection('employee').insert_one(data)
             response = {'message':'success', 'status':True, 'data':data}
             return jsonify(response)
@@ -42,6 +42,7 @@ class Employee(Resource):
             return jsonify({'message':'error', 'status':False})
 
 class EmployeeParams(Resource):
+    
     def delete(self, id):
         try:
             where = {'_id':ObjectId(id)}
@@ -55,7 +56,18 @@ class EmployeeParams(Resource):
     def get(self, id):
         try:
             document = connector.collection('employee').find_one({'_id':ObjectId(id)})
-            data = {'id':str(document['_id'])}
+            data = {'id':str(document['_id']),
+                    'name':document['name'],
+                    'address':document['address'],
+                    'nss':document['phone'],
+                    'rfc':document['rfc'],
+                    'curp':document['curp'],
+                    'phone':document['phone'],
+                    'email':document['email'],
+                    'birthDate':document['birthDate'],
+                    'salary':document['salary'],
+                    'role':document['role'],
+                    'status':document['status']}
             response = {'message':'success', 'status':True, 'data':data}
             return jsonify(response)
         except:

@@ -15,27 +15,9 @@ class Service(Resource):
             connector.collection('service').insert_one(data)
             response = {'message':'success', 'status':True, 'data':data}
             return jsonify(response)
-        except Exception as ex:
-            return jsonify({'message':'error', 'status':False, 'exception':ex.message})
-    
-    def delete(self):
-        try:
-            pass
-        except Exception as ex:
-            return jsonify({'message':'error', 'status':False, 'exception':ex.message})
-    
-    def put(self):
-        try:
-            pass
-        except Exception as ex:
-            return jsonify({'message':'error', 'status':False, 'exception':ex.message})
-    
-    def get(self, params):
-        try:
-            pass
-        except Exception as ex:
-            return jsonify({'message':'error', 'status':False, 'exception':ex.message})
-    
+        except:
+            return jsonify({'message':'error', 'status':False})
+
     def get(self):
         try:
             document = connector.collection('automobile').find({'status':True})
@@ -51,5 +33,18 @@ class Service(Resource):
             response = {'message':'success', 'status':True, 'data':data}
             return jsonify(response)
             pass
-        except Exception as ex:
-            return jsonify({'message':'error', 'status':False, 'exception':ex.message})
+        except:
+            return jsonify({'message':'error', 'status':False})
+
+class ServiceParams(Resource):
+    def delete(self, id):
+        try:
+            pass
+        except:
+            return jsonify({'message':'error', 'status':False})
+
+    def get(self, id):
+        try:
+            pass
+        except:
+            return jsonify({'message':'error', 'status':False})
