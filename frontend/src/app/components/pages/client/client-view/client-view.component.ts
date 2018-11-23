@@ -31,7 +31,7 @@ export class ClientViewComponent implements OnInit {
   }
 
   // Return the list
-  public getList(): any {
+  public getList(): Array<Client> {
     return this.service.getList();
   }
 

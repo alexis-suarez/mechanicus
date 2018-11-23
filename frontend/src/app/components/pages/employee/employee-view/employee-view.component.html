@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-2">
         <!-- Botton to register new Employee -->
-        <button class="btn btn-primary" data-toggle="modal" data-target="#InsertModal"><i class="fas fa-plus"></i></button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#FormModal"><i class="fas fa-plus"></i></button>
       </div>
       <div class="col-4"><h3>Empleados</h3></div>
       <div class="col-6">
@@ -34,9 +34,9 @@
             <td class="text-center">{{ employee.email }}</td>
             <td class="d-flex justify-content-center">
               <!-- Botton to edite a Employee -->
-              <button (click)="getEmployee(employee.id)" class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
+              <button (click)="getEmployee(employee.id)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#FormModal"><i class="fas fa-edit"></i></button>
               <!-- Botton to delete a Employee -->
-              <button (click)="delEmployee(employee.id, i)" class="ml-1 btn-sm btn btn-danger" data-toggle="modal" data-target="#DeleteModal"><i class="fas fa-trash-alt"></i></button>
+              <button (click)="delEmployee(employee.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
             </td>
           </tr>
         </tbody>
@@ -48,9 +48,15 @@
   </div>
   
   <!-- Modal From Employee -->
-  <div class="modal fade" id="InsertModal" tabindex="-1" role="dialog" aria-labelledby="InsertModalTitle" aria-hidden="true">
+  <div class="modal fade" id="FormModal" tabindex="-1" role="dialog" aria-labelledby="FormModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title text-center" id="InsertModalTitle">Nuevo Empleado</h5>
+              <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
         <div class="modal-body">
           <!-- Form -->
           <app-employee-form [employee]="getModel()"></app-employee-form>

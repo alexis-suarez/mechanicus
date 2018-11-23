@@ -31,8 +31,8 @@ export class EmployeeViewComponent implements OnInit {
   }
 
   // Return the list
-  public getList(): any {
-    this.service.getList();
+  public getList(): Array<Employee> {
+    return this.service.getList();
   }
 
   // Check if is Empty
