@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+// Models
+import { Automobile } from 'src/app/models/automobile';
+
+// Service
+import { AutomobileService } from 'src/app/services/automobile.service';
+
+// Sweet Alert2 Import
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-automobile-form',
@@ -7,9 +16,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AutomobileFormComponent implements OnInit {
 
-  constructor() { }
+  @Input() automobile: Automobile;
+
+  constructor(private service: AutomobileService) { }
 
   ngOnInit() {
+    this.clrModel();
   }
 
+  public clrModel(): void {
+    this.automobile = new Automobile();
+  }
+
+  public newAutomobile(): void {
+    const data = this.automobile;
+    this.service.newAutomobile(this.automobile).subscribe(response => {
+      console.log(response);
+      this.service.addList(data);
+      swal({
+        position: 'top-end',
+        type: 'success',
+        title: 'Correcto :D',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }, error => {
+      console.log(error);
+      swal({
+        position: 'top-end',
+        type: 'error',
+        title: 'Error :(',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    });
+    this.clrModel();
+  }
 }
