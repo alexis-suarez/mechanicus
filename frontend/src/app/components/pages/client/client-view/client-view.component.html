@@ -12,8 +12,8 @@
     </div>
   </div>
   <!-- Table of Clients -->
-  <div class="table-responsive">
-    <table class="table table-hover table-striped table-borderless table-sm">
+  <div class="table-responsive table-borderless">
+    <table class="table table-hover table-striped table-sm">
       <thead class="thead-dark text-center">
         <tr>
           <th scope="col">Nombre</th>
@@ -31,8 +31,10 @@
           <td class="text-center">{{ client.phone }}</td>
           <td class="text-center">{{ client.email }}</td>
           <td class="d-flex justify-content-center">
+            <!-- Botton to view a Client's Cars -->
+            <button (click)="setId(client.id)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
             <!-- Botton to edite a Client -->
-            <button (click)="getClient(client.id)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#FormModal"><i class="fas fa-edit"></i></button>
+            <button (click)="getClient(client.id)" class="mr-1 ml-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#FormModal"><i class="fas fa-edit"></i></button>
             <!-- Botton to delete a Client -->
             <button (click)="delClient(client.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
           </td>
@@ -58,6 +60,27 @@
       <div class="modal-body">
         <!-- Form -->
         <app-client-form [client]="getModel()"></app-client-form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal From Client's Cars -->
+<div class="modal fade" id="FormAutoView" tabindex="-1" role="dialog" aria-labelledby="FormAutoViewLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="FormAutoViewLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <app-automobile-view></app-automobile-view>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

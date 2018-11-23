@@ -17,8 +17,8 @@ import swal from 'sweetalert2';
 })
 export class ClientViewComponent implements OnInit {
 
+  private _id: string;
   private client: Client;
-  public form: any;
 
   constructor(private service: ClientService) { }
 
@@ -45,15 +45,20 @@ export class ClientViewComponent implements OnInit {
     return this.client;
   }
 
+  // Get Id Client
+  public getId(): string {
+    return this._id;
+  }
+
+  // Set Form Status
+  public setId(value): void {
+    this._id = value;
+  }
+
   // Clear and Initialize Model
   public clrModel(): void {
     this.client = new Client();
     this.client.address = new Address();
-  }
-
-  // Set Form Status
-  public setForm(value): void {
-    this.form = value;
   }
 
   // Function for CRUD
