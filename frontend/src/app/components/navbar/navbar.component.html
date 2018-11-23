@@ -2,7 +2,7 @@
   <!-- Image and text -->
   <a class="navbar-brand" [routerLink]="['home']">
     <!-- <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
-    Mechanicus
+    <i class="fas fa-wrench"></i> Mechanicus
   </a>
   <!-- Botton in Mobile size -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,22 +13,22 @@
     <ul class="navbar-nav mr-auto">
       <!-- Routers Links Actived -->
       <li *ngIf="getAuth().isAuthenticated()" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['home']">Home</a>
+        <a class="nav-link" [routerLink]="['home']"><i class="fas fa-home"></i> Inicio</a>
       </li>
       <li *ngIf="getAuth().isAuthenticated()" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['service-view']">Servicios</a>
+        <a class="nav-link" [routerLink]="['service-view']"><i class="fas fa-toolbox"></i> Servicios</a>
       </li>
       <li *ngIf="getAuth().isAuthenticated()" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['client-view']">Clientes</a>
+        <a class="nav-link" [routerLink]="['client-view']"><i class="fas fa-wallet"></i> Clientes</a>
       </li>
       <li *ngIf="getAuth().isAuthenticated()" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['employee-view']">Empleados</a>
+        <a class="nav-link" [routerLink]="['employee-view']"><i class="fas fa-users"></i> Empleados</a>
       </li>
       <li *ngIf="getAuth().isAuthenticated()" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['settings-view']">Ajustes</a>
+        <a class="nav-link" [routerLink]="['settings-view']"><i class="fas fa-cog"></i> Ajustes</a>
       </li>
       <li *ngIf="getAuth().isAuthenticated()" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['analytics-view']">Análisis</a>
+        <a class="nav-link" [routerLink]="['analytics-view']"><i class="fas fa-chart-bar"></i> Análisis</a>
       </li>
     </ul>
     <!-- Login -->
@@ -38,7 +38,7 @@
           <div class="dropdown">
             <div class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <!-- <img src="../../../assets/img/user.png" width="30" height="30" class="d-inline-block align-top rounded-circle img-fluid" alt=""> -->
-              Alexis Suárez Llamas
+              <i class="fas fa-user"></i> Alexis Suárez Llamas
             </div>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <button (click)="signOut()" class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i> SignOut</button>        
