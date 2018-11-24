@@ -37,16 +37,13 @@
       <div *ngIf="getAuth().isAuthenticated()">
           <div class="dropdown">
             <div class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <!-- <img src="../../../assets/img/user.png" width="30" height="30" class="d-inline-block align-top rounded-circle img-fluid" alt=""> -->
-              <i class="fas fa-user"></i> Alexis Suárez Llamas
+              <i class="fas fa-user"></i> Usuario: {{ getAuth().getUserName() | uppercase }}
             </div>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <button (click)="signOut()" class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i> SignOut</button>        
             </div>
           </div>
       </div>
-
-
     </form>
   </div>
 </nav>

@@ -12,22 +12,9 @@ declare var $jQuery: any;
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public auth: AuthService) {
-    // auth.handleAuthentication();
-  }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
-    // if (this.auth.userProfile) {
-    //   this.profile = this.auth.userProfile;
-    // } else {
-    //   this.auth.getProfile((err, profile) => {
-    //     this.profile = profile;
-    //   });
-    // }
-  }
-
-  public signIn(): void {
-    this.auth.logint();
   }
 
   public signOut(): void {
