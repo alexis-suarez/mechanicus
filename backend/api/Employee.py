@@ -1,6 +1,6 @@
 # Flask
 from flask import jsonify, request
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
 
 # Id for MongoDb
 from bson.objectid import ObjectId
@@ -13,6 +13,7 @@ class Employee(Resource):
     def post(self):
         try:
             data = request.get_json(force=True)
+            # data = request.json(force=True)
             connector.collection('employee').insert_one(data)
             response = {'message':'success', 'status':True, 'data':data}
             return jsonify(response)
