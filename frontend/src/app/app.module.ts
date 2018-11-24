@@ -20,7 +20,6 @@ import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { BackgroundComponent } from './components/background/background.component';
 import { ClientFormComponent } from './components/pages/client/client-form/client-form.component';
 import { ClientViewComponent } from './components/pages/client/client-view/client-view.component';
@@ -45,7 +44,6 @@ import { AutomobileFormComponent } from './components/pages/automobile/automobil
     HeaderComponent,
     NavbarComponent,
     FooterComponent,
-    SidebarComponent,
     BackgroundComponent,
     ClientFormComponent,
     ClientViewComponent,
