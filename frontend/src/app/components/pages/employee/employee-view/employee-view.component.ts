@@ -18,7 +18,7 @@ import swal from 'sweetalert2';
 export class EmployeeViewComponent implements OnInit {
 
   private employee: Employee;
-  public form: any;
+  private status: boolean;
 
   constructor(private service: EmployeeService) { }
 
@@ -45,15 +45,20 @@ export class EmployeeViewComponent implements OnInit {
     return this.employee;
   }
 
+  // Get Status
+  public getStatus(): boolean {
+    return this.status;
+  }
+
+  // Set Status
+  public setStatus(value: boolean): void {
+    this.status = value;
+  }
+
   // Clear and Initialize Model
   public clrModel(): void {
     this.employee = new Employee();
     this.employee.address = new Address();
-  }
-
-  // Set Form Status
-  public setForm(value): void {
-    this.form = value;
   }
 
   // Function for CRUD
@@ -83,10 +88,6 @@ export class EmployeeViewComponent implements OnInit {
         );
       }
     });
-  }
-
-  public updEmployee(id: string): void {
-    //
   }
 
   public getEmployee(id: string): void {

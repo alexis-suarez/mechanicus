@@ -17,8 +17,8 @@ import swal from 'sweetalert2';
 })
 export class ClientViewComponent implements OnInit {
 
-  private _id: string;
   private client: Client;
+  private status: boolean;
 
   constructor(private service: ClientService) { }
 
@@ -45,14 +45,14 @@ export class ClientViewComponent implements OnInit {
     return this.client;
   }
 
-  // Get Id Client
-  public getId(): string {
-    return this._id;
+  // Get Status
+  public getStatus(): boolean {
+    return this.status;
   }
 
-  // Set Form Status
-  public setId(value): void {
-    this._id = value;
+  // Set Status
+  public setStatus(value: boolean): void {
+    this.status = value;
   }
 
   // Clear and Initialize Model
@@ -88,10 +88,6 @@ export class ClientViewComponent implements OnInit {
         );
       }
     });
-  }
-
-  public updClient(id: string): void {
-    //
   }
 
   public getClient(id: string): void {

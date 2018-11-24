@@ -18,6 +18,7 @@ import swal from 'sweetalert2';
 export class EmployeeFormComponent implements OnInit {
 
   @Input() employee: Employee;
+  @Input() status: boolean;
 
   constructor(private service: EmployeeService) { }
 
@@ -56,5 +57,9 @@ export class EmployeeFormComponent implements OnInit {
       });
     });
     this.clrModel();
+  }
+
+  public updEmployee(id: string): void {
+    //
   }
 }

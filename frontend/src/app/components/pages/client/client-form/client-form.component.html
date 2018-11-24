@@ -45,5 +45,6 @@
       <!-- Botton to Cancel -->
       <button (click)="clrModel()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       <!-- Botton to Register -->
-      <button [disabled]="!form.form.valid" (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+      <button *ngIf="status" [disabled]="!form.form.valid" (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+      <button *ngIf="!status" [disabled]="!form.form.valid" (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Actualizar</button>
     </div>

@@ -18,11 +18,13 @@ import swal from 'sweetalert2';
 export class ClientFormComponent implements OnInit {
 
   @Input() client: Client;
+  @Input() status: boolean;
 
   constructor(private service: ClientService) { }
 
   ngOnInit() {
     this.clrModel();
+    this.status = true;
   }
 
   public clrModel(): void {
@@ -53,5 +55,9 @@ export class ClientFormComponent implements OnInit {
       });
     });
     this.clrModel();
+  }
+
+  public updClient(id: string): void {
+    //
   }
 }
