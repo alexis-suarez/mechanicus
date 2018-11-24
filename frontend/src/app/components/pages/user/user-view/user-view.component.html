@@ -1,3 +1,61 @@
-<p>
-  user-view works!
-</p>
+<div class="row">
+    <div class="col-2">
+      <!-- Botton to register new Client -->
+      <button class="btn btn-primary" data-toggle="modal" data-target="#FormModal"><i class="fas fa-plus"></i></button>
+    </div>
+    <div class="col-4"><h3>Usuarios</h3></div>
+    <div class="col-6">
+        <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+    </div>
+  </div>
+  <!-- Table of Clients -->
+<div class="table-responsive table-borderless">
+  <table class="table table-hover table-striped table-sm">
+    <thead class="thead-dark text-center">
+      <tr>
+        <th scope="col">Usuario</th>
+        <th scope="col">Password</th>
+        <th scope="col">Role</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- List of Users -->
+      <tr *ngFor="let user of getList(); let i = index;">
+        <td>{{ user.username }}</td>
+        <td class="text-center">{{ user.password }}</td>
+        <td class="text-center">{{ user.role }}</td>
+        <td class="d-flex justify-content-center">
+          <!-- Botton to edite a User -->
+          <button (click)="getUser(user.id)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#FormModal"><i class="fas fa-edit"></i></button>
+          <!-- Botton to delete a User -->
+          <button (click)="delUser(user.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="!isEmpty()" class="alert alert-info text-center btn-block" role="alert">
+  ¡No hay información en la Aplicación!
+</div>
+
+<!-- Modal From Client's Cars -->
+<div class="modal fade" id="FormModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center">Formulario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+        <app-user-form></app-user-form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
