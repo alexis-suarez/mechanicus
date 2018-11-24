@@ -35,6 +35,8 @@ import { PolarAreaChartComponent } from './components/pages/analytics/charts/pol
 import { BarChartComponent } from './components/pages/analytics/charts/bar-chart/bar-chart.component';
 import { AutomobileViewComponent } from './components/pages/automobile/automobile-view/automobile-view.component';
 import { AutomobileFormComponent } from './components/pages/automobile/automobile-form/automobile-form.component';
+import { UserViewComponent } from './components/pages/user/user-view/user-view.component';
+import { UserFormComponent } from './components/pages/user/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { AutomobileFormComponent } from './components/pages/automobile/automobil
     PolarAreaChartComponent,
     BarChartComponent,
     AutomobileViewComponent,
-    AutomobileFormComponent
+    AutomobileFormComponent,
+    UserViewComponent,
+    UserFormComponent
   ],
   imports: [
     FormsModule,
