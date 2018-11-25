@@ -32,7 +32,7 @@ api.add_resource(Service, '/service')
 api.add_resource(ServiceParams, '/service/<string:id>')
 # User
 api.add_resource(User, '/user')
-# api.add_resource(User, '/user/<string:params>')
+api.add_resource(UserParams, '/user/<string:id>')
 api.add_resource(UserLogin, '/user/chck/<string:username>/<string:password>')
 
 if __name__ == "__main__":

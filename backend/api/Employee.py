@@ -15,7 +15,7 @@ class Employee(Resource):
             data = request.get_json(force=True)
             # data = request.json(force=True)
             connector.collection('employee').insert_one(data)
-            response = {'message':'success', 'status':True, 'data':data}
+            response = {'message':'success', 'status':True}
             return jsonify(response)
         except:
             return jsonify({'message':'error', 'status':False, 'exception':ex.message})

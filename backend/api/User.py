@@ -12,7 +12,10 @@ class User(Resource):
 
     def post(self):
         try:
-            pass
+            data = request.get_json(force=True)
+            connector.collection('user').insert_one(data)
+            response = {'message':'success', 'status':True}
+            return jsonify(response)
         except:
             return jsonify({'message':'error', 'status':False})
 
@@ -42,9 +45,29 @@ class UserParams(Resource):
         except:
             return jsonify({'message':'error', 'status':False})
     
+    def put(self, id):
+        try:
+            # data = request.get_json(force=True)
+            where = {'_id':ObjectId(id)}
+            value = {'$set':{'username':data['username'],
+                            'password':data['password'],
+                            'role':data['role'],
+                            'status':data['status']}}
+            connector.collection('user').update_one(where, value)
+            return jsonify({'message':'success', 'status':True, 'data':id})
+        except:
+            return jsonify({'message':'error', 'status':False})
+    
     def get(self, id):
         try:
-            pass
+            document = connector.collection('user').find_one({'_id':ObjectId(id)})
+            data = {'id':str(document['_id']),
+                    'username':document['username'],
+                    'password':document['password'],
+                    'role':document['role'],
+                    'status':document['status']}
+            response = {'message':'success', 'status':True, 'data':data}
+            return jsonify(response)
         except:
             return jsonify({'message':'error', 'status':False})
 
@@ -52,7 +75,7 @@ class UserLogin(Resource):
 
     def get(self, username, password):
         try:
-            document = connector.collection('user').find_one({"username":username,"password":password})
+            document = connector.collection('user').find_one({"username":username, "password":password, 'status':True})
             data = {'id':str(document['_id']),
                     'username':document['username'],
                     'password':document['password'],
