@@ -10,6 +10,10 @@ import { ClientService } from 'src/app/services/client.service';
 // Sweet Alert2 Import
 import swal from 'sweetalert2';
 
+// Variables for jQuery
+declare var $: any;
+declare var jQuery: any;
+
 @Component({
   selector: 'app-client-form',
   templateUrl: './client-form.component.html',
@@ -30,6 +34,12 @@ export class ClientFormComponent implements OnInit {
   public clrModel(): void {
     this.client = new Client();
     this.client.address = new Address();
+  }
+
+  public closeModal(): void {
+    $(function () {
+      $('#modal').modal('toggle');
+   });
   }
 
   public newClient(): void {
@@ -55,6 +65,7 @@ export class ClientFormComponent implements OnInit {
       });
     });
     this.clrModel();
+    this.closeModal();
   }
 
   public updClient(id: string): void {

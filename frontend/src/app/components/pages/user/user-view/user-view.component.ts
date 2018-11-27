@@ -17,6 +17,7 @@ import swal from 'sweetalert2';
 export class UserViewComponent implements OnInit {
 
   private user: User;
+  private status: boolean;
 
   constructor(private service: UserService) { }
 
@@ -41,6 +42,16 @@ export class UserViewComponent implements OnInit {
   // Get Model
   public getModel(): User {
     return this.user;
+  }
+
+  // Get Status
+  public getStatus(): boolean {
+    return this.status;
+  }
+
+  // Set Status
+  public setStatus(value: boolean): void {
+    this.status = value;
   }
 
   // Clear and Initialize Model

@@ -19,6 +19,7 @@ export class ClientViewComponent implements OnInit {
 
   private client: Client;
   private status: boolean;
+  private slider: boolean;
 
   constructor(private service: ClientService) { }
 
@@ -28,6 +29,9 @@ export class ClientViewComponent implements OnInit {
 
     // Initialize Model
     this.clrModel();
+
+    // Initialize Slider
+    this.slider = true;
   }
 
   // Return the list
@@ -55,10 +59,25 @@ export class ClientViewComponent implements OnInit {
     this.status = value;
   }
 
+  // Get Slider
+  public getSlider(): boolean {
+    return this.slider;
+  }
+
+  // Set Slider
+  public setSlider(value: boolean): void {
+    this.slider = value;
+  }
+
   // Clear and Initialize Model
   public clrModel(): void {
     this.client = new Client();
     this.client.address = new Address();
+  }
+
+  // Search Client
+  public searchClient(value: string): void {
+    this.service.setList(this.service.search(value));
   }
 
   // Function for CRUD

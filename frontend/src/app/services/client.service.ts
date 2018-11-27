@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // Models
 import { Client } from '../models/client';
+import { Address } from '../models/address';
 import { Response } from '../models/response';
 
 // Header Options
@@ -13,6 +14,17 @@ const httpOptions = {
     // 'Authorization': 'my-auth-token'
   })
 };
+
+export interface ClientInterface {
+  id: string;
+  name: string;
+  address: Address;
+  auto: string[];
+  rfc: string;
+  phone: string;
+  email: string;
+  status: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +62,18 @@ export class ClientService {
 
   public isEmpty(): boolean {
     return this.list.length !== 0;
+  }
+
+  public search(value: string): Array<Client> {
+    let filterList: Array<Client> = [];
+    value = value.toLowerCase();
+
+    this.list.forEach(element => {
+      if (element.name.indexOf(value) >= 0) {
+        filterList.push(element);
+      }
+    });
+    return filterList;
   }
 
   // Http Request

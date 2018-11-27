@@ -1,3 +1,50 @@
-<p>
-  automobile-form works!
-</p>
+<form #form="ngForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="inputbrand">Marca</label>
+          <select [(ngModel)]="automobile.brand" name="brand" id="inputbrand" class="form-control text-uppercase" required>
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputmodel">Modelo</label>
+        <input [(ngModel)]="automobile.model" name="model" type="text" class="form-control text-lowercase" id="inputmodel" required>
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputmilage">Kilometraje</label>
+          <input [(ngModel)]="automobile.milage" name="milage" type="number" class="form-control text-lowercase" id="inputmilage" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputcilinder">Cilindraje</label>
+          <input [(ngModel)]="automobile.cilinder" name="cilinder" type="number" class="form-control text-lowercase" id="inputcilinder" required>
+        </div>
+      </div>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="inputcolour">Color</label>
+        <input [(ngModel)]="automobile.colour" name="colour" type="text" class="form-control text-uppercase" id="inputcolour" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputtransmision">Transmision</label>
+        <select [(ngModel)]="automobile.transmision" name="transmision" id="inputtransmision" class="form-control text-uppercase" required>
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputyear">Año</label>
+        <input [(ngModel)]="automobile.year" name="year" type="number" class="form-control" id="inputyear" required>
+      </div>
+    </div>
+  </form>
+  <div class="modal-footer">
+      <!-- Botton to Cancel -->
+      <button (click)="clrModel()" type="button" class="btn btn-secondary">Cerrar</button>
+      <!-- Botton to Register -->
+      <button *ngIf="status" [disabled]="!form.form.valid" (click)="newAutomobile()" type="button" class="btn btn-success">Guardar</button>
+      <!-- Botton to Edite -->
+      <button *ngIf="!status" [disabled]="!form.form.valid" (click)="newAutomobile()" type="button" class="btn btn-success">Actualizar</button>
+    </div>

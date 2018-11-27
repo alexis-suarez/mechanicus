@@ -2,13 +2,25 @@
 <div class="container-fluid mt-3 shadow-lg p-3 mb-5 bg-white rounded">
     <!-- Header Container -->
     <div class="row">
-        <div class="col-2"></div>
+        <div class="col-2">
+             <!-- (click)="newService()" Botton to register new Service -->
+        <button class="btn btn-primary"  data-toggle="modal" data-target="#FormModalService"><i class="fas fa-plus"></i></button>
+        </div>
         <div class="col-4"><h3>Principal</h3></div>
         <div class="col-6"></div>
     </div>
     <hr>
     <div class="row">
-        <div class="col">2-1</div>
-        <div class="col">2-2</div>
+        <div class="card-columns">
+            <div class="card text-center bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Light card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <button type="button" class="mr-3 btn btn-danger">Cancelar</button>
+                    <button type="button" class="ml-3 btn btn-success">Finalizar</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

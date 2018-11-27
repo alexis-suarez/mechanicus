@@ -17,6 +17,7 @@ import swal from 'sweetalert2';
 export class AutomobileFormComponent implements OnInit {
 
   @Input() automobile: Automobile;
+  @Input() status: boolean;
 
   constructor(private service: AutomobileService) { }
 
@@ -31,7 +32,6 @@ export class AutomobileFormComponent implements OnInit {
   public newAutomobile(): void {
     const data = this.automobile;
     this.service.newAutomobile(this.automobile).subscribe(response => {
-      console.log(response);
       this.service.addList(data);
       swal({
         position: 'top-end',
@@ -51,5 +51,9 @@ export class AutomobileFormComponent implements OnInit {
       });
     });
     this.clrModel();
+  }
+
+  public updAutomobile(id: string): void {
+    //
   }
 }

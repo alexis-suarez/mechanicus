@@ -1,14 +1,14 @@
 <!-- Main div Container -->
-<div class="container mt-3 shadow-lg p-3 mb-5 bg-white rounded">
+<div *ngIf="getSlider()" class="container mt-3 shadow-lg p-3 mb-5 bg-white rounded">
   <!-- Header Container -->
   <div class="row">
     <div class="col-2">
       <!-- Botton to register new Client -->
-      <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#FormModal"><i class="fas fa-plus"></i></button>
+      <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
     </div>
     <div class="col-4"><h3>Clientes</h3></div>
     <div class="col-6">
-        <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+        <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search" (keyup.enter)="searchClient(textValue.value)" #textValue>
     </div>
   </div>
   <!-- Table of Clients -->
@@ -32,9 +32,9 @@
           <td class="text-center">{{ client.email }}</td>
           <td class="d-flex justify-content-center">
             <!-- Botton to view a Client's Cars -->
-            <button class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
+            <button (click)="setSlider(false)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
             <!-- Botton to edite a Client -->
-            <button (click)="getClient(client.id); setStatus(false)" class="mr-1 ml-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#FormModal"><i class="fas fa-edit"></i></button>
+            <button (click)="getClient(client.id); setStatus(false)" class="mr-1 ml-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
             <!-- Botton to delete a Client -->
             <button (click)="delClient(client.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
           </td>
@@ -48,7 +48,7 @@
 </div>
 
 <!-- Modal From Client -->
-<div class="modal fade" id="FormModal" tabindex="-1" role="dialog" aria-labelledby="FormModalTitle" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -65,23 +65,6 @@
   </div>
 </div>
 
-<!-- Modal From Client's Cars -->
-<div class="modal fade" id="FormAutoView" tabindex="-1" role="dialog" aria-labelledby="FormAutoViewLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="FormAutoViewLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <app-automobile-view></app-automobile-view>
-      </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+<!-- Table of Cars -->
+<app-automobile-view *ngIf="!getSlider()" [slider]="getSlider()"></app-automobile-view>

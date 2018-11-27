@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 // Models
 import { Automobile } from 'src/app/models/automobile';
@@ -17,6 +17,8 @@ import swal from 'sweetalert2';
 export class AutomobileViewComponent implements OnInit {
 
   private automobile: Automobile;
+  private status: boolean;
+  @Input() slider: boolean;
 
   constructor(private service: AutomobileService) { }
 
@@ -43,6 +45,26 @@ export class AutomobileViewComponent implements OnInit {
     return this.automobile;
   }
 
+  // Get Status
+  public getStatus(): boolean {
+    return this.status;
+  }
+
+  // Set Status
+  public setStatus(value: boolean): void {
+    this.status = value;
+  }
+
+  // Get Slider
+  public getSlider(): boolean {
+    return this.slider;
+  }
+
+  // Set Slider
+  public setSlider(value: boolean): void {
+    this.slider = value;
+  }
+
   // Clear and Initialize Model
   public clrModel(): void {
     this.automobile = new Automobile();
@@ -61,7 +83,6 @@ export class AutomobileViewComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.service.delAutomobile(id).subscribe(response => {
-          console.log(response);
           if (response.status) {
             this.service.delList(index);
           }
@@ -77,13 +98,8 @@ export class AutomobileViewComponent implements OnInit {
     });
   }
 
-  public updAutomobile(id: string): void {
-    //
-  }
-
   public getAutomobile(id: string): void {
     this.service.getAutomobile(id).subscribe(response => {
-      console.log(response.data);
       this.automobile = response.data;
     }, error => {
       console.log(error);
@@ -92,7 +108,6 @@ export class AutomobileViewComponent implements OnInit {
 
   public viewAutomobile(): void {
     this.service.viewAutomobile().subscribe(response => {
-      console.log(response);
       this.service.setList(response.data);
     }, error => {
       console.log(error);

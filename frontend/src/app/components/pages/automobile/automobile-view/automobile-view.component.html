@@ -8,37 +8,32 @@
     </div>
     <div class="col-4"><h3>Vehiculos</h3></div>
     <div class="col-6">
-        <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+        <!-- <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search"> -->
+         <!-- Botton to register new Client -->
+      <button (click)="setSlider(true)" class="btn btn-danger">Regresar</button>
     </div>
   </div>
-  <!-- Table of Clients -->
-  <div class="table-responsive">
-    <table class="table table-hover table-striped table-borderless table-sm">
-      <thead class="thead-dark text-center">
-        <tr>
-          <th scope="col">Marca</th>
-          <th scope="col">Modelo</th>
-          <th scope="col">Año</th>
-          <th scope="col">Transmision</th>
-          <th scope="col">Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- List of Clients -->
-        <tr *ngFor="let automobile of getList(); let i = index;">
-          <td>{{ automobile.brand }}</td>
-          <td class="text-center">{{ automobile.model }}</td>
-          <td class="text-center">{{ automobile.year }}</td>
-          <td class="text-center">{{ automobile.transmision }}</td>
-          <td class="d-flex justify-content-center">
-            <!-- Botton to edite a Automobile -->
-            <button (click)="getAutomobile(automobile.id)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#FormModal"><i class="fas fa-edit"></i></button>
-            <!-- Botton to delete a Automobile -->
-            <button (click)="delAutomobile(automobile.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Card of Cars -->
+  <!-- *ngFor="let automobile of getList(); let i = index;"  -->
+  <div *ngFor="let automobile of getList(); let i = index;" class="card bg-light">
+    <div class="card-body">
+      <h5 class="card-title">{{ automobile.brand }}, {{ automobile.model }}, {{ automobile.year }}</h5>
+      <div class="row">
+        <div class="col"><h5 class="card-title">Cilindros: {{ automobile.cilinder }}</h5></div>
+        <div class="col"><h5 class="card-title">Trasmision: {{ automobile.transmision }}</h5></div>
+        <div class="col"></div>
+      </div>
+      <div class="row">
+        <div class="col"><h5 class="card-title">Cilindros: {{ automobile.colour }}</h5></div>
+        <div class="col"><h5 class="card-title">Kilometraje: {{ automobile.milage }}</h5></div>
+        <div class="col text-right">
+          <!-- Botton to edite a Automobile -->
+          <button (click)="getAutomobile(automobile.id)" class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
+          <!-- Botton to delete a Automobile -->
+          <button (click)="delAutomobile(automobile.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+    </div>
   </div>
   <div *ngIf="!isEmpty()" class="alert alert-info text-center btn-block" role="alert">
     ¡No hay información en la Aplicación!

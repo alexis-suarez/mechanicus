@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-2">
-      <!-- Botton to register new Client -->
-      <button class="btn btn-primary" data-toggle="modal" data-target="#FormModal"><i class="fas fa-plus"></i></button>
+      <!-- Botton to register new User -->
+      <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
     </div>
     <div class="col-4"><h3>Usuarios</h3></div>
     <div class="col-6">
         <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
     </div>
   </div>
-  <!-- Table of Clients -->
+  <!-- Table of Users -->
 <div class="table-responsive table-borderless">
   <table class="table table-hover table-striped table-sm">
     <thead class="thead-dark text-center">
@@ -22,12 +22,12 @@
     <tbody>
       <!-- List of Users -->
       <tr *ngFor="let user of getList(); let i = index;">
-        <td>{{ user.username }}</td>
-        <td class="text-center">{{ user.password }}</td>
-        <td class="text-center">{{ user.role }}</td>
+        <td><i class="fas fa-user"></i> {{ user.username }}</td>
+        <td class="text-center">********** <i class="fas fa-key"></i></td>
+        <td class="text-center">{{ user.role }} <i class="fas fa-cogs"></i></td>
         <td class="d-flex justify-content-center">
           <!-- Botton to edite a User -->
-          <button (click)="getUser(user.id)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#FormModal"><i class="fas fa-edit"></i></button>
+          <button (click)="getUser(user.id); setStatus(false)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
           <!-- Botton to delete a User -->
           <button (click)="delUser(user.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
         </td>
@@ -39,22 +39,19 @@
   ¡No hay información en la Aplicación!
 </div>
 
-<!-- Modal From Client's Cars -->
-<div class="modal fade" id="FormModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<!-- Modal From User's Cars -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-center">Formulario</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-      </div>
+        <div class="modal-header">
+            <h5 class="modal-title text-center">Formulario</h5>
+              <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
       <div class="modal-body">
-        <app-user-form></app-user-form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+        <!-- Form -->
+        <app-user-form [status]="getStatus()" [user]="getModel()"></app-user-form>
       </div>
     </div>
   </div>

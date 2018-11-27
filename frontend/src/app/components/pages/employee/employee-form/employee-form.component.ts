@@ -10,6 +10,10 @@ import { EmployeeService } from 'src/app/services/employee.service';
 // Sweet Alert2 Import
 import swal from 'sweetalert2';
 
+// Variables for jQuery
+declare var $: any;
+declare var jQuery: any;
+
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -31,6 +35,12 @@ export class EmployeeFormComponent implements OnInit {
   public clrModel(): void {
     this.employee = new Employee();
     this.employee.address = new Address();
+  }
+
+  public closeModal(): void {
+    $(function () {
+      $('#modal').modal('toggle');
+   });
   }
 
   // Function for CRUD
@@ -57,6 +67,7 @@ export class EmployeeFormComponent implements OnInit {
       });
     });
     this.clrModel();
+    this.closeModal();
   }
 
   public updEmployee(id: string): void {

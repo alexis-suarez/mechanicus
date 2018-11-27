@@ -7,5 +7,5 @@ export class Automobile {
     cilinder: number;
     colour: string;
     transmision: string;
-    status: boolean;
+    status = true;
 }
