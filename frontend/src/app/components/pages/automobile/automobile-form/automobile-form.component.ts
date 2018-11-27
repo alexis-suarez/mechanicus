@@ -27,19 +27,22 @@ export class AutomobileFormComponent implements OnInit {
 
   public clrModel(): void {
     this.automobile = new Automobile();
+    this.automobile.client = '5bf035330d403d18be0bd246';
   }
 
   public newAutomobile(): void {
     const data = this.automobile;
     this.service.newAutomobile(this.automobile).subscribe(response => {
-      this.service.addList(data);
-      swal({
-        position: 'top-end',
-        type: 'success',
-        title: 'Correcto :D',
-        showConfirmButton: false,
-        timer: 1500
-      });
+      if (response.status) {
+        this.service.addList(data);
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Correcto :D',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
     }, error => {
       console.log(error);
       swal({

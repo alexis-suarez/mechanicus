@@ -66,6 +66,29 @@ export class UserFormComponent implements OnInit {
   }
 
   public updUser(id: string): void {
-    //
+    const data = this.user;
+    this.service.updUser(this.user.id, this.user).subscribe(response => {
+      if (response.status) {
+        this.service.getList()[id] = data;
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Actualizado :D',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    }, error => {
+      console.log(error);
+      swal({
+        position: 'top-end',
+        type: 'error',
+        title: 'Error :(',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    });
+    this.clrModel();
+    this.closeModal();
   }
 }

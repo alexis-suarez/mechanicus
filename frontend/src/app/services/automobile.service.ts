@@ -69,7 +69,7 @@ export class AutomobileService {
     return this.http.get<Response>(this.url + '/' + id);
   }
 
-  public viewAutomobile(): any {
-    return this.http.get<Response>(this.url, httpOptions);
+  public viewAutomobile(id): any {
+    return this.http.get<Response>(this.url + '/' + id, httpOptions);
   }
 }

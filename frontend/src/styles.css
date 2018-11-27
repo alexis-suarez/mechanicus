@@ -35,3 +35,11 @@
 .ng-invalid:not(form)  {
     border-left: 5px solid #a94442; /* red */
 }
+
+/* Static table vertical scroll */
+.table-wrapper-scroll-y {
+    display: block;
+    max-height: 350px;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}

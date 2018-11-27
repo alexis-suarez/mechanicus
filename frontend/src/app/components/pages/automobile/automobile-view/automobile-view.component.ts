@@ -18,13 +18,16 @@ export class AutomobileViewComponent implements OnInit {
 
   private automobile: Automobile;
   private status: boolean;
+
   @Input() slider: boolean;
+  @Input() client: string;
 
   constructor(private service: AutomobileService) { }
 
   ngOnInit() {
     // Load the data on the table
-    this.viewAutomobile();
+    // this.viewAutomobile();
+    console.log(this.client);
 
     // Initialize Model
     this.clrModel();
@@ -107,7 +110,7 @@ export class AutomobileViewComponent implements OnInit {
   }
 
   public viewAutomobile(): void {
-    this.service.viewAutomobile().subscribe(response => {
+    this.service.viewAutomobile(this.client).subscribe(response => {
       this.service.setList(response.data);
     }, error => {
       console.log(error);

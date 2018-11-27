@@ -12,8 +12,7 @@ class Client(Resource):
 
     def post(self):
         try:
-            data = request.get_json(force=True)
-            # data = request.json(force=True)
+            data = request.json
             connector.collection('client').insert_one(data)
             response = {'message':'success', 'status':True}
             return jsonify(response)
@@ -44,6 +43,16 @@ class ClientParams(Resource):
             value = {'$set':{'status':False}}
             connector.collection('client').update_one(where, value)
             return jsonify({'message':'success', 'status':True})
+        except:
+            return jsonify({'message':'error', 'status':False})
+    
+    def put(self, id):
+        try:
+            data = request.json
+            where = {'_id':ObjectId(id)}
+            value = {'$set':{}}
+            connector.collection('client').update_one(where, value)
+            return jsonfy({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
 

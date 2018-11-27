@@ -12,7 +12,10 @@ class Automobile(Resource):
 
     def post(self):
         try:
-            pass
+            data = request.json
+            connector.collection('automobile').insert_one(data)
+            response = {'message':'success', 'status':True}
+            return jsonify(response)
         except:
             return jsonify({'message':'error', 'status':False})
 
@@ -37,6 +40,18 @@ class AutomobileParams(Resource):
 
     def get(self, id):
         try:
-            pass
+            document = connector.collection('automobile').find_one({'client':id, 'status':True})
+            data = {'id':str(document['_id']),
+                    'client':document['client'],
+                    'brand':document['brand'],
+                    'model':document['model'],
+                    'year':document['year'],
+                    'milage':document['milage'],
+                    'cilinder':document['cilinder'],
+                    'colour':document['colour'],
+                    'transmision':document['transmision'],
+                    'status':document['status']}
+            response = {'message':'success', 'status':True, 'data':data}
+            return jsonify(response)
         except:
             return jsonify({'message':'error', 'status':False})

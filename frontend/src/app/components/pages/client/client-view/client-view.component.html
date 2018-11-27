@@ -1,5 +1,5 @@
 <!-- Main div Container -->
-<div *ngIf="getSlider()" class="container mt-3 shadow-lg p-3 mb-5 bg-white rounded">
+<div class="container mt-3 shadow-lg p-3 mb-5 bg-white rounded">
   <!-- Header Container -->
   <div class="row">
     <div class="col-2">
@@ -12,7 +12,7 @@
     </div>
   </div>
   <!-- Table of Clients -->
-  <div class="table-responsive table-borderless">
+  <div class="table-responsive table-borderless table-wrapper-scroll-y">
     <table class="table table-hover table-striped table-sm">
       <thead class="thead-dark text-center">
         <tr>
@@ -32,7 +32,7 @@
           <td class="text-center">{{ client.email }}</td>
           <td class="d-flex justify-content-center">
             <!-- Botton to view a Client's Cars -->
-            <button (click)="setSlider(false)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
+            <button (click)="setId(client.id)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
             <!-- Botton to edite a Client -->
             <button (click)="getClient(client.id); setStatus(false)" class="mr-1 ml-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
             <!-- Botton to delete a Client -->
@@ -67,4 +67,4 @@
 
 
 <!-- Table of Cars -->
-<app-automobile-view *ngIf="!getSlider()" [slider]="getSlider()"></app-automobile-view>
+<app-automobile-view [client]="getId()"></app-automobile-view>

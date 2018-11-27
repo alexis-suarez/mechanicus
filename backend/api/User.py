@@ -12,7 +12,7 @@ class User(Resource):
 
     def post(self):
         try:
-            data = request.get_json(force=True)
+            data = request.json
             connector.collection('user').insert_one(data)
             response = {'message':'success', 'status':True}
             return jsonify(response)
@@ -47,14 +47,14 @@ class UserParams(Resource):
     
     def put(self, id):
         try:
-            # data = request.get_json(force=True)
+            data = request.json
             where = {'_id':ObjectId(id)}
             value = {'$set':{'username':data['username'],
                             'password':data['password'],
                             'role':data['role'],
                             'status':data['status']}}
             connector.collection('user').update_one(where, value)
-            return jsonify({'message':'success', 'status':True, 'data':id})
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
     

@@ -19,7 +19,16 @@ export class ClientViewComponent implements OnInit {
 
   private client: Client;
   private status: boolean;
-  private slider: boolean;
+
+  private id: string;
+
+  public setId(value: string): void {
+    this.id = value;
+  }
+
+  public getId(): string {
+    return this.id;
+  }
 
   constructor(private service: ClientService) { }
 
@@ -29,9 +38,6 @@ export class ClientViewComponent implements OnInit {
 
     // Initialize Model
     this.clrModel();
-
-    // Initialize Slider
-    this.slider = true;
   }
 
   // Return the list
@@ -59,16 +65,6 @@ export class ClientViewComponent implements OnInit {
     this.status = value;
   }
 
-  // Get Slider
-  public getSlider(): boolean {
-    return this.slider;
-  }
-
-  // Set Slider
-  public setSlider(value: boolean): void {
-    this.slider = value;
-  }
-
   // Clear and Initialize Model
   public clrModel(): void {
     this.client = new Client();
@@ -93,7 +89,6 @@ export class ClientViewComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.service.delClient(id).subscribe(response => {
-          console.log(response);
           if (response.status) {
             this.service.delList(index);
           }
@@ -111,7 +106,6 @@ export class ClientViewComponent implements OnInit {
 
   public getClient(id: string): void {
     this.service.getClient(id).subscribe(response => {
-      console.log(response.data);
       this.client = response.data;
     }, error => {
       console.log(error);
@@ -120,7 +114,6 @@ export class ClientViewComponent implements OnInit {
 
   public viewClient(): void {
     this.service.viewClient().subscribe(response => {
-      console.log(response);
       this.service.setList(response.data);
     }, error => {
       console.log(error);

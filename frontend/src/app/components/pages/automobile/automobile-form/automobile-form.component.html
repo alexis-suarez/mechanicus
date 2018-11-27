@@ -42,7 +42,7 @@
   </form>
   <div class="modal-footer">
       <!-- Botton to Cancel -->
-      <button (click)="clrModel()" type="button" class="btn btn-secondary">Cerrar</button>
+      <button (click)="clrModel()" type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Cerrar</button>
       <!-- Botton to Register -->
       <button *ngIf="status" [disabled]="!form.form.valid" (click)="newAutomobile()" type="button" class="btn btn-success">Guardar</button>
       <!-- Botton to Edite -->

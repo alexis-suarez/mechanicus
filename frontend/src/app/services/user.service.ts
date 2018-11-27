@@ -61,8 +61,8 @@ export class UserService {
     return this.http.delete<Response>(this.url + '/' + id, httpOptions);
   }
 
-  public updUser(user: User): any {
-    return this.http.put<Response>(this.url, httpOptions);
+  public updUser(id: string, user: User): any {
+    return this.http.put<Response>(this.url + '/' + id, JSON.stringify(user), httpOptions);
   }
 
   public getUser(id: string): any {
