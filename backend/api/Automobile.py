@@ -34,7 +34,25 @@ class AutomobileParams(Resource):
 
     def delete(self, id):
         try:
-            pass
+            where = {'_id':ObjectId(id)}
+            value = {'$set':{'status':False}}
+            connector.collection('automobile').update_one(where, value)
+            response = {'message':'success', 'status':True}
+            return jsonify(response)
+        except:
+            return jsonify({'message':'error', 'status':False})
+    
+    def put(self, id):
+        try:
+            where = {'_id':ObjectId(id)}
+            value = {'$set':{'client':data['client'],
+                            'brand':data['brand'],
+                            'model':data['model'],
+                            'year':data['year'],
+                            'milage':data['milage'],
+                            'cilinder':data['cilinder'],
+                            'colour':data['colour'],
+                            'transmision':data['transmision']}}
         except:
             return jsonify({'message':'error', 'status':False})
 

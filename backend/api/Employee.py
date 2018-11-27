@@ -12,8 +12,7 @@ class Employee(Resource):
 
     def post(self):
         try:
-            data = request.get_json(force=True)
-            # data = request.json(force=True)
+            data = request.json
             connector.collection('employee').insert_one(data)
             response = {'message':'success', 'status':True}
             return jsonify(response)
@@ -53,6 +52,15 @@ class EmployeeParams(Resource):
             return jsonify(response)
         except:
             return jsonify({'message':'error', 'status':False})
+    
+    def put(self, id):
+        try:
+            where = {'_id':ObjectId(id)}
+            value = {'$set':{}}
+            connector.collection('employee').update_one(where, value)
+            return jsonify({'message':'success', 'status':True})
+        except:
+            return jsonify({'message':'success', 'status':False})
     
     def get(self, id):
         try:

@@ -50,7 +50,11 @@ class ClientParams(Resource):
         try:
             data = request.json
             where = {'_id':ObjectId(id)}
-            value = {'$set':{}}
+            value = {'$set':{'name':data['name'],
+                            'address':data['address'],
+                            'rfc':data['rfc'],
+                            'phone':data['phone'],
+                            'email':data['email']}}
             connector.collection('client').update_one(where, value)
             return jsonfy({'message':'success', 'status':True})
         except:

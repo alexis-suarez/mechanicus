@@ -51,8 +51,7 @@ class UserParams(Resource):
             where = {'_id':ObjectId(id)}
             value = {'$set':{'username':data['username'],
                             'password':data['password'],
-                            'role':data['role'],
-                            'status':data['status']}}
+                            'role':data['role']}}
             connector.collection('user').update_one(where, value)
             return jsonify({'message':'success', 'status':True})
         except:
