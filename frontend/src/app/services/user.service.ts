@@ -52,6 +52,16 @@ export class UserService {
     return this.list.length !== 0;
   }
 
+  public setItemList(user: User): void {
+    let i = 0;
+    while (i < this.list.length) {
+      if (this.list[i].id === user.id) {
+        this.list[i] = user;
+      }
+      i++;
+    }
+  }
+
   // Http Request
   public newUser(user: User): any {
     return this.http.post<Response>(this.url, JSON.stringify(user), httpOptions);

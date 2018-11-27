@@ -71,6 +71,29 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   public updEmployee(id: string): void {
-    //
+    const data = this.employee;
+    this.service.updEmployee(this.employee.id, this.employee).subscribe(response => {
+      if (response.status) {
+        this.service.setItemList(data);
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Actualizado :D',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    }, error => {
+      console.log(error);
+      swal({
+        position: 'top-end',
+        type: 'error',
+        title: 'Error :(',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    });
+    this.clrModel();
+    this.closeModal();
   }
 }

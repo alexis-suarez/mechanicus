@@ -69,7 +69,7 @@ export class UserFormComponent implements OnInit {
     const data = this.user;
     this.service.updUser(this.user.id, this.user).subscribe(response => {
       if (response.status) {
-        this.service.getList()[id] = data;
+        this.service.setItemList(data);
         swal({
           position: 'top-end',
           type: 'success',

@@ -64,6 +64,16 @@ export class ClientService {
     return this.list.length !== 0;
   }
 
+  public setItemList(client: Client): void {
+    let i = 0;
+    while (i < this.list.length) {
+      if (this.list[i].id === client.id) {
+        this.list[i] = client;
+      }
+      i++;
+    }
+  }
+
   public search(value: string): Array<Client> {
     let filterList: Array<Client> = [];
     value = value.toLowerCase();

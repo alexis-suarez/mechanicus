@@ -52,6 +52,16 @@ export class EmployeeService {
     return this.list.length !== 0;
   }
 
+  public setItemList(employee: Employee): void {
+    let i = 0;
+    while (i < this.list.length) {
+      if (this.list[i].id === employee.id) {
+        this.list[i] = employee;
+      }
+      i++;
+    }
+  }
+
   // Http Request
   public newEmployee(employee: Employee): any {
     return this.http.post<Response>(this.url, JSON.stringify(employee), httpOptions);
@@ -61,8 +71,8 @@ export class EmployeeService {
     return this.http.delete<Response>(this.url + '/' + id, httpOptions);
   }
 
-  public updEmployee(employee: Employee): any {
-    return this.http.put<Response>(this.url, httpOptions);
+  public updEmployee(id: string, employee: Employee): any {
+    return this.http.put<Response>(this.url + '/' + id, JSON.stringify(employee), httpOptions);
   }
 
   public getEmployee(id: string): any {
