@@ -14,8 +14,7 @@ class Employee(Resource):
         try:
             data = request.json
             connector.collection('employee').insert_one(data)
-            response = {'message':'success', 'status':True}
-            return jsonify(response)
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False, 'exception':ex.message})
     
@@ -48,15 +47,24 @@ class EmployeeParams(Resource):
             where = {'_id':ObjectId(id)}
             value = {'$set':{'status':False}}
             connector.collection('employee').update_one(where, value)
-            response = {'message':'success', 'status':True}
-            return jsonify(response)
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
     
     def put(self, id):
         try:
+            data = request.json
             where = {'_id':ObjectId(id)}
-            value = {'$set':{}}
+            value = {'$set':{'name':data['name'],
+                            'address':data['address'],
+                            'nss':data['phone'],
+                            'rfc':data['rfc'],
+                            'curp':data['curp'],
+                            'phone':data['phone'],
+                            'email':data['email'],
+                            'birthDate':data['birthDate'],
+                            'salary':data['salary'],
+                            'role':data['role']}}
             connector.collection('employee').update_one(where, value)
             return jsonify({'message':'success', 'status':True})
         except:

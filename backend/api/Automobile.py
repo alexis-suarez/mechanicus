@@ -14,8 +14,7 @@ class Automobile(Resource):
         try:
             data = request.json
             connector.collection('automobile').insert_one(data)
-            response = {'message':'success', 'status':True}
-            return jsonify(response)
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
 
@@ -37,8 +36,7 @@ class AutomobileParams(Resource):
             where = {'_id':ObjectId(id)}
             value = {'$set':{'status':False}}
             connector.collection('automobile').update_one(where, value)
-            response = {'message':'success', 'status':True}
-            return jsonify(response)
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
     
@@ -53,6 +51,7 @@ class AutomobileParams(Resource):
                             'cilinder':data['cilinder'],
                             'colour':data['colour'],
                             'transmision':data['transmision']}}
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
 

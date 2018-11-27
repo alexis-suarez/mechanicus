@@ -35,5 +35,6 @@ api.add_resource(User, '/user')
 api.add_resource(UserParams, '/user/<string:id>')
 api.add_resource(UserLogin, '/user/chck/<string:username>/<string:password>')
 
+# Main fuction in debug Mode
 if __name__ == "__main__":
     app.run(debug=True)

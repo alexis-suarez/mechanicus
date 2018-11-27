@@ -14,8 +14,7 @@ class Client(Resource):
         try:
             data = request.json
             connector.collection('client').insert_one(data)
-            response = {'message':'success', 'status':True}
-            return jsonify(response)
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
 

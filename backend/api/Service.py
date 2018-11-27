@@ -14,8 +14,7 @@ class Service(Resource):
         try:
             data = request.json
             connector.collection('service').insert_one(data)
-            response = {'message':'success', 'status':True, 'data':data}
-            return jsonify(response)
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
 
@@ -41,15 +40,22 @@ class ServiceParams(Resource):
     def delete(self, id):
         try:
             where = {'_id':ObjectId(id)}
-            response = {'message':'success', 'status':True}
-            return jsonify(response)
+            value = {'$set':{'status':False}}
+            connector.collection('service').update_one(where, value)
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
     
     def put(self, id):
         try:
-            response = {'message':'success', 'status':True}
-            return jsonify(response)
+            data = request.json
+            where = {'_id':ObjectId(id)}
+            value = {'$set':{'auto':data['auto'],
+                            'employee':data['employee'],
+                            'entreDate':data['entreDate'],
+                            'endedDate':data['endedDate'],
+                            'description':data['description']}}
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
 
