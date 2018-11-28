@@ -66,11 +66,6 @@ export class HomeComponent implements OnInit {
   // Clear and Initialize Model
   public clrModel(): void {
     this.servic = new Service();
-    this.servic.auto = new Automobile();
-    this.servic.client = new Client();
-    this.servic.client.address = new Address();
-    this.servic.employee = new Employee();
-    this.servic.employee.address = new Address();
   }
 
   // Function for CRUD

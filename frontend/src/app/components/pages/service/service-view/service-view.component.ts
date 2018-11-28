@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 // Models
 import { Service } from 'src/app/models/service';
-import { Client } from 'src/app/models/client';
-import { Address } from 'src/app/models/address';
-import { Employee } from 'src/app/models/employee';
-import { Automobile } from 'src/app/models/automobile';
 
 // Services
 import { ServiceService } from 'src/app/services/service.service';
@@ -61,11 +57,6 @@ export class ServiceViewComponent implements OnInit {
   // Clear and Initialize Model
   public clrModel(): void {
     this.servic = new Service();
-    this.servic.auto = new Automobile();
-    this.servic.client = new Client();
-    this.servic.client.address = new Address();
-    this.servic.employee = new Employee();
-    this.servic.employee.address = new Address();
   }
 
   // Function for CRUD
