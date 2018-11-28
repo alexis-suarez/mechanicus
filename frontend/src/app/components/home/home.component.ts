@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
       confirmButtonText: '¡Sí, Eliminar!'
     }).then((result) => {
       if (result.value) {
-        this.service.delService(id).subscribe(response => {
+        this.service.delServiceFinish(id).subscribe(response => {
           if (response.status) {
             this.service.delList(index);
           }
@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit {
   }
 
   public viewService(): void {
-    this.service.viewService().subscribe(response => {
+    this.service.viewServiceFinish().subscribe(response => {
       this.service.setList(response.data);
     }, error => {
       console.log(error);

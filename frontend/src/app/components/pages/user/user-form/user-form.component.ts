@@ -42,14 +42,16 @@ export class UserFormComponent implements OnInit {
   public newUser(): void {
     const data = this.user;
     this.service.newUser(this.user).subscribe(response => {
-      this.service.addList(data);
-      swal({
-        position: 'top-end',
-        type: 'success',
-        title: 'Correcto :D',
-        showConfirmButton: false,
-        timer: 1500
-      });
+      if (response.status) {
+        this.service.addList(data);
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Correcto :D',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
     }, error => {
       console.log(error);
       swal({

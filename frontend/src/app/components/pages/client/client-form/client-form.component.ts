@@ -22,13 +22,12 @@ declare var jQuery: any;
 export class ClientFormComponent implements OnInit {
 
   @Input() client: Client;
-  @Input() status: boolean;
+  @Input() status: number;
 
   constructor(private service: ClientService) { }
 
   ngOnInit() {
     this.clrModel();
-    this.status = true;
   }
 
   public clrModel(): void {
@@ -45,14 +44,16 @@ export class ClientFormComponent implements OnInit {
   public newClient(): void {
     const data = this.client;
     this.service.newClient(this.client).subscribe(response => {
-      this.service.addList(data);
-      swal({
-        position: 'top-end',
-        type: 'success',
-        title: 'Correcto :D',
-        showConfirmButton: false,
-        timer: 1500
-      });
+      if (response.status) {
+        this.service.addList(data);
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Correcto :D',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
     }, error => {
       console.log(error);
       swal({

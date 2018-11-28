@@ -18,7 +18,7 @@ import swal from 'sweetalert2';
 export class EmployeeViewComponent implements OnInit {
 
   private employee: Employee;
-  private status: boolean;
+  private status: number;
 
   constructor(private service: EmployeeService) { }
 
@@ -46,12 +46,12 @@ export class EmployeeViewComponent implements OnInit {
   }
 
   // Get Status
-  public getStatus(): boolean {
+  public getStatus(): number {
     return this.status;
   }
 
   // Set Status
-  public setStatus(value: boolean): void {
+  public setStatus(value: number): void {
     this.status = value;
   }
 

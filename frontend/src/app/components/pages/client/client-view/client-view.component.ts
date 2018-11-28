@@ -18,7 +18,7 @@ import swal from 'sweetalert2';
 export class ClientViewComponent implements OnInit {
 
   private client: Client;
-  private status: boolean;
+  private status: number;
 
   private id: string;
 
@@ -56,12 +56,12 @@ export class ClientViewComponent implements OnInit {
   }
 
   // Get Status
-  public getStatus(): boolean {
+  public getStatus(): number {
     return this.status;
   }
 
   // Set Status
-  public setStatus(value: boolean): void {
+  public setStatus(value: number): void {
     this.status = value;
   }
 

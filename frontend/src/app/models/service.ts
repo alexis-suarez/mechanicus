@@ -6,5 +6,7 @@ export class Service {
     entreDate = Date();
     endedDate = Date();
     description: string;
+    delived = false;
+    finished = false;
     status = true;
 }

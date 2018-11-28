@@ -71,6 +71,14 @@ export class ServiceService {
     return this.http.delete<Response>(this.url + '/' + id, httpOptions);
   }
 
+  public delServiceDeliver(id: string): any {
+    return this.http.delete<Response>(this.url + '/deliver/' + id, httpOptions);
+  }
+
+  public delServiceFinish(id: string): any {
+    return this.http.delete<Response>(this.url + '/finish/' + id, httpOptions);
+  }
+
   public updService(id: string, service: Service): any {
     return this.http.put<Response>(this.url + '/' + id, JSON.stringify(Service), httpOptions);
   }
@@ -81,5 +89,13 @@ export class ServiceService {
 
   public viewService(): any {
     return this.http.get<Response>(this.url, httpOptions);
+  }
+
+  public viewServiceDeliver(): any {
+    return this.http.get<Response>(this.url + '/deliver/', httpOptions);
+  }
+
+  public viewServiceFinish(): any {
+    return this.http.get<Response>(this.url + '/finish/', httpOptions);
   }
 }

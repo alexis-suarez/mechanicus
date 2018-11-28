@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-2">
         <!-- Botton to register new Employee -->
-        <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
+        <button (click)="clrModel(); setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
       </div>
       <div class="col-4"><h3>Empleados</h3></div>
       <div class="col-6">
@@ -27,14 +27,14 @@
         <tbody>
           <!-- List of Employees -->
           <tr *ngFor="let employee of getList(); let i = index;">
-            <td class="text-uppercase">{{ employee.name }}</td>
-            <td class="text-center text-uppercase">{{ employee.rfc }}</td>
-            <td class="text-center text-uppercase">{{ employee.nss }}</td>
-            <td class="text-center text-uppercase">{{ employee.phone }}</td>
-            <td class="text-center text-lowercase">{{ employee.email }}</td>
+            <td (click)="getEmployee(employee.id); setStatus(0)" class="text-uppercase" data-toggle="modal" data-target="#modal">{{ employee.name }}</td>
+            <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">{{ employee.rfc }}</td>
+            <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">{{ employee.nss }}</td>
+            <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">{{ employee.phone }}</td>
+            <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">{{ employee.email }}</td>
             <td class="d-flex justify-content-center">
               <!-- Botton to edite a Employee -->
-              <button (click)="getEmployee(employee.id); setStatus(false)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
+              <button (click)="getEmployee(employee.id); setStatus(-1)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
               <!-- Botton to delete a Employee -->
               <button (click)="delEmployee(employee.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
             </td>

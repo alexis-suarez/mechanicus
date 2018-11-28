@@ -3,8 +3,8 @@
     <div class="form-group col-md-4">
       <label for="inputtransmision">Client</label>
       <select [(ngModel)]="servic.client" name="client" id="inputtransmision" class="form-control text-uppercase" required>
-        <option selected>Choose...</option>
-        <option>...</option>
+        <!-- <option selected>Choose...</option> -->
+        <option *ngFor="let client of getListCli()" [value]="client.id">{{ client.name }}</option>
       </select>
     </div>
     <div class="form-group col-md-4">
@@ -17,8 +17,8 @@
     <div class="form-group col-md-4">
       <label for="inputtransmision">Empleado</label>
       <select [(ngModel)]="servic.employee" name="employee" id="inputtransmision" class="form-control text-uppercase" required>
-        <option selected>Choose...</option>
-        <option>...</option>
+        <!-- <option selected>Choose...</option> -->
+        <option *ngFor="let employee of getListEmp()" [value]="employee.id">{{ employee.name }}</option>
       </select>
     </div>
   </div>

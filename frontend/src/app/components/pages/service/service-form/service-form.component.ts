@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 // Models
 import { Service } from 'src/app/models/service';
+import { Client } from 'src/app/models/client';
+import { Employee } from 'src/app/models/employee';
 
 // Services
 import { ClientService } from 'src/app/services/client.service';
@@ -11,6 +13,7 @@ import { ServiceService } from 'src/app/services/service.service';
 
 // Sweet Alert2 Import
 import swal from 'sweetalert2';
+import { Automobile } from 'src/app/models/automobile';
 
 // Variables for jQuery
 declare var $: any;
@@ -36,6 +39,20 @@ export class ServiceFormComponent implements OnInit {
     this.clrModel();
   }
 
+  // Return the list of clients
+  public getListCli(): Array<Client> {
+    return this.cliServ.getList();
+  }
+
+  public getListAut(): Array<Automobile> {
+    return this.autServ.getList();
+  }
+
+  // Return the list of employees
+  public getListEmp(): Array<Employee> {
+    return this.empServ.getList();
+  }
+
   // Clear and Initialize Model
   public clrModel(): void {
     this.servic = new Service();
@@ -52,14 +69,16 @@ export class ServiceFormComponent implements OnInit {
     const data = this.servic;
     this.serServ.newService(this.servic).subscribe(response => {
       console.log(response);
-      this.serServ.addList(data);
-      swal({
-        position: 'top-end',
-        type: 'success',
-        title: 'Correcto :D',
-        showConfirmButton: false,
-        timer: 1500
-      });
+      if (response.status) {
+        this.serServ.addList(data);
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Correcto :D',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
     }, error => {
       console.log(error);
       swal({

@@ -22,7 +22,7 @@ declare var jQuery: any;
 export class EmployeeFormComponent implements OnInit {
 
   @Input() employee: Employee;
-  @Input() status: boolean;
+  @Input() status: number;
 
   constructor(private service: EmployeeService) { }
 
@@ -47,14 +47,16 @@ export class EmployeeFormComponent implements OnInit {
   public newEmployee(): void {
     const data = this.employee;
     this.service.newEmployee(this.employee).subscribe(response => {
-      this.service.addList(data);
-      swal({
-        position: 'top-end',
-        type: 'success',
-        title: 'Correcto :D',
-        showConfirmButton: false,
-        timer: 1500
-      });
+      if (response.status) {
+        this.service.addList(data);
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Correcto :D',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
     }, error => {
       console.log(error);
       swal({

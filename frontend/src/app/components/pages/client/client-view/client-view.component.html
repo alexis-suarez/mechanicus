@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-2">
       <!-- Botton to register new Client -->
-      <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
+      <button (click)="clrModel(); setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
     </div>
     <div class="col-4"><h3>Clientes</h3></div>
     <div class="col-6">
@@ -26,15 +26,15 @@
       <tbody>
         <!-- List of Clients -->
         <tr *ngFor="let client of getList(); let i = index;">
-          <td class="text-uppercase">{{ client.name }}</td>
-          <td class="text-center text-uppercase">{{ client.rfc }}</td>
-          <td class="text-center">{{ client.phone }}</td>
-          <td class="text-center text-lowercase">{{ client.email }}</td>
-          <td class="d-flex justify-content-center">
+          <td (click)="getClient(client.id); setStatus(0)" class="text-uppercase" data-toggle="modal" data-target="#modal">{{ client.name }}</td>
+          <td (click)="getClient(client.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">{{ client.rfc }}</td>
+          <td (click)="getClient(client.id); setStatus(0)" class="text-center" data-toggle="modal" data-target="#modal">{{ client.phone }}</td>
+          <td (click)="getClient(client.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">{{ client.email }}</td>
+          <td (click)="getClient(client.id); setStatus(0)" class="d-flex justify-content-center" data-toggle="modal" data-target="#modal">
             <!-- Botton to view a Client's Cars -->
             <button (click)="setId(client.id)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
             <!-- Botton to edite a Client -->
-            <button (click)="getClient(client.id); setStatus(false)" class="mr-1 ml-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
+            <button (click)="getClient(client.id); setStatus(-1)" class="mr-1 ml-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
             <!-- Botton to delete a Client -->
             <button (click)="delClient(client.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
           </td>
