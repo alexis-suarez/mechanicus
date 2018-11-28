@@ -42,7 +42,6 @@ export class UserFormComponent implements OnInit {
   public newUser(): void {
     const data = this.user;
     this.service.newUser(this.user).subscribe(response => {
-      console.log(response);
       this.service.addList(data);
       swal({
         position: 'top-end',

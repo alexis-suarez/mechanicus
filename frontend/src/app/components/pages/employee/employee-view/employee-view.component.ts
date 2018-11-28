@@ -74,7 +74,6 @@ export class EmployeeViewComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.service.delEmployee(id).subscribe(response => {
-          console.log(response);
           if (response.status) {
             this.service.delList(index);
           }
@@ -92,7 +91,6 @@ export class EmployeeViewComponent implements OnInit {
 
   public getEmployee(id: string): void {
     this.service.getEmployee(id).subscribe(response => {
-      console.log(response.data);
       this.employee = response.data;
     }, error => {
       console.log(error);
@@ -101,7 +99,6 @@ export class EmployeeViewComponent implements OnInit {
 
   public viewEmployee(): void {
     this.service.viewEmployee().subscribe(response => {
-      console.log(response);
       this.service.setList(response.data);
     }, error => {
       console.log(error);

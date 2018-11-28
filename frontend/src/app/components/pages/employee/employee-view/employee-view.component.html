@@ -27,11 +27,11 @@
         <tbody>
           <!-- List of Employees -->
           <tr *ngFor="let employee of getList(); let i = index;">
-            <td>{{ employee.name }}</td>
-            <td class="text-center">{{ employee.rfc }}</td>
-            <td class="text-center">{{ employee.nss }}</td>
-            <td class="text-center">{{ employee.phone }}</td>
-            <td class="text-center">{{ employee.email }}</td>
+            <td class="text-uppercase">{{ employee.name }}</td>
+            <td class="text-center text-uppercase">{{ employee.rfc }}</td>
+            <td class="text-center text-uppercase">{{ employee.nss }}</td>
+            <td class="text-center text-uppercase">{{ employee.phone }}</td>
+            <td class="text-center text-lowercase">{{ employee.email }}</td>
             <td class="d-flex justify-content-center">
               <!-- Botton to edite a Employee -->
               <button (click)="getEmployee(employee.id); setStatus(false)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>

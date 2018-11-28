@@ -20,11 +20,12 @@ class Service(Resource):
 
     def get(self):
         try:
-            document = connector.collection('automobile').find({'status':True})
+            document = connector.collection('service').find({'status':True})
             data = []
             for field in document:
                 data.append({'id':str(field['_id']),
                              'auto':field['auto'],
+                             'client':field['client'],
                              'employee':field['employee'],
                              'entreDate':field['entreDate'],
                              'endedDate':field['endedDate'],

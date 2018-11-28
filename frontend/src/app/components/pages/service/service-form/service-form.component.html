@@ -1,49 +1,37 @@
-<form>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <label for="inputName">Nombre de Cliente o Empresa</label>
-          <input type="text" class="form-control" id="inputName" placeholder="Cliente o Empresa">
-      </div>
-      <div class="form-group col-md-6">
-          <label for="inputRFC">RFC</label>
-          <input type="text" class="form-control" id="inputRFC" placeholder="RFC">
-      </div>
+<form #form="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputtransmision">Client</label>
+      <select [(ngModel)]="servic.client.id" name="id" id="inputtransmision" class="form-control text-uppercase" required>
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputPhone">Télefono</label>
-        <input type="text" class="form-control" id="inputPhone" placeholder="Télefono / Móvil">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputEmail">Correo Electronico</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-      </div>
+    <div class="form-group col-md-4">
+      <label for="inputtransmision">Vehiculo</label>
+      <select [(ngModel)]="servic.auto.id" name="id" id="inputtransmision" class="form-control text-uppercase" required>
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
     </div>
-    <div class="form-group">
-      <label for="inputAddress">Dirección</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    <div class="form-group col-md-4">
+      <label for="inputtransmision">Empleado</label>
+      <select [(ngModel)]="servic.employee.id" name="id" id="inputtransmision" class="form-control text-uppercase" required>
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputCity">Ciudad ó Municipio</label>
-        <input type="text" class="form-control" id="inputCity" placeholder="...">
-      </div>
-      <div class="form-group col-md-4">
-        <label for="inputState">Estado</label>
-        <select id="inputState" class="form-control">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="form-group col-md-2">
-        <label for="inputZip">Código Postal</label>
-        <input type="text" class="form-control" id="inputZip" placeholder="00000">
-      </div>
-    </div>
-  </form>
-  <div class="modal-footer">
-    <!-- Botton to Cancel -->
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-    <!-- Botton to Register -->
-    <button type="button" class="btn btn-success">Guardar</button>
   </div>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="inputcolour">Descripción</label>
+        <input [(ngModel)]="servic.description" name="description" type="text" class="form-control text-uppercase" id="inputcolour" required>
+      </div>
+  </div>
+</form>
+<div class="modal-footer">
+  <!-- Botton to Cancel -->
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+  <!-- Botton to Register -->
+  <button [disabled]="!form.form.valid" (click)="newService()" type="button" class="btn btn-success">Guardar</button>
+</div>

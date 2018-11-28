@@ -26,10 +26,10 @@
       <tbody>
         <!-- List of Clients -->
         <tr *ngFor="let client of getList(); let i = index;">
-          <td>{{ client.name }}</td>
-          <td class="text-center">{{ client.rfc }}</td>
+          <td class="text-uppercase">{{ client.name }}</td>
+          <td class="text-center text-uppercase">{{ client.rfc }}</td>
           <td class="text-center">{{ client.phone }}</td>
-          <td class="text-center">{{ client.email }}</td>
+          <td class="text-center text-lowercase">{{ client.email }}</td>
           <td class="d-flex justify-content-center">
             <!-- Botton to view a Client's Cars -->
             <button (click)="setId(client.id)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>

@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-2">
         <!-- Botton to register new Service -->
-        <button class="btn btn-primary" (click)="newService()" data-toggle="modal" data-target="#FormModalService"><i class="fas fa-plus"></i></button>
+        <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#FormModalService"><i class="fas fa-plus"></i></button>
       </div>
       <div class="col-4"><h3>Servicios</h3></div>
       <div class="col-6">
@@ -26,12 +26,12 @@
         </thead>
         <tbody>
           <!-- List of Services -->
-          <tr *ngFor="let item of getList()">
+          <tr *ngFor="let item of getList(); let i = index;">
             <th scope="row">1</th>
-            <td>{{ item.name }}</td>
-            <td>{{ item.rfc }}</td>
-            <td>{{ item.phone }}</td>
-            <td>{{ item.email }}</td>
+            <td>{{ item }}</td>
+            <td>{{ item }}</td>
+            <td>{{ item }}</td>
+            <td>{{ item }}</td>
             <td class="d-flex justify-content-center">
               <!-- Botton to edite a Service -->
               <button class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
@@ -56,7 +56,7 @@
         </div>
         <div class="modal-body">
           <!-- Form to Register -->
-          <app-service-form></app-service-form>
+          <app-service-form [servic]="getModel()"></app-service-form>
         </div>
       </div>
     </div>

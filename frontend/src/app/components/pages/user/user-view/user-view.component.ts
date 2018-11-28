@@ -72,7 +72,6 @@ export class UserViewComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.service.delUser(id).subscribe(response => {
-          console.log(response);
           if (response.status) {
             this.service.delList(index);
           }
@@ -88,13 +87,8 @@ export class UserViewComponent implements OnInit {
     });
   }
 
-  public updUser(id: string): void {
-    //
-  }
-
   public getUser(id: string): void {
     this.service.getUser(id).subscribe(response => {
-      console.log(response.data);
       this.user = response.data;
     }, error => {
       console.log(error);
@@ -103,7 +97,6 @@ export class UserViewComponent implements OnInit {
 
   public viewUser(): void {
     this.service.viewUser().subscribe(response => {
-      console.log(response);
       this.service.setList(response.data);
     }, error => {
       console.log(error);

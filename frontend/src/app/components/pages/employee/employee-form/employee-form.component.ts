@@ -47,7 +47,6 @@ export class EmployeeFormComponent implements OnInit {
   public newEmployee(): void {
     const data = this.employee;
     this.service.newEmployee(this.employee).subscribe(response => {
-      console.log(response);
       this.service.addList(data);
       swal({
         position: 'top-end',

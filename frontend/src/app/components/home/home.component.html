@@ -3,78 +3,25 @@
     <!-- Header Container -->
     <div class="row">
         <div class="col-2">
-             <!-- (click)="newService()" Botton to register new Service -->
-             <button class="btn btn-primary" (click)="newService()" data-toggle="modal" data-target="#FormModalService"><i class="fas fa-plus"></i></button>
+            <!-- Botton to register Service -->
+            <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#FormModalService"><i class="fas fa-plus"></i></button>
         </div>
         <div class="col-4"><h3>Principal</h3></div>
         <div class="col-6"></div>
     </div>
     <div class="row">
         <div class="card-columns">
-            <div class="card text-center bg-light">
+            <div *ngFor="let service of getList(); let i = index;" class="card text-center bg-light">
                 <div class="card-body">
-                    <h5 class="card-title">Light card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">{{ service.endedDate }}</h5>
+                    <p class="card-text">Fecha de Ingreso {{ service.entreDate | date}}</p>
                     <button type="button" class="mr-3 btn btn-danger">Cancelar</button>
                     <button type="button" class="ml-3 btn btn-success">Finalizar</button>
                 </div>
             </div>
-            <div class="card text-center bg-light">
-                <div class="card-body">
-                    <h5 class="card-title">Light card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="mr-3 btn btn-danger">Cancelar</button>
-                    <button type="button" class="ml-3 btn btn-success">Finalizar</button>
-                </div>
-            </div>
-            <div class="card text-center bg-light">
-                <div class="card-body">
-                    <h5 class="card-title">Light card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="mr-3 btn btn-danger">Cancelar</button>
-                    <button type="button" class="ml-3 btn btn-success">Finalizar</button>
-                </div>
-            </div>
-            <div class="card text-center bg-light">
-                <div class="card-body">
-                    <h5 class="card-title">Light card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="mr-3 btn btn-danger">Cancelar</button>
-                    <button type="button" class="ml-3 btn btn-success">Finalizar</button>
-                </div>
-            </div>
-            <div class="card text-center bg-light">
-                <div class="card-body">
-                    <h5 class="card-title">Light card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="mr-3 btn btn-danger">Cancelar</button>
-                    <button type="button" class="ml-3 btn btn-success">Finalizar</button>
-                </div>
-            </div>
-            <div class="card text-center bg-light">
-                <div class="card-body">
-                    <h5 class="card-title">Light card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="mr-3 btn btn-danger">Cancelar</button>
-                    <button type="button" class="ml-3 btn btn-success">Finalizar</button>
-                </div>
-            </div>
-            <div class="card text-center bg-light">
-                <div class="card-body">
-                    <h5 class="card-title">Light card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="mr-3 btn btn-danger">Cancelar</button>
-                    <button type="button" class="ml-3 btn btn-success">Finalizar</button>
-                </div>
-            </div>
-            <div class="card text-center bg-light">
-                <div class="card-body">
-                    <h5 class="card-title">Light card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <button type="button" class="mr-3 btn btn-danger">Cancelar</button>
-                    <button type="button" class="ml-3 btn btn-success">Finalizar</button>
-                </div>
-            </div>
+        </div>
+        <div *ngIf="!isEmpty()" class="alert alert-info text-center btn-block" role="alert">
+            ¡No hay información en la Aplicación!
         </div>
     </div>
 </div>
@@ -85,7 +32,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-center" id="FormModalServiceTitle">Nuevo Servicio</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>

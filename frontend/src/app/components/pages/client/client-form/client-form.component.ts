@@ -45,7 +45,6 @@ export class ClientFormComponent implements OnInit {
   public newClient(): void {
     const data = this.client;
     this.service.newClient(this.client).subscribe(response => {
-      console.log(response);
       this.service.addList(data);
       swal({
         position: 'top-end',
