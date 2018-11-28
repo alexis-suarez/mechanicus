@@ -29,6 +29,8 @@ export class ServiceFormComponent implements OnInit {
   @Input() servic: Service;
   @Input() status: boolean;
 
+  private client = new Client();
+
   constructor(private serServ: ServiceService,
               private cliServ: ClientService,
               private empServ: EmployeeService,
@@ -37,6 +39,8 @@ export class ServiceFormComponent implements OnInit {
   ngOnInit() {
     // Initialize Model
     this.clrModel();
+    this.viewClient();
+    this.viewEmployee();
   }
 
   // Return the list of clients
@@ -62,6 +66,14 @@ export class ServiceFormComponent implements OnInit {
     $(function () {
       $('#modal').modal('toggle');
    });
+  }
+
+  private getClient(id: string): void {
+    this.cliServ.getClient(id).subscribe(response => {
+      this.client = response.data;
+    }, error => {
+      console.log(error);
+    });
   }
 
   // Function for CRUD
@@ -118,5 +130,21 @@ export class ServiceFormComponent implements OnInit {
     });
     this.clrModel();
     this.closeModal();
+  }
+
+  public viewClient(): void {
+    this.cliServ.viewClient().subscribe(response => {
+      this.cliServ.setList(response.data);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  public viewEmployee(): void {
+    this.empServ.viewEmployee().subscribe(response => {
+      this.empServ.setList(response.data);
+    }, error => {
+      console.log(error);
+    });
   }
 }

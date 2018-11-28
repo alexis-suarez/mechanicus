@@ -74,18 +74,6 @@ export class ClientService {
     }
   }
 
-  public search(value: string): Array<Client> {
-    let filterList: Array<Client> = [];
-    value = value.toLowerCase();
-
-    this.list.forEach(element => {
-      if (element.name.indexOf(value) >= 0) {
-        filterList.push(element);
-      }
-    });
-    return filterList;
-  }
-
   // Http Request
   public newClient(client: Client): any {
     return this.http.post<Response>(this.url, JSON.stringify(client), httpOptions);

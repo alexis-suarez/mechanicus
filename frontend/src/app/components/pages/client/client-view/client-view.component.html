@@ -8,11 +8,11 @@
     </div>
     <div class="col-4"><h3>Clientes</h3></div>
     <div class="col-6">
-        <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search" (keyup.enter)="searchClient(textValue.value)" #textValue>
+        <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
     </div>
   </div>
-  <!-- Table of Clients -->
-  <div class="table-responsive table-borderless table-wrapper-scroll-y">
+  <!-- Table of Clients table-wrapper-scroll-y-->
+  <div class="table-responsive table-borderless ">
     <table class="table table-hover table-striped table-sm">
       <thead class="thead-dark text-center">
         <tr>
@@ -30,7 +30,7 @@
           <td (click)="getClient(client.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">{{ client.rfc }}</td>
           <td (click)="getClient(client.id); setStatus(0)" class="text-center" data-toggle="modal" data-target="#modal">{{ client.phone }}</td>
           <td (click)="getClient(client.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">{{ client.email }}</td>
-          <td (click)="getClient(client.id); setStatus(0)" class="d-flex justify-content-center" data-toggle="modal" data-target="#modal">
+          <td class="d-flex justify-content-center">
             <!-- Botton to view a Client's Cars -->
             <button (click)="setId(client.id)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
             <!-- Botton to edite a Client -->

@@ -71,13 +71,40 @@ export class HomeComponent implements OnInit {
   // Function for CRUD
   public delService(id: string, index: number): void {
     swal({
-      title: '¿Seguro de Borrar?',
+      title: '¿Seguro de Cancelar?',
       text: 'No se podrá recuperar despues',
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: '¡Sí, Eliminar!'
+    }).then((result) => {
+      if (result.value) {
+        this.service.delService(id).subscribe(response => {
+          if (response.status) {
+            this.service.delList(index);
+          }
+        }, error => {
+          console.log(error);
+        });
+        swal(
+          '¡Cancelado!',
+          'Información Borrada Correctamente :D',
+          'success'
+        );
+      }
+    });
+  }
+
+  public delServiceFinish(id: string, index: number): void {
+    swal({
+      title: 'Finalizar Servicio',
+      text: 'Quedará pendiente por Entregar',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, Finalizar!'
     }).then((result) => {
       if (result.value) {
         this.service.delServiceFinish(id).subscribe(response => {
@@ -88,8 +115,8 @@ export class HomeComponent implements OnInit {
           console.log(error);
         });
         swal(
-          '¡Borrado!',
-          'Información Borrada Correctamente :D',
+          'Finalizado!',
+          '',
           'success'
         );
       }

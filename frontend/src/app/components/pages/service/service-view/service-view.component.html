@@ -32,7 +32,7 @@
             <td>{{ ser.description }}</td>
             <td class="d-flex justify-content-center">
               <!-- Botton to delete a Service -->
-              <button class="ml-1 btn-sm btn btn-danger" data-toggle="modal" data-target="#DeleteModal"><i class="fas fa-trash-alt"></i></button>
+              <button (click)="delService(ser.id, i)" class="ml-1 btn-sm btn btn-danger" data-toggle="modal" data-target="#DeleteModal"><i class="fas fa-trash-alt"></i></button>
             </td>
           </tr>
         </tbody>

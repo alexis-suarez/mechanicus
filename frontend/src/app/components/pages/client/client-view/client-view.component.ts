@@ -71,11 +71,6 @@ export class ClientViewComponent implements OnInit {
     this.client.address = new Address();
   }
 
-  // Search Client
-  public searchClient(value: string): void {
-    this.service.setList(this.service.search(value));
-  }
-
   // Function for CRUD
   public delClient(id: string, index: number): void {
     swal({

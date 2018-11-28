@@ -55,7 +55,7 @@ class ClientParams(Resource):
                             'phone':data['phone'],
                             'email':data['email']}}
             connector.collection('client').update_one(where, value)
-            return jsonfy({'message':'success', 'status':True})
+            return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
 

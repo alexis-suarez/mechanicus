@@ -29,7 +29,7 @@
           <!-- Botton to edite a User -->
           <button (click)="getUser(user.id); setStatus(false)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
           <!-- Botton to delete a User -->
-          <button (click)="delUser(user.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+          <button *ngIf="user.role != 'ROOT'" (click)="delUser(user.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
         </td>
       </tr>
     </tbody>
