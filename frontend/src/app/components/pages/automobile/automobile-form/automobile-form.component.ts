@@ -32,7 +32,7 @@ export class AutomobileFormComponent implements OnInit {
 
   public newAutomobile(): void {
     const data = this.automobile;
-    this.service.newAutomobile(this.automobile).subscribe(response => {
+    this.service.post(this.automobile).subscribe(response => {
       if (response.status) {
         this.service.addList(data);
         swal({

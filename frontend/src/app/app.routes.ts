@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
+// Routes Modules
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ClientViewComponent } from './components/pages/client/client-view/client-view.component';
@@ -8,6 +9,7 @@ import { EmployeeViewComponent } from './components/pages/employee/employee-view
 import { SettingsViewComponent } from './components/pages/settings/settings-view/settings-view.component';
 import { AnalyticsViewComponent } from './components/pages/analytics/analytics-view/analytics-view.component';
 
+// Auth Services
 import { AuthGuardService } from './services/auth-guard.service';
 
 const app_routes: Routes = [

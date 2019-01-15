@@ -20,7 +20,7 @@
                         <p class="card-text text-uppercase">{{ serv.client }}</p>
                         <p class="card-text text-uppercase">{{ serv.employee }}</p>
                         <p class="card-text">{{ serv.entreDate | date}}</p>
-                        <p class="card-text">{{ serv.description }}</p>
+                        <p class="card-text text-uppercase">{{ serv.description }}</p>
                         <!-- Button for Delete Service -->
                         <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i class="fas fa-times"></i></button>
                         <!-- Button for Finish Service -->

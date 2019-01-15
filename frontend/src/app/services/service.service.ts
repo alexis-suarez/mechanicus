@@ -24,6 +24,7 @@ export class ServiceService {
 
   // API URL
   private url = 'http://127.0.0.1:5000/api/service';
+  // private url = 'http://argentum.sytes.net:5000/api/service';
 
   constructor(private http: HttpClient) {
     this.list = [];

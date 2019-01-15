@@ -24,6 +24,7 @@ export class AutomobileService {
 
   // API URL
   private url = 'http://127.0.0.1:5000/api/automobile';
+  // private url = 'http://argentum.sytes.net:5000/api/automobile';
 
   constructor(private http: HttpClient) {
     this.list = [];
@@ -53,19 +54,19 @@ export class AutomobileService {
   }
 
   // Http Request
-  public newAutomobile(automobile: Automobile): any {
+  public post(automobile: Automobile): any {
     return this.http.post<Response>(this.url, JSON.stringify(automobile), httpOptions);
   }
 
-  public delAutomobile(id: string): any {
+  public delete(id: string): any {
     return this.http.delete<Response>(this.url + '/' + id, httpOptions);
   }
 
-  public updAutomobile(automobile: Automobile): any {
+  public put(automobile: Automobile): any {
     return this.http.put<Response>(this.url, httpOptions);
   }
 
-  public getAutomobile(id: string): any {
+  public get(id: string): any {
     return this.http.get<Response>(this.url + '/' + id);
   }
 

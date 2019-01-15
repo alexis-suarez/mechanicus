@@ -85,7 +85,7 @@ export class AutomobileViewComponent implements OnInit {
       confirmButtonText: '¡Sí, Eliminar!'
     }).then((result) => {
       if (result.value) {
-        this.service.delAutomobile(id).subscribe(response => {
+        this.service.delete(id).subscribe(response => {
           if (response.status) {
             this.service.delList(index);
           }
@@ -102,7 +102,7 @@ export class AutomobileViewComponent implements OnInit {
   }
 
   public getAutomobile(id: string): void {
-    this.service.getAutomobile(id).subscribe(response => {
+    this.service.get(id).subscribe(response => {
       this.automobile = response.data;
     }, error => {
       console.log(error);

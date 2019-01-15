@@ -24,6 +24,7 @@ export class UserService {
 
   // API URL
   private url = 'http://127.0.0.1:5000/api/user';
+  // private url = 'http://argentum.sytes.net:5000/api/user';
 
   constructor(private http: HttpClient) {
     this.list = [];

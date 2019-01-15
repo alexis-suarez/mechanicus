@@ -7,7 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 
 // Routes
-import { app_routing } from './app.routes';
+// import { app_routing } from './app.routes';
+import { AppRoutingModule } from './app-routing.module';
 
 // Services
 import { AuthService } from './services/auth.service';
@@ -37,6 +38,7 @@ import { AutomobileViewComponent } from './components/pages/automobile/automobil
 import { AutomobileFormComponent } from './components/pages/automobile/automobile-form/automobile-form.component';
 import { UserViewComponent } from './components/pages/user/user-view/user-view.component';
 import { UserFormComponent } from './components/pages/user/user-form/user-form.component';
+import { HomeFormComponent } from './components/pages/home/home-form/home-form.component';
 
 @NgModule({
   declarations: [
@@ -62,14 +64,16 @@ import { UserFormComponent } from './components/pages/user/user-form/user-form.c
     AutomobileViewComponent,
     AutomobileFormComponent,
     UserViewComponent,
-    UserFormComponent
+    UserFormComponent,
+    HomeFormComponent
   ],
   imports: [
     FormsModule,
     ChartsModule,
     BrowserModule,
     HttpClientModule,
-    app_routing
+    // app_routing,
+    AppRoutingModule
   ],
   providers: [
     AuthService,
