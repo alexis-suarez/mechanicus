@@ -23,8 +23,10 @@ export class EmployeeViewComponent implements OnInit {
   constructor(private service: EmployeeService) { }
 
   ngOnInit() {
-    // Load the data on the table
-    this.viewEmployee();
+    if (this.service.isEmpty()) {
+      // Load the data on the table
+      this.viewEmployee();
+    }
 
     // Initialize Model
     this.clrModel();

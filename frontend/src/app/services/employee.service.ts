@@ -50,7 +50,7 @@ export class EmployeeService {
   }
 
   public isEmpty(): boolean {
-    return this.list.length !== 0;
+    return this.list.length === 0;
   }
 
   public setItemList(employee: Employee): void {

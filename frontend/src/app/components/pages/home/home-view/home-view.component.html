@@ -12,9 +12,8 @@
     </div>
     <hr>
     <div class="row">
-        <div class="col-6">
-            <div class="card-columns">
-                <div *ngFor="let serv of getList(); let i = index;" class="card text-center bg-light">
+        <div class="col-sm-6">
+                <div *ngFor="let serv of getList(); let i = index;" class="card text-center bg-light m-2">
                     <div class="card-body">
                         <h5 class="card-title">{{ serv.auto }}</h5>
                         <p class="card-text text-uppercase">{{ serv.client }}</p>
@@ -27,7 +26,6 @@
                         <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-success"><i class="fas fa-check"></i></button>
                     </div>
                 </div>
-            </div>
             <div *ngIf="!isEmpty()" class="alert alert-info text-center btn-block" role="alert">
                 ¡No hay información en la Aplicación!
             </div>

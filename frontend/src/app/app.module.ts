@@ -16,12 +16,15 @@ import { AuthGuardService } from './services/auth-guard.service';
 
 // Components
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BackgroundComponent } from './components/background/background.component';
+
+// Pages Components
+import { HomeViewComponent } from './components/pages/home/home-view/home-view.component';
+import { HomeFormComponent } from './components/pages/home/home-form/home-form.component';
 import { ClientFormComponent } from './components/pages/client/client-form/client-form.component';
 import { ClientViewComponent } from './components/pages/client/client-view/client-view.component';
 import { ServiceViewComponent } from './components/pages/service/service-view/service-view.component';
@@ -38,12 +41,11 @@ import { AutomobileViewComponent } from './components/pages/automobile/automobil
 import { AutomobileFormComponent } from './components/pages/automobile/automobile-form/automobile-form.component';
 import { UserViewComponent } from './components/pages/user/user-view/user-view.component';
 import { UserFormComponent } from './components/pages/user/user-form/user-form.component';
-import { HomeFormComponent } from './components/pages/home/home-form/home-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeViewComponent,
     LoginComponent,
     HeaderComponent,
     NavbarComponent,

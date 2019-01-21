@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Models
 import { Client } from 'src/app/models/client';
@@ -9,6 +10,7 @@ import { ClientService } from 'src/app/services/client.service';
 
 // Sweet Alert2 Import
 import swal from 'sweetalert2';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-client-view',
@@ -20,21 +22,13 @@ export class ClientViewComponent implements OnInit {
   private client: Client;
   private status: number;
 
-  private id: string;
-
-  public setId(value: string): void {
-    this.id = value;
-  }
-
-  public getId(): string {
-    return this.id;
-  }
-
-  constructor(private service: ClientService) { }
+  constructor(private service: ClientService, private route: Router) { }
 
   ngOnInit() {
-    // Load the data on the table
-    this.viewClient();
+    if (this.service.isEmpty()) {
+      // Load the data on the table
+      this.viewClient();
+    }
 
     // Initialize Model
     this.clrModel();
@@ -58,6 +52,11 @@ export class ClientViewComponent implements OnInit {
   // Get Status
   public getStatus(): number {
     return this.status;
+  }
+
+  // Get Automobile
+  public getAuto(id: string): void {
+    this.route.navigate(['/automobile']);
   }
 
   // Set Status

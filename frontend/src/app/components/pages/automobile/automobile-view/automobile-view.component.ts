@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Models
 import { Automobile } from 'src/app/models/automobile';
@@ -22,7 +23,7 @@ export class AutomobileViewComponent implements OnInit {
   @Input() slider: boolean;
   @Input() client: string;
 
-  constructor(private service: AutomobileService) { }
+  constructor(private service: AutomobileService, private router: Router) { }
 
   ngOnInit() {
     // Load the data on the table
@@ -71,6 +72,11 @@ export class AutomobileViewComponent implements OnInit {
   // Clear and Initialize Model
   public clrModel(): void {
     this.automobile = new Automobile();
+  }
+
+  // Go Back
+  public goBack(): void {
+    this.router.navigate(['/client-view']);
   }
 
   // Function for CRUD

@@ -32,7 +32,7 @@
           <td (click)="getClient(client.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">{{ client.email }}</td>
           <td class="d-flex justify-content-center">
             <!-- Botton to view a Client's Cars -->
-            <button (click)="setId(client.id)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
+            <button (click)="getAuto(client.id)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
             <!-- Botton to edite a Client -->
             <button (click)="getClient(client.id); setStatus(-1)" class="mr-1 ml-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
             <!-- Botton to delete a Client -->
@@ -42,7 +42,7 @@
       </tbody>
     </table>
   </div>
-  <div *ngIf="!isEmpty()" class="alert alert-info text-center btn-block" role="alert">
+  <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">
     ¡No hay información en la Aplicación!
   </div>
 </div>
@@ -64,7 +64,3 @@
     </div>
   </div>
 </div>
-
-
-<!-- Table of Cars -->
-<app-automobile-view [client]="getId()"></app-automobile-view>

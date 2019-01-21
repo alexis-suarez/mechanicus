@@ -62,7 +62,7 @@ export class ClientService {
   }
 
   public isEmpty(): boolean {
-    return this.list.length !== 0;
+    return this.list.length === 0;
   }
 
   public setItemList(client: Client): void {

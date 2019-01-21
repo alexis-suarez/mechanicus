@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 
 import { Service } from 'src/app/models/service';
 import { Client } from 'src/app/models/client';
@@ -8,6 +7,7 @@ import { Employee } from 'src/app/models/employee';
 import { Automobile } from 'src/app/models/automobile';
 
 // Service
+import { AuthService } from 'src/app/services/auth.service';
 import { ServiceService } from 'src/app/services/service.service';
 
 // Sweet Alert2 Import
@@ -15,10 +15,10 @@ import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './home-view.component.html',
+  styleUrls: ['./home-view.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeViewComponent implements OnInit {
 
   private servic: Service;
   private status: boolean;
