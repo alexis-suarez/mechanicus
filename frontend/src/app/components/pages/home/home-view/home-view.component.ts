@@ -27,8 +27,11 @@ export class HomeViewComponent implements OnInit {
               private service: ServiceService) { }
 
   ngOnInit() {
-    // Load the data on the table
-    this.viewService();
+    if (this.service.isEmpty()) {
+      // Load the data on the table
+      this.viewServicePending();
+      this.viewServiceFinish();
+    }
 
     // Initialize Model
     this.clrModel();
@@ -125,15 +128,29 @@ export class HomeViewComponent implements OnInit {
 
   public getService(id: string): void {
     this.service.getService(id).subscribe(response => {
-      this.servic = response.data;
+      if (response.success) {
+        this.servic = response.data;
+      }
     }, error => {
       console.log(error);
     });
   }
 
-  public viewService(): void {
+  public viewServicePending(): void {
+    this.service.viewServicePending().subscribe(response => {
+      if (response.success) {
+        this.service.setList(response.data);
+      }
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  public viewServiceFinish(): void {
     this.service.viewServiceFinish().subscribe(response => {
-      this.service.setList(response.data);
+      if (response.success) {
+        this.service.setList(response.data);
+      }
     }, error => {
       console.log(error);
     });

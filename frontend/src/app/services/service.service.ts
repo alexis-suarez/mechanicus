@@ -50,7 +50,7 @@ export class ServiceService {
   }
 
   public isEmpty(): boolean {
-    return this.list.length !== 0;
+    return this.list.length === 0;
   }
 
   public setItemList(service: Service): void {
@@ -88,8 +88,8 @@ export class ServiceService {
     return this.http.get<Response>(this.url + '/' + id);
   }
 
-  public viewService(): any {
-    return this.http.get<Response>(this.url, httpOptions);
+  public viewServicePending(): any {
+    return this.http.get<Response>(this.url + '/pending/', httpOptions);
   }
 
   public viewServiceDeliver(): any {

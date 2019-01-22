@@ -13,24 +13,41 @@
     <hr>
     <div class="row">
         <div class="col-sm-6">
-                <div *ngFor="let serv of getList(); let i = index;" class="card text-center bg-light m-2">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ serv.auto }}</h5>
-                        <p class="card-text text-uppercase">{{ serv.client }}</p>
-                        <p class="card-text text-uppercase">{{ serv.employee }}</p>
-                        <p class="card-text">{{ serv.entreDate | date}}</p>
-                        <p class="card-text text-uppercase">{{ serv.description }}</p>
-                        <!-- Button for Delete Service -->
-                        <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i class="fas fa-times"></i></button>
-                        <!-- Button for Finish Service -->
-                        <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-success"><i class="fas fa-check"></i></button>
-                    </div>
+            <div *ngFor="let serv of getList(); let i = index;" class="card text-center bg-light m-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ serv.auto }}</h5>
+                    <p class="card-text text-uppercase">{{ serv.client }}</p>
+                    <p class="card-text text-uppercase">{{ serv.employee }}</p>
+                    <p class="card-text">{{ serv.entreDate | date}}</p>
+                    <p class="card-text text-uppercase">{{ serv.description }}</p>
+                    <!-- Button for Delete Service -->
+                    <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i class="fas fa-times"></i></button>
+                    <!-- Button for Finish Service -->
+                    <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-success"><i class="fas fa-check"></i></button>
                 </div>
-            <div *ngIf="!isEmpty()" class="alert alert-info text-center btn-block" role="alert">
+            </div>
+            <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">
                 ¡No hay información en la Aplicación!
             </div>
         </div>
-        <div class="col-6 bg-light"></div>
+        <div class="col-sm-6">
+            <div *ngFor="let serv of getList(); let i = index;" class="card text-center bg-light m-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ serv.auto }}</h5>
+                    <p class="card-text text-uppercase">{{ serv.client }}</p>
+                    <p class="card-text text-uppercase">{{ serv.employee }}</p>
+                    <p class="card-text">{{ serv.entreDate | date}}</p>
+                    <p class="card-text text-uppercase">{{ serv.description }}</p>
+                    <!-- Button for Delete Service -->
+                    <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i class="fas fa-times"></i></button>
+                    <!-- Button for Finish Service -->
+                    <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-success"><i class="fas fa-check"></i></button>
+                </div>
+            </div>
+            <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">
+                ¡No hay información en la Aplicación!
+            </div>
+        </div>
     </div>
 </div>
 
