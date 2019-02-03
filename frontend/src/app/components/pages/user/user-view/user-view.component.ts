@@ -89,7 +89,9 @@ export class UserViewComponent implements OnInit {
 
   public getUser(id: string): void {
     this.service.getUser(id).subscribe(response => {
-      this.user = response.data;
+      if (response.status) {
+        this.user = response.data;
+      }
     }, error => {
       console.log(error);
     });
@@ -97,7 +99,9 @@ export class UserViewComponent implements OnInit {
 
   public viewUser(): void {
     this.service.viewUser().subscribe(response => {
-      this.service.setList(response.data);
+      if (response.status) {
+        this.service.setList(response.data);
+      }
     }, error => {
       console.log(error);
     });

@@ -138,7 +138,7 @@ export class HomeViewComponent implements OnInit {
 
   public viewServicePending(): void {
     this.service.viewServicePending().subscribe(response => {
-      if (response.success) {
+      if (response.status) {
         this.service.setList(response.data);
       }
     }, error => {
@@ -148,7 +148,7 @@ export class HomeViewComponent implements OnInit {
 
   public viewServiceFinish(): void {
     this.service.viewServiceFinish().subscribe(response => {
-      if (response.success) {
+      if (response.status) {
         this.service.setList(response.data);
       }
     }, error => {

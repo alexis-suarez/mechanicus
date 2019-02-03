@@ -22,8 +22,10 @@ export class ServiceViewComponent implements OnInit {
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
-    // Load the data on the table
-    this.viewService();
+    if (this.service.isEmpty()) {
+      // Load the data on the table
+      this.viewService();
+    }
 
     // Initialize Model
     this.clrModel();
@@ -90,17 +92,19 @@ export class ServiceViewComponent implements OnInit {
 
   public getService(id: string): void {
     this.service.getService(id).subscribe(response => {
-      console.log(response.data);
-      this.servic = response.data;
+      if (response.status) {
+        this.servic = response.data;
+      }
     }, error => {
       console.log(error);
     });
   }
 
   public viewService(): void {
-    this.service.viewService().subscribe(response => {
-      console.log(response);
-      this.service.setList(response.data);
+    this.service.viewServiceDeliver().subscribe(response => {
+      if (response.status) {
+        this.service.setList(response.data);
+      }
     }, error => {
       console.log(error);
     });

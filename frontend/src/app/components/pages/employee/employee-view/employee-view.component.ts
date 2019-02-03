@@ -93,7 +93,9 @@ export class EmployeeViewComponent implements OnInit {
 
   public getEmployee(id: string): void {
     this.service.getEmployee(id).subscribe(response => {
-      this.employee = response.data;
+      if (response.status) {
+        this.employee = response.data;
+      }
     }, error => {
       console.log(error);
     });
@@ -101,7 +103,9 @@ export class EmployeeViewComponent implements OnInit {
 
   public viewEmployee(): void {
     this.service.viewEmployee().subscribe(response => {
-      this.service.setList(response.data);
+      if (response.status) {
+        this.service.setList(response.data);
+      }
     }, error => {
       console.log(error);
     });

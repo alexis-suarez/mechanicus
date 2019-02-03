@@ -20,7 +20,7 @@ class Service(Resource):
 
     def get(self):
         try:
-            document = connector.collection('service').find({'finished':True,'status':True})
+            document = connector.collection('service').find({'delived':True, 'finished':True,'status':True})
             data = []
             for field in document:
                 data.append({'id':str(field['_id']),
@@ -93,7 +93,7 @@ class ServiceGetDeliver(Resource):
 
     def get(self):
         try:
-            document = connector.collection('service').find({'delived':True, 'status':True})
+            document = connector.collection('service').find({'delived':False, 'finished':True, 'status':True})
             data = []
             for field in document:
                 data.append({'id':str(field['_id']),
@@ -124,7 +124,7 @@ class ServiceFinish(Resource):
 class ServiceGetFinish(Resource):
     def get(self):
         try:
-            document = connector.collection('service').find({'finished':False, 'status':True})
+            document = connector.collection('service').find({'delived':False,'finished':False, 'status':True})
             data = []
             for field in document:
                 data.append({'id':str(field['_id']),

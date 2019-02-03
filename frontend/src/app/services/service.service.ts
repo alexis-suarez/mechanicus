@@ -89,14 +89,14 @@ export class ServiceService {
   }
 
   public viewServicePending(): any {
-    return this.http.get<Response>(this.url + '/pending/', httpOptions);
+    return this.http.get<Response>(this.url + '/pending', httpOptions);
   }
 
   public viewServiceDeliver(): any {
-    return this.http.get<Response>(this.url + '/deliver/', httpOptions);
+    return this.http.get<Response>(this.url + '/deliver', httpOptions);
   }
 
   public viewServiceFinish(): any {
-    return this.http.get<Response>(this.url + '/finish/', httpOptions);
+    return this.http.get<Response>(this.url + '/finish', httpOptions);
   }
 }

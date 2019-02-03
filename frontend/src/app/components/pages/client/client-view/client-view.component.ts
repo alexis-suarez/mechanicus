@@ -100,7 +100,9 @@ export class ClientViewComponent implements OnInit {
 
   public getClient(id: string): void {
     this.service.getClient(id).subscribe(response => {
-      this.client = response.data;
+      if (response.status) {
+        this.client = response.data;
+      }
     }, error => {
       console.log(error);
     });
@@ -108,7 +110,9 @@ export class ClientViewComponent implements OnInit {
 
   public viewClient(): void {
     this.service.viewClient().subscribe(response => {
-      this.service.setList(response.data);
+      if (response.status) {
+        this.service.setList(response.data);
+      }
     }, error => {
       console.log(error);
     });

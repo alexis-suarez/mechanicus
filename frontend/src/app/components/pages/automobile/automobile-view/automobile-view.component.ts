@@ -109,7 +109,9 @@ export class AutomobileViewComponent implements OnInit {
 
   public getAutomobile(id: string): void {
     this.service.get(id).subscribe(response => {
-      this.automobile = response.data;
+      if (response.status) {
+        this.automobile = response.data;
+      }
     }, error => {
       console.log(error);
     });
@@ -117,7 +119,9 @@ export class AutomobileViewComponent implements OnInit {
 
   public viewAutomobile(): void {
     this.service.viewAutomobile(this.client).subscribe(response => {
-      this.service.setList(response.data);
+      if (response.status) {
+        this.service.setList(response.data);
+      }
     }, error => {
       console.log(error);
     });
