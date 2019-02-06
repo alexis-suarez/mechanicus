@@ -13,7 +13,7 @@
     <ul class="navbar-nav mr-auto">
       <!-- Routers Links Actived -->
       <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['home']"><i class="fas fa-home"></i> Inicio</a>
+        <a class="nav-link" [routerLink]="['home-view']"><i class="fas fa-home"></i> Inicio</a>
       </li>
       <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')" class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['service-view']"><i class="fas fa-toolbox"></i> Servicios</a>
