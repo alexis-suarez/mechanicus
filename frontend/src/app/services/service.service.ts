@@ -19,15 +19,19 @@ const httpOptions = {
 })
 export class ServiceService {
 
-  // Service List
+  // Service Main List
   private list: Array<Service>;
+  private listFinished: Array<Service>;
+  private listDelivered: Array<Service>;
 
   // API URL
   private url = 'http://127.0.0.1:5000/api/service';
   // private url = 'http://argentum.sytes.net:5000/api/service';
 
   constructor(private http: HttpClient) {
-    this.list = [];
+    this.list = new Array<Service>();
+    this.listFinished = new Array<Service>();
+    this.listDelivered = new Array<Service>();
   }
 
   // Function for List
@@ -49,6 +53,14 @@ export class ServiceService {
     return this.list;
   }
 
+  public getListFinished(): Array<Service> {
+    return this.listFinished;
+  }
+
+  public getListDelivered(): Array<Service> {
+    return this.listDelivered;
+  }
+
   public isEmpty(): boolean {
     return this.list.length === 0;
   }
@@ -64,11 +76,11 @@ export class ServiceService {
   }
 
   // Http Request
-  public newService(service: Service): any {
+  public post(service: Service): any {
     return this.http.post<Response>(this.url, JSON.stringify(service), httpOptions);
   }
 
-  public delService(id: string): any {
+  public delete(id: string): any {
     return this.http.delete<Response>(this.url + '/' + id, httpOptions);
   }
 
@@ -88,15 +100,7 @@ export class ServiceService {
     return this.http.get<Response>(this.url + '/' + id);
   }
 
-  public viewServicePending(): any {
-    return this.http.get<Response>(this.url + '/pending', httpOptions);
-  }
-
-  public viewServiceDeliver(): any {
-    return this.http.get<Response>(this.url + '/deliver', httpOptions);
-  }
-
-  public viewServiceFinish(): any {
-    return this.http.get<Response>(this.url + '/finish', httpOptions);
+  public get(): any {
+    return this.http.get<Response>(this.url, httpOptions);
   }
 }

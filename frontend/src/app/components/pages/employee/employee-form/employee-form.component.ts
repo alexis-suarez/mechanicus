@@ -46,7 +46,7 @@ export class EmployeeFormComponent implements OnInit {
   // Function for CRUD
   public newEmployee(): void {
     const data = this.employee;
-    this.service.newEmployee(this.employee).subscribe(response => {
+    this.service.post(this.employee).subscribe(response => {
       if (response.status) {
         this.service.addList(data);
         swal({
@@ -73,7 +73,7 @@ export class EmployeeFormComponent implements OnInit {
 
   public updEmployee(id: string): void {
     const data = this.employee;
-    this.service.updEmployee(this.employee.id, this.employee).subscribe(response => {
+    this.service.put(this.employee.id, this.employee).subscribe(response => {
       if (response.status) {
         this.service.setItemList(data);
         swal({

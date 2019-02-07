@@ -24,7 +24,7 @@ export class ServiceViewComponent implements OnInit {
   ngOnInit() {
     if (this.service.isEmpty()) {
       // Load the data on the table
-      this.viewService();
+      this.get();
     }
 
     // Initialize Model
@@ -73,7 +73,7 @@ export class ServiceViewComponent implements OnInit {
       confirmButtonText: '¡Sí, Eliminar!'
     }).then((result) => {
       if (result.value) {
-        this.service.delService(id).subscribe(response => {
+        this.service.delete(id).subscribe(response => {
           console.log(response);
           if (response.status) {
             this.service.delList(index);
@@ -100,8 +100,8 @@ export class ServiceViewComponent implements OnInit {
     });
   }
 
-  public viewService(): void {
-    this.service.viewServiceDeliver().subscribe(response => {
+  public get(): void {
+    this.service.get().subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);
       }

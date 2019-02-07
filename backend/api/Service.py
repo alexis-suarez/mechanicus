@@ -20,7 +20,7 @@ class Service(Resource):
 
     def get(self):
         try:
-            document = connector.collection('service').find({'delived':True, 'finished':True,'status':True})
+            document = connector.collection('service').find({'status':True})
             data = []
             for field in document:
                 data.append({'id':str(field['_id']),
@@ -89,28 +89,6 @@ class ServiceDeliver(Resource):
         except:
             return jsonify({'message':'error', 'status':False})
 
-class ServiceGetDeliver(Resource):
-
-    def get(self):
-        try:
-            document = connector.collection('service').find({'delived':False, 'finished':True, 'status':True})
-            data = []
-            for field in document:
-                data.append({'id':str(field['_id']),
-                             'auto':field['auto'],
-                             'client':field['client'],
-                             'employee':field['employee'],
-                             'entreDate':field['entreDate'],
-                             'endedDate':field['endedDate'],
-                             'description':field['description'],
-                             'delived':field['delived'],
-                             'finished':field['finished'],
-                             'status':field['status']})
-            response = {'message':'success', 'status':True, 'data':data}
-            return jsonify(response)
-        except:
-            return jsonify({'message':'error', 'status':False})
-
 class ServiceFinish(Resource):
     def delete(self, id):
         try:
@@ -118,26 +96,5 @@ class ServiceFinish(Resource):
             value = {'$set':{'finished':True}}
             connector.collection('service').update_one(where, value)
             return jsonify({'message':'success', 'status':True})
-        except:
-            return jsonify({'message':'error', 'status':False})
-
-class ServiceGetFinish(Resource):
-    def get(self):
-        try:
-            document = connector.collection('service').find({'delived':False,'finished':False, 'status':True})
-            data = []
-            for field in document:
-                data.append({'id':str(field['_id']),
-                             'auto':field['auto'],
-                             'client':field['client'],
-                             'employee':field['employee'],
-                             'entreDate':field['entreDate'],
-                             'endedDate':field['endedDate'],
-                             'description':field['description'],
-                             'delived':field['delived'],
-                             'finished':field['finished'],
-                             'status':field['status']})
-            response = {'message':'success', 'status':True, 'data':data}
-            return jsonify(response)
         except:
             return jsonify({'message':'error', 'status':False})

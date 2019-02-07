@@ -79,7 +79,7 @@ export class ServiceFormComponent implements OnInit {
   // Function for CRUD
   public newService(): void {
     const data = this.servic;
-    this.serServ.newService(this.servic).subscribe(response => {
+    this.serServ.post(this.servic).subscribe(response => {
       console.log(response);
       if (response.status) {
         this.serServ.addList(data);

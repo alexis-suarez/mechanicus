@@ -64,19 +64,19 @@ export class EmployeeService {
   }
 
   // Http Request
-  public newEmployee(employee: Employee): any {
+  public post(employee: Employee): any {
     return this.http.post<Response>(this.url, JSON.stringify(employee), httpOptions);
   }
 
-  public delEmployee(id: string): any {
+  public delete(id: string): any {
     return this.http.delete<Response>(this.url + '/' + id, httpOptions);
   }
 
-  public updEmployee(id: string, employee: Employee): any {
+  public put(id: string, employee: Employee): any {
     return this.http.put<Response>(this.url + '/' + id, JSON.stringify(employee), httpOptions);
   }
 
-  public getEmployee(id: string): any {
+  public get(id: string): any {
     return this.http.get<Response>(this.url + '/' + id);
   }
 

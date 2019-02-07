@@ -75,7 +75,7 @@ export class EmployeeViewComponent implements OnInit {
       confirmButtonText: '¡Sí, Eliminar!'
     }).then((result) => {
       if (result.value) {
-        this.service.delEmployee(id).subscribe(response => {
+        this.service.delete(id).subscribe(response => {
           if (response.status) {
             this.service.delList(index);
           }
@@ -92,7 +92,7 @@ export class EmployeeViewComponent implements OnInit {
   }
 
   public getEmployee(id: string): void {
-    this.service.getEmployee(id).subscribe(response => {
+    this.service.get(id).subscribe(response => {
       if (response.status) {
         this.employee = response.data;
       }

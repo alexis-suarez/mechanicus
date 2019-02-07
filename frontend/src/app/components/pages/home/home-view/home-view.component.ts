@@ -14,7 +14,7 @@ import { ServiceService } from 'src/app/services/service.service';
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-view',
   templateUrl: './home-view.component.html',
   styleUrls: ['./home-view.component.css']
 })
@@ -83,7 +83,7 @@ export class HomeViewComponent implements OnInit {
       confirmButtonText: '¡Sí, Eliminar!'
     }).then((result) => {
       if (result.value) {
-        this.service.delService(id).subscribe(response => {
+        this.service.delete(id).subscribe(response => {
           if (response.status) {
             this.service.delList(index);
           }
@@ -128,7 +128,7 @@ export class HomeViewComponent implements OnInit {
 
   public getService(id: string): void {
     this.service.getService(id).subscribe(response => {
-      if (response.success) {
+      if (response.status) {
         this.servic = response.data;
       }
     }, error => {
@@ -136,8 +136,8 @@ export class HomeViewComponent implements OnInit {
     });
   }
 
-  public viewServicePending(): void {
-    this.service.viewServicePending().subscribe(response => {
+  public get(): void {
+    this.service.get().subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);
       }
@@ -146,13 +146,11 @@ export class HomeViewComponent implements OnInit {
     });
   }
 
+  public viewServicePending(): void {
+    //
+  }
+
   public viewServiceFinish(): void {
-    this.service.viewServiceFinish().subscribe(response => {
-      if (response.status) {
-        this.service.setList(response.data);
-      }
-    }, error => {
-      console.log(error);
-    });
+    // this.service.getListFinished().filter(element => element.finished === true);
   }
 }

@@ -7,7 +7,7 @@ from flask_restful import Api
 from Automobile import Automobile, AutomobileParams
 from Client import Client, ClientParams
 from Employee import Employee, EmployeeParams
-from Service import Service, ServiceParams, ServiceDeliver, ServiceFinish, ServiceGetDeliver, ServiceGetFinish
+from Service import Service, ServiceParams, ServiceDeliver, ServiceFinish
 from User import User, UserParams, UserLogin
 
 # Flask Application and API
@@ -31,9 +31,7 @@ api.add_resource(EmployeeParams, '/employee/<string:id>')
 api.add_resource(Service, '/service')
 api.add_resource(ServiceParams, '/service/<string:id>')
 api.add_resource(ServiceDeliver, '/service/deliver/<string:id>')
-api.add_resource(ServiceGetDeliver, '/service/deliver/')
 api.add_resource(ServiceFinish, '/service/finish/<string:id>')
-api.add_resource(ServiceGetFinish, '/service/finish/')
 
 # User
 api.add_resource(User, '/user')

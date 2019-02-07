@@ -1,24 +1,41 @@
 <!-- Main div Container -->
-<div class="container-fluid mt-3 shadow-lg p-3 mb-5 bg-white rounded">
+<br>
+<div class="container-fluid mt-5 shadow-lg p-3 mb-5 bg-white rounded">
     <!-- Header Container -->
     <div class="row">
         <div class="col-2">
             <!-- Botton to register Service -->
             <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
         </div>
-        <div class="col-4"><h3>Servicios Pendientes</h3></div>
+        <div class="col-4">
+            <h3>Servicios Pendientes</h3>
+        </div>
         <div class="col-2"></div>
-        <div class="col-4"><h3>Terminados</h3></div>
+        <div class="col-4">
+            <h3>Terminados</h3>
+        </div>
     </div>
     <hr>
     <div class="row">
         <div class="col-sm-6">
             <div *ngFor="let serv of getList(); let i = index;" class="card text-center bg-light m-2">
                 <div class="card-body">
-                    <h5 class="card-title">{{ serv.auto }}</h5>
-                    <p class="card-text text-uppercase">{{ serv.client }}</p>
-                    <p class="card-text text-uppercase">{{ serv.employee }}</p>
-                    <p class="card-text">{{ serv.entreDate | date}}</p>
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 class="card-title text-left">{{ serv.auto }}</h5>
+                        </div>
+                        <div class="col-3">
+                            <p class="card-text text-left">{{ serv.entreDate | date}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text text-left text-uppercase">{{ serv.client }}</p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text text-left text-uppercase">{{ serv.employee }}</p>
+                        </div>
+                    </div>
                     <p class="card-text text-uppercase">{{ serv.description }}</p>
                     <!-- Button for Delete Service -->
                     <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i class="fas fa-times"></i></button>
@@ -54,17 +71,17 @@
 <!-- Modal From Service -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-center" id="modalTitle">Formulario</h5>
-          <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="modalTitle">Formulario</h5>
+                <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form to Register -->
+                <app-service-form></app-service-form>
+            </div>
         </div>
-        <div class="modal-body">
-          <!-- Form to Register -->
-          <app-service-form></app-service-form>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
