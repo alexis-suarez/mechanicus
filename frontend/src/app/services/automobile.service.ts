@@ -70,7 +70,7 @@ export class AutomobileService {
     return this.http.get<Response>(this.url + '/' + id);
   }
 
-  public get(id): any {
-    return this.http.get<Response>(this.url + '/' + id, httpOptions);
+  public get(): any {
+    return this.http.get<Response>(this.url, httpOptions);
   }
 }

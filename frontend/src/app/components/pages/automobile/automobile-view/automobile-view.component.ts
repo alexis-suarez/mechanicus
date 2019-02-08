@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // Models
@@ -18,23 +18,22 @@ import swal from 'sweetalert2';
 export class AutomobileViewComponent implements OnInit {
 
   private automobile: Automobile;
-  private status: boolean;
-
-  @Input() slider: boolean;
-  @Input() client: string;
+  private status: number;
+  private id: string;
 
   constructor(private service: AutomobileService,
     private router: Router,
     private active: ActivatedRoute) {
     this.active.params.subscribe(params => {
-      this.get(params['id']);
+      this.id = params['id'];
     });
   }
 
   ngOnInit() {
-    // Load the data on the table
-    // this.viewAutomobile();
-    console.log(this.client);
+    if (this.service.isEmpty()) {
+      // Load the data on the table
+      this.get();
+    }
 
     // Initialize Model
     this.clrModel();
@@ -56,23 +55,18 @@ export class AutomobileViewComponent implements OnInit {
   }
 
   // Get Status
-  public getStatus(): boolean {
+  public getStatus(): number {
     return this.status;
   }
 
+  // Get Id
+  public getId(): string {
+    return this.id;
+  }
+
   // Set Status
-  public setStatus(value: boolean): void {
+  public setStatus(value: number): void {
     this.status = value;
-  }
-
-  // Get Slider
-  public getSlider(): boolean {
-    return this.slider;
-  }
-
-  // Set Slider
-  public setSlider(value: boolean): void {
-    this.slider = value;
   }
 
   // Clear and Initialize Model
@@ -83,6 +77,7 @@ export class AutomobileViewComponent implements OnInit {
   // Go Back
   public goBack(): void {
     this.router.navigate(['/client-view']);
+    this.service.setList([]);
   }
 
   // Function for CRUD
@@ -123,8 +118,8 @@ export class AutomobileViewComponent implements OnInit {
     });
   }
 
-  public get(id: string): void {
-    this.service.get(id).subscribe(response => {
+  public get(): void {
+    this.service.get().subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);
       }

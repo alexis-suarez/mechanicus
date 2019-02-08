@@ -23,7 +23,16 @@ class Automobile(Resource):
             document = connector.collection('automobile').find({'status':True})
             data = []
             for field in document:
-                data.append({'':field['']})
+                data.append({'id':str(field['_id']),
+                             'client':field['client'],
+                             'brand':field['brand'],
+                             'model':field['model'],
+                             'year':field['year'],
+                             'milage':field['milage'],
+                             'cilinder':field['cilinder'],
+                             'colour':field['colour'],
+                             'transmision':field['transmision'],
+                             'status':field['status']})
             response = {'message':'success', 'status':True, 'data':data}
             return jsonify(response)
         except:

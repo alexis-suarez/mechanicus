@@ -7,7 +7,7 @@ import { Automobile } from 'src/app/models/automobile';
 import { AutomobileService } from 'src/app/services/automobile.service';
 
 // Sweet Alert2 Import
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-automobile-form',
@@ -18,6 +18,7 @@ export class AutomobileFormComponent implements OnInit {
 
   @Input() automobile: Automobile;
   @Input() status: boolean;
+  @Input() id: string;
 
   constructor(private service: AutomobileService) { }
 
@@ -27,15 +28,15 @@ export class AutomobileFormComponent implements OnInit {
 
   public clrModel(): void {
     this.automobile = new Automobile();
-    this.automobile.client = '5bf035330d403d18be0bd246';
   }
 
   public newAutomobile(): void {
+    this.automobile.client = this.id;
     const data = this.automobile;
     this.service.post(this.automobile).subscribe(response => {
       if (response.status) {
         this.service.addList(data);
-        swal({
+        Swal({
           position: 'top-end',
           type: 'success',
           title: 'Correcto :D',
@@ -45,7 +46,7 @@ export class AutomobileFormComponent implements OnInit {
       }
     }, error => {
       console.log(error);
-      swal({
+      Swal({
         position: 'top-end',
         type: 'error',
         title: 'Error :(',
