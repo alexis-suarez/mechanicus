@@ -27,7 +27,7 @@ export class AutomobileService {
   // private url = 'http://argentum.sytes.net:5000/api/automobile';
 
   constructor(private http: HttpClient) {
-    this.list = [];
+    this.list = new Array<Automobile>();
   }
 
   // Function for List
@@ -66,11 +66,11 @@ export class AutomobileService {
     return this.http.put<Response>(this.url, httpOptions);
   }
 
-  public get(id: string): any {
+  public getOne(id: string): any {
     return this.http.get<Response>(this.url + '/' + id);
   }
 
-  public viewAutomobile(id): any {
+  public get(id): any {
     return this.http.get<Response>(this.url + '/' + id, httpOptions);
   }
 }

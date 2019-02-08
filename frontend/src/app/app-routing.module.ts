@@ -15,20 +15,20 @@ import { AutomobileViewComponent } from './components/pages/automobile/automobil
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  // Home Route
-  { path: 'home-view',
-  component: HomeViewComponent,
-  canActivate: [ AuthGuardService ]
-  },
-
   // Login Route
   { path: 'login',
     component: LoginComponent,
     // canActivate: [ AuthGuardService ]
   },
 
+  // Home Route
+  { path: 'home-view',
+  component: HomeViewComponent,
+  canActivate: [ AuthGuardService ]
+  },
+
   // Automobile Route
-  { path: 'automobile',
+  { path: 'client-view/:id',
     component: AutomobileViewComponent,
     canActivate: [ AuthGuardService ]
   },

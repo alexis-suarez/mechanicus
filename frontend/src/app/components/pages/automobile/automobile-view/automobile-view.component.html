@@ -5,13 +5,18 @@
   <div class="row">
     <div class="col-2">
       <!-- Botton to register new Client -->
-      <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#FormModal"><i class="fas fa-plus"></i></button>
+      <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#FormModal"><i
+          class="fas fa-plus"></i></button>
     </div>
-    <div class="col-4"><h3>Vehiculos</h3></div>
-    <div class="col-6">
-        <!-- <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search"> -->
-         <!-- Botton to register new Client -->
-      <button (click)="goBack()" class="btn btn-danger">Regresar</button>
+    <div class="col-4">
+      <h3>Vehiculos</h3>
+    </div>
+    <div class="col-4">
+      <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..."
+      aria-label="Search">
+    </div>
+    <div class="col-2">
+      <button (click)="goBack()" class="btn btn-danger btn-block">Regresar</button>
     </div>
   </div>
   <!-- Card of Cars -->
@@ -20,18 +25,28 @@
     <div class="card-body">
       <h5 class="card-title text-uppercase">{{ automobile.brand }}, {{ automobile.model }}, {{ automobile.year }}</h5>
       <div class="row">
-        <div class="col"><h5 class="card-title text-uppercase">Cilindros: {{ automobile.cilinder }}</h5></div>
-        <div class="col"><h5 class="card-title text-uppercase">Trasmision: {{ automobile.transmision }}</h5></div>
+        <div class="col">
+          <h5 class="card-title text-uppercase">Cilindros: {{ automobile.cilinder }}</h5>
+        </div>
+        <div class="col">
+          <h5 class="card-title text-uppercase">Trasmision: {{ automobile.transmision }}</h5>
+        </div>
         <div class="col"></div>
       </div>
       <div class="row">
-        <div class="col"><h5 class="card-title text-uppercase">Cilindros: {{ automobile.colour }}</h5></div>
-        <div class="col"><h5 class="card-title text-uppercase">Kilometraje: {{ automobile.milage }}</h5></div>
+        <div class="col">
+          <h5 class="card-title text-uppercase">Cilindros: {{ automobile.colour }}</h5>
+        </div>
+        <div class="col">
+          <h5 class="card-title text-uppercase">Kilometraje: {{ automobile.milage }}</h5>
+        </div>
         <div class="col text-right">
           <!-- Botton to edite a Automobile -->
-          <button (click)="getAutomobile(automobile.id)" class="mr-1 btn-sm btn btn-warning"><i class="fas fa-edit"></i></button>
+          <button (click)="getAutomobile(automobile.id)" class="mr-1 btn-sm btn btn-warning"><i
+              class="fas fa-edit"></i></button>
           <!-- Botton to delete a Automobile -->
-          <button (click)="delAutomobile(automobile.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+          <button (click)="delAutomobile(automobile.id, i)" class="ml-1 btn-sm btn btn-danger"><i
+              class="fas fa-trash-alt"></i></button>
         </div>
       </div>
     </div>
@@ -45,12 +60,12 @@
 <div class="modal fade" id="FormModal" tabindex="-1" role="dialog" aria-labelledby="FormModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title text-center" id="InsertModalTitle">Formulario</h5>
-            <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="InsertModalTitle">Formulario</h5>
+        <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="modal-body">
         <!-- Form -->
         <app-automobile-form [status]="getStatus()" [automobile]="getModel()"></app-automobile-form>

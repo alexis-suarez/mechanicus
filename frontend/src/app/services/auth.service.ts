@@ -17,7 +17,7 @@ export class AuthService {
     localStorage.setItem('username', user.username);
     localStorage.setItem('role', user.role);
     // Go to Home Page
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home-view']);
   }
 
   public logout(): void {

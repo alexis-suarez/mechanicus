@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 // Sweet Alert2 Import
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.service.chckUser(this.user.username, this.user.password).subscribe(response => {
       if (response.status) {
         this.auth.logint(response.data);
-        const toast = swal.mixin({
+        const toast = Swal.mixin({
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
           title: 'Inicio de Session ¡Exitoso!'
         });
       } else {
-        swal({
+        Swal({
           type: 'error',
           title: 'Oops...',
           text: '¡Usuario o Contraseña Incorrecta...!',
@@ -55,6 +55,11 @@ export class LoginComponent implements OnInit {
       }
     }, error => {
       console.log(error);
+      Swal({
+        type: 'error',
+        title: 'Oops...',
+        text: '¡Servidor fuera de Linea!',
+      });
     });
     this.clrModel();
   }

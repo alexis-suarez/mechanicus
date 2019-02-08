@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // Models
 import { Automobile } from 'src/app/models/automobile';
@@ -23,7 +23,13 @@ export class AutomobileViewComponent implements OnInit {
   @Input() slider: boolean;
   @Input() client: string;
 
-  constructor(private service: AutomobileService, private router: Router) { }
+  constructor(private service: AutomobileService,
+    private router: Router,
+    private active: ActivatedRoute) {
+    this.active.params.subscribe(params => {
+      this.get(params['id']);
+    });
+  }
 
   ngOnInit() {
     // Load the data on the table
@@ -107,8 +113,8 @@ export class AutomobileViewComponent implements OnInit {
     });
   }
 
-  public getAutomobile(id: string): void {
-    this.service.get(id).subscribe(response => {
+  public getOne(id: string): void {
+    this.service.getOne(id).subscribe(response => {
       if (response.status) {
         this.automobile = response.data;
       }
@@ -117,8 +123,8 @@ export class AutomobileViewComponent implements OnInit {
     });
   }
 
-  public viewAutomobile(): void {
-    this.service.viewAutomobile(this.client).subscribe(response => {
+  public get(id: string): void {
+    this.service.get(id).subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);
       }

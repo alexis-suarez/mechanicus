@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 
 // Routes
-// import { app_routing } from './app.routes';
 import { AppRoutingModule } from './app-routing.module';
 
 // Services
@@ -74,7 +73,6 @@ import { UserFormComponent } from './components/pages/user/user-form/user-form.c
     ChartsModule,
     BrowserModule,
     HttpClientModule,
-    // app_routing,
     AppRoutingModule
   ],
   providers: [

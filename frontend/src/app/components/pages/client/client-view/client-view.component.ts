@@ -10,7 +10,6 @@ import { ClientService } from 'src/app/services/client.service';
 
 // Sweet Alert2 Import
 import swal from 'sweetalert2';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-client-view',
@@ -56,7 +55,7 @@ export class ClientViewComponent implements OnInit {
 
   // Get Automobile
   public getAuto(id: string): void {
-    this.route.navigate(['/automobile']);
+    this.route.navigate(['/client-view', id]);
   }
 
   // Set Status
