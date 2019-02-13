@@ -23,7 +23,6 @@ export class AutomobileFormComponent implements OnInit {
   constructor(private service: AutomobileService) { }
 
   ngOnInit() {
-    console.log(this.id);
     this.clrModel();
   }
 
@@ -34,9 +33,7 @@ export class AutomobileFormComponent implements OnInit {
   public newAutomobile(): void {
     this.automobile.client = this.id;
     const data = this.automobile;
-    console.log(data);
     this.service.post(this.automobile).subscribe(response => {
-      console.log(response);
       if (response.status) {
         this.service.addList(data);
         Swal({
@@ -48,7 +45,7 @@ export class AutomobileFormComponent implements OnInit {
         });
       }
     }, error => {
-      console.log(error);
+      // console.log(error);
       Swal({
         position: 'top-end',
         type: 'error',

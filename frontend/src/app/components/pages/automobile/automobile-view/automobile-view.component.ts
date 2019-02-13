@@ -8,7 +8,7 @@ import { Automobile } from 'src/app/models/automobile';
 import { AutomobileService } from 'src/app/services/automobile.service';
 
 // Sweet Alert2 Import
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-automobile-view',
@@ -82,7 +82,7 @@ export class AutomobileViewComponent implements OnInit {
 
   // Function for CRUD
   public delAutomobile(id: string, index: number): void {
-    swal({
+    Swal({
       title: '¿Seguro de Borrar?',
       text: 'No se podrá recuperar despues',
       type: 'warning',
@@ -97,9 +97,9 @@ export class AutomobileViewComponent implements OnInit {
             this.service.delList(index);
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
         });
-        swal(
+        Swal(
           '¡Borrado!',
           'Información Borrada Correctamente :D',
           'success'
@@ -110,12 +110,11 @@ export class AutomobileViewComponent implements OnInit {
 
   private getOne(id: string): void {
     this.service.getOne(id).subscribe(response => {
-      console.log(response);
       if (response.status) {
         this.service.setList(response.data);
       }
     }, error => {
-      console.log(error);
+      // console.log(error);
     });
   }
 
@@ -125,7 +124,7 @@ export class AutomobileViewComponent implements OnInit {
         this.service.setList(response.data);
       }
     }, error => {
-      console.log(error);
+      // console.log(error);
     });
   }
 }
