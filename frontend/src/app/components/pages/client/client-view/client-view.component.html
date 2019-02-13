@@ -12,40 +12,44 @@
         <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
     </div>
   </div>
-  <!-- Table of Clients table-wrapper-scroll-y-->
-  <div class="table-responsive table-borderless ">
-    <table class="table table-hover table-striped table-sm">
-      <thead class="thead-dark text-center">
-        <tr>
-          <th scope="col">Nombre</th>
-          <th scope="col">RFC</th>
-          <th scope="col">Télefono</th>
-          <th scope="col">Correo</th>
-          <th scope="col">Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- List of Clients -->
-        <tr *ngFor="let client of getList(); let i = index;">
-          <td (click)="getClient(client.id); setStatus(0)" class="text-uppercase" data-toggle="modal" data-target="#modal">{{ client.name }}</td>
-          <td (click)="getClient(client.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">{{ client.rfc }}</td>
-          <td (click)="getClient(client.id); setStatus(0)" class="text-center" data-toggle="modal" data-target="#modal">{{ client.phone }}</td>
-          <td (click)="getClient(client.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">{{ client.email }}</td>
-          <td class="d-flex justify-content-center">
-            <!-- Botton to view a Client's Cars -->
-            <button (click)="getAuto(client.id)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
-            <!-- Botton to edite a Client -->
-            <button (click)="getClient(client.id); setStatus(-1)" class="mr-1 ml-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
-            <!-- Botton to delete a Client -->
-            <button (click)="delClient(client.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">
-    ¡No hay información en la Aplicación!
-  </div>
+  <ng-template [ngIf]="!isEmpty()" [ngIfElse]="exception">
+    <!-- Table of Clients table-wrapper-scroll-y-->
+    <div class="table-responsive table-borderless ">
+      <table class="table table-hover table-striped table-sm">
+        <thead class="thead-dark text-center">
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">RFC</th>
+            <th scope="col">Télefono</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- List of Clients -->
+          <tr *ngFor="let client of getList(); let i = index;">
+            <td (click)="getClient(client.id); setStatus(0)" class="text-uppercase" data-toggle="modal" data-target="#modal">{{ client.name }}</td>
+            <td (click)="getClient(client.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">{{ client.rfc }}</td>
+            <td (click)="getClient(client.id); setStatus(0)" class="text-center" data-toggle="modal" data-target="#modal">{{ client.phone }}</td>
+            <td (click)="getClient(client.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">{{ client.email }}</td>
+            <td class="d-flex justify-content-center">
+              <!-- Botton to view a Client's Cars -->
+              <button (click)="getAuto(client.id)" class="mr-1 btn-sm btn btn-primary" data-toggle="modal" data-target="#FormAutoView"><i class="fas fa-car"></i></button>
+              <!-- Botton to edite a Client -->
+              <button (click)="getClient(client.id); setStatus(-1)" class="mr-1 ml-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
+              <!-- Botton to delete a Client -->
+              <button (click)="delClient(client.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template #exception>
+    <div class="alert alert-info text-center btn-block" role="alert">
+      ¡No hay información en la Aplicación!
+    </div>
+  </ng-template>
 </div>
 
 <!-- Modal From Client -->

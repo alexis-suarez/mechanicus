@@ -32,7 +32,7 @@ export class AutomobileViewComponent implements OnInit {
   ngOnInit() {
     if (this.service.isEmpty()) {
       // Load the data on the table
-      this.get();
+      this.getOne(this.id);
     }
 
     // Initialize Model
@@ -108,17 +108,18 @@ export class AutomobileViewComponent implements OnInit {
     });
   }
 
-  public getOne(id: string): void {
+  private getOne(id: string): void {
     this.service.getOne(id).subscribe(response => {
+      console.log(response);
       if (response.status) {
-        this.automobile = response.data;
+        this.service.setList(response.data);
       }
     }, error => {
       console.log(error);
     });
   }
 
-  public get(): void {
+  private get(): void {
     this.service.get().subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);

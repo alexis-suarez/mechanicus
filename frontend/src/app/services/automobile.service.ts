@@ -50,7 +50,7 @@ export class AutomobileService {
   }
 
   public isEmpty(): boolean {
-    return this.list.length !== 0;
+    return this.list.length === 0;
   }
 
   // Http Request
@@ -67,7 +67,7 @@ export class AutomobileService {
   }
 
   public getOne(id: string): any {
-    return this.http.get<Response>(this.url + '/' + id);
+    return this.http.get<Response>(this.url + '/' + id, httpOptions);
   }
 
   public get(): any {

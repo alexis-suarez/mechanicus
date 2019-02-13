@@ -20,31 +20,31 @@
     </div>
   </div>
   <!-- Card of Cars -->
-  <div *ngFor="let automobile of getList(); let i = index;" class="card bg-light">
+  <div *ngFor="let item of getList(); let i = index;" class="card bg-light">
     <div class="card-body">
-      <h5 class="card-title text-uppercase">{{ automobile.brand }}, {{ automobile.model }}, {{ automobile.year }}</h5>
+      <h5 class="card-title text-uppercase">{{ item.brand }}, {{ item.model }}, {{ item.year }}</h5>
       <div class="row">
         <div class="col">
-          <h5 class="card-title text-uppercase">Cilindros: {{ automobile.cilinder }}</h5>
+          <h5 class="card-title text-uppercase">Cilindros: {{ item.cilinder }}</h5>
         </div>
         <div class="col">
-          <h5 class="card-title text-uppercase">Trasmision: {{ automobile.transmision }}</h5>
+          <h5 class="card-title text-uppercase">Trasmision: {{ item.transmision }}</h5>
         </div>
         <div class="col"></div>
       </div>
       <div class="row">
         <div class="col">
-          <h5 class="card-title text-uppercase">Cilindros: {{ automobile.colour }}</h5>
+          <h5 class="card-title text-uppercase">Cilindros: {{ item.colour }}</h5>
         </div>
         <div class="col">
-          <h5 class="card-title text-uppercase">Kilometraje: {{ automobile.milage }}</h5>
+          <h5 class="card-title text-uppercase">Kilometraje: {{ item.milage }}</h5>
         </div>
         <div class="col text-right">
           <!-- Botton to edite a Automobile -->
-          <button (click)="getAutomobile(automobile.id)" class="mr-1 btn-sm btn btn-warning"><i
+          <button (click)="getAutomobile(item.id)" class="mr-1 btn-sm btn btn-warning"><i
               class="fas fa-edit"></i></button>
           <!-- Botton to delete a Automobile -->
-          <button (click)="delAutomobile(automobile.id, i)" class="ml-1 btn-sm btn btn-danger"><i
+          <button (click)="delAutomobile(item.id, i)" class="ml-1 btn-sm btn btn-danger"><i
               class="fas fa-trash-alt"></i></button>
         </div>
       </div>
