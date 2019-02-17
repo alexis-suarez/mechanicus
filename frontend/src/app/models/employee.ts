@@ -3,7 +3,7 @@ import { Address } from './address';
 export class Employee {
     id: string;
     name: string;
-    address: Address;
+    address = new Address();
     nss: string;
     rfc: string;
     curp: string;

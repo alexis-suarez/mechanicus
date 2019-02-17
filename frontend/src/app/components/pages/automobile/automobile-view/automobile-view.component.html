@@ -13,46 +13,54 @@
     </div>
     <div class="col-4">
       <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..."
-      aria-label="Search">
+        aria-label="Search">
     </div>
     <div class="col-2">
       <button (click)="goBack()" class="btn btn-danger btn-block">Regresar</button>
     </div>
   </div>
-  <!-- Card of Cars -->
-  <div *ngFor="let item of getList(); let i = index;" class="card bg-light">
-    <div class="card-body">
-      <h5 class="card-title text-uppercase">{{ item.brand }}, {{ item.model }}, {{ item.year }}</h5>
-      <div class="row">
-        <div class="col">
-          <h5 class="card-title text-uppercase">Cilindros: {{ item.cilinder }}</h5>
-        </div>
-        <div class="col">
-          <h5 class="card-title text-uppercase">Trasmision: {{ item.transmision }}</h5>
-        </div>
-        <div class="col"></div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <h5 class="card-title text-uppercase">Cilindros: {{ item.colour }}</h5>
-        </div>
-        <div class="col">
-          <h5 class="card-title text-uppercase">Kilometraje: {{ item.milage }}</h5>
-        </div>
-        <div class="col text-right">
-          <!-- Botton to edite a Automobile -->
-          <button (click)="getAutomobile(item.id)" class="mr-1 btn-sm btn btn-warning"><i
-              class="fas fa-edit"></i></button>
-          <!-- Botton to delete a Automobile -->
-          <button (click)="delAutomobile(item.id, i)" class="ml-1 btn-sm btn btn-danger"><i
-              class="fas fa-trash-alt"></i></button>
-        </div>
-      </div>
+  <ng-template [ngIf]="!isEmpty()" [ngIfElse]="exception">
+    <!-- Table of Clients table-wrapper-scroll-y-->
+    <div class="table-responsive table-borderless ">
+      <table class="table table-hover table-striped table-sm">
+        <thead class="thead-dark text-center">
+          <tr>
+            <th scope="col">Marca</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Año</th>
+            <th scope="col">Color</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- List of Clients -->
+          <tr *ngFor="let item of getList(); let i = index;">
+            <td (click)="setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
+              {{ item.brand }}</td>
+            <td (click)="setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
+              {{ item.model }}</td>
+            <td (click)="setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
+              {{ item.year }}</td>
+            <td (click)="setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">
+              {{ item.colour }}</td>
+            <td class="d-flex justify-content-center">
+              <!-- Botton to edite a Automobile -->
+              <button (click)="getAutomobile(item.id)" class="mr-1 btn-sm btn btn-warning"><i
+                  class="fas fa-edit"></i></button>
+              <!-- Botton to delete a Automobile -->
+              <button (click)="delAutomobile(item.id, i)" class="ml-1 btn-sm btn btn-danger"><i
+                  class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
-  <div *ngIf="!isEmpty()" class="alert alert-info text-center btn-block" role="alert">
-    ¡No hay información en la Aplicación!
-  </div>
+  </ng-template>
+  <ng-template #exception>
+    <div class="alert alert-info text-center btn-block" role="alert">
+      ¡No hay información en la Aplicación!
+    </div>
+  </ng-template>
 </div>
 
 <!-- Modal From Automobile -->

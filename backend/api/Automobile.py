@@ -66,17 +66,19 @@ class AutomobileParams(Resource):
 
     def get(self, id):
         try:
-            document = connector.collection('automobile').find_one({'client':id, 'status':True})
-            data = {'id':str(document['_id']),
-                    'client':document['client'],
-                    'brand':document['brand'],
-                    'model':document['model'],
-                    'year':document['year'],
-                    'milage':document['milage'],
-                    'cilinder':document['cilinder'],
-                    'colour':document['colour'],
-                    'transmision':document['transmision'],
-                    'status':document['status']}
+            document = connector.collection('automobile').find({'client':id})
+            data = []
+            for field in document:
+                data.append({'id':str(field['_id']),
+                             'client':field['client'],
+                             'brand':field['brand'],
+                             'model':field['model'],
+                             'year':field['year'],
+                             'milage':field['milage'],
+                             'cilinder':field['cilinder'],
+                             'colour':field['colour'],
+                             'transmision':field['transmision'],
+                             'status':field['status']})
             response = {'message':'success', 'status':True, 'data':data}
             return jsonify(response)
         except:

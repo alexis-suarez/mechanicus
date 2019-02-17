@@ -3,7 +3,7 @@ import { Address } from './address';
 export class Client {
     id: string;
     name: string;
-    address: Address;
+    address = new Address();
     auto: string[];
     rfc: string;
     phone: string;
