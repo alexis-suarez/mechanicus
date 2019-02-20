@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col-2">
             <!-- Botton to register Service -->
-            <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
+            <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i
+                    class="fas fa-plus"></i></button>
         </div>
         <div class="col-4">
             <h3>Servicios Pendientes</h3>
@@ -38,9 +39,11 @@
                     </div>
                     <p class="card-text text-uppercase">{{ serv.description }}</p>
                     <!-- Button for Delete Service -->
-                    <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i class="fas fa-times"></i></button>
+                    <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i
+                            class="fas fa-times"></i></button>
                     <!-- Button for Finish Service -->
-                    <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-success"><i class="fas fa-check"></i></button>
+                    <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-success"><i
+                            class="fas fa-check"></i></button>
                 </div>
             </div>
             <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">
@@ -50,15 +53,29 @@
         <div class="col-sm-6">
             <div *ngFor="let serv of getList(); let i = index;" class="card text-center bg-light m-2">
                 <div class="card-body">
-                    <h5 class="card-title">{{ serv.auto }}</h5>
-                    <p class="card-text text-uppercase">{{ serv.client }}</p>
-                    <p class="card-text text-uppercase">{{ serv.employee }}</p>
-                    <p class="card-text">{{ serv.entreDate | date}}</p>
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 class="card-title text-left">{{ serv.auto }}</h5>
+                        </div>
+                        <div class="col-3">
+                            <p class="card-text text-left">{{ serv.entreDate | date}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text text-left text-uppercase">{{ serv.client }}</p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text text-left text-uppercase">{{ serv.employee }}</p>
+                        </div>
+                    </div>
                     <p class="card-text text-uppercase">{{ serv.description }}</p>
                     <!-- Button for Delete Service -->
-                    <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i class="fas fa-times"></i></button>
+                    <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i
+                            class="fas fa-times"></i></button>
                     <!-- Button for Finish Service -->
-                    <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-success"><i class="fas fa-check"></i></button>
+                    <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-success"><i
+                            class="fas fa-check"></i></button>
                 </div>
             </div>
             <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">

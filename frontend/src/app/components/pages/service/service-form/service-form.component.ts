@@ -68,14 +68,6 @@ export class ServiceFormComponent implements OnInit {
    });
   }
 
-  private getClient(id: string): void {
-    this.cliServ.getClient(id).subscribe(response => {
-      this.client = response.data;
-    }, error => {
-      console.log(error);
-    });
-  }
-
   // Function for CRUD
   public newService(): void {
     const data = this.servic;
@@ -135,6 +127,16 @@ export class ServiceFormComponent implements OnInit {
   public viewClient(): void {
     this.cliServ.viewClient().subscribe(response => {
       this.cliServ.setList(response.data);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  public getAutomobile(id: string): void {
+    this.autServ.getOne(id).subscribe(response => {
+      if (response.success) {
+        this.autServ.setList(response.data);
+      }
     }, error => {
       console.log(error);
     });

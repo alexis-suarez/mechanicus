@@ -4,7 +4,7 @@
       <label for="inputtransmision">Client</label>
       <select [(ngModel)]="servic.client" name="client" id="inputtransmision" class="form-control text-uppercase" required>
         <!-- <option selected>Choose...</option> -->
-        <option *ngFor="let client of getListCli()" [value]="client.name">{{ client.name }}</option>
+        <option *ngFor="let client of getListCli()" [value]="client.id">{{ client.name }}</option>
       </select>
     </div>
     <div class="form-group col-md-4">
