@@ -60,7 +60,7 @@ export class EmployeeViewComponent implements OnInit {
   // Clear and Initialize Model
   public clrModel(): void {
     this.employee = new Employee();
-    this.employee.address = new Address();
+    // this.employee.address = new Address();
   }
 
   // Function for CRUD

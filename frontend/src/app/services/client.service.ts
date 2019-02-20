@@ -43,14 +43,32 @@ export class ClientService {
   }
 
   // Function for List
-  public addList(client: Client): void {
-    this.list.push(client);
+
+  public isEmpty(): boolean {
+    return this.list.length === 0;
   }
 
-  public delList(index: number): void {
-    if (index !== -1) {
+  public contrains(data: Client): boolean {
+    if (!this.isEmpty()) {
+      this.list.forEach(element => {
+        if (element.id === data.id) { return true; }
+      });
+    }
+    return false;
+  }
+
+  public insert(data: Client): void {
+    this.list.push(data);
+  }
+
+  public delete(index: number): void {
+    if (index !== -1 && !this.isEmpty()) {
       this.list.splice(index, 1);
     }
+  }
+
+  public clear(): void {
+    this.list = new Array<Client>();
   }
 
   public setList(data: any): void {
@@ -61,15 +79,26 @@ export class ClientService {
     return this.list;
   }
 
-  public isEmpty(): boolean {
-    return this.list.length === 0;
-  }
-
-  public setItemList(client: Client): void {
+  public find(id: string): number {
     let i = 0;
     while (i < this.list.length) {
-      if (this.list[i].id === client.id) {
-        this.list[i] = client;
+      if (this.list[i].id === id) { return i; }
+      i += 1;
+    }
+    return -1;
+  }
+
+  public retrive(index: number): Client {
+    if (index !== -1 && !this.isEmpty()) {
+      return this.list[index];
+    }
+  }
+
+  public setItemList(data: Client): void {
+    let i = 0;
+    while (i < this.list.length) {
+      if (this.list[i].id === data.id) {
+        this.list[i] = data;
       }
       i++;
     }
@@ -89,7 +118,7 @@ export class ClientService {
   }
 
   public getClient(id: string): any {
-    return this.http.get<Response>(this.url + '/' + id);
+    return this.http.get<Response>(this.url + '/' + id, httpOptions);
   }
 
   public viewClient(): any {

@@ -66,7 +66,7 @@ export class ClientViewComponent implements OnInit {
   // Clear and Initialize Model
   public clrModel(): void {
     this.client = new Client();
-    this.client.address = new Address();
+    // this.client.address = new Address();
   }
 
   // Function for CRUD
@@ -83,7 +83,7 @@ export class ClientViewComponent implements OnInit {
       if (result.value) {
         this.service.delClient(id).subscribe(response => {
           if (response.status) {
-            this.service.delList(index);
+            this.service.delete(index);
           }
         }, error => {
           console.log(error);

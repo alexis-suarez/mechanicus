@@ -3,8 +3,7 @@
       <div class="form-group col-md-6">
           <label for="inputbrand">Marca</label>
           <select [(ngModel)]="automobile.brand" name="brand" id="inputbrand" class="form-control text-uppercase" required>
-            <option selected>Choose...</option>
-            <option>...</option>
+            <option *ngFor="let item of getBrand();" [value]="item.brand" selected>{{ item.brand }}</option>
           </select>
       </div>
       <div class="form-group col-md-6">
@@ -28,10 +27,9 @@
         <input [(ngModel)]="automobile.colour" name="colour" type="text" class="form-control text-uppercase" id="inputcolour" required>
       </div>
       <div class="form-group col-md-4">
-        <label for="inputtransmision">Transmision</label>
+        <label for="inputtransmision">Transmisión</label>
         <select [(ngModel)]="automobile.transmision" name="transmision" id="inputtransmision" class="form-control text-uppercase" required>
-          <option selected>Choose...</option>
-          <option>...</option>
+          <option *ngFor="let item of getList();" [value]="item.type" selected>{{ item.type }}</option>
         </select>
       </div>
       <div class="form-group col-md-3">

@@ -6,6 +6,7 @@ import { Address } from 'src/app/models/address';
 
 // Service
 import { EmployeeService } from 'src/app/services/employee.service';
+import { AddressService } from 'src/app/services/address.service';
 
 // Sweet Alert2 Import
 import swal from 'sweetalert2';
@@ -24,7 +25,8 @@ export class EmployeeFormComponent implements OnInit {
   @Input() employee: Employee;
   @Input() status: number;
 
-  constructor(private service: EmployeeService) { }
+  constructor(private service: EmployeeService,
+    private state: AddressService) { }
 
   ngOnInit() {
     // Initialize Model
@@ -34,7 +36,11 @@ export class EmployeeFormComponent implements OnInit {
   // Clear and Initialize Model
   public clrModel(): void {
     this.employee = new Employee();
-    this.employee.address = new Address();
+    // this.employee.address = new Address();
+  }
+
+  public getState(): Array<string> {
+    return this.state.getList();
   }
 
   public closeModal(): void {

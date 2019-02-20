@@ -9,6 +9,10 @@ import { AutomobileService } from 'src/app/services/automobile.service';
 // Sweet Alert2 Import
 import Swal from 'sweetalert2';
 
+// Variables for jQuery
+declare var $: any;
+declare var jQuery: any;
+
 @Component({
   selector: 'app-automobile-form',
   templateUrl: './automobile-form.component.html',
@@ -20,6 +24,14 @@ export class AutomobileFormComponent implements OnInit {
   @Input() status: boolean;
   @Input() id: string;
 
+  private list = [
+    {'type': 'transmision'},
+    {'type': 'Automatico'},
+    {'type': 'Automatizadas o secuenciales'},
+    {'type': 'Automatizada de doble embrague'},
+    {'type': 'CVT'}
+  ];
+
   constructor(private service: AutomobileService) { }
 
   ngOnInit() {
@@ -28,6 +40,20 @@ export class AutomobileFormComponent implements OnInit {
 
   public clrModel(): void {
     this.automobile = new Automobile();
+  }
+
+  public getList(): any {
+    return this.list;
+  }
+
+  public getBrand(): Array<string> {
+    return this.service.getBrand();
+  }
+
+  public closeModal(): void {
+    $(function () {
+      $('#modal').modal('toggle');
+   });
   }
 
   public newAutomobile(): void {
@@ -55,6 +81,7 @@ export class AutomobileFormComponent implements OnInit {
       });
     });
     this.clrModel();
+    this.closeModal();
   }
 
   public updAutomobile(id: string): void {

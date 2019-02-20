@@ -2,13 +2,13 @@ import { Component, OnInit, Input } from '@angular/core';
 
 // Models
 import { Client } from 'src/app/models/client';
-import { Address } from 'src/app/models/address';
 
 // Service
 import { ClientService } from 'src/app/services/client.service';
+import { AddressService } from 'src/app/services/address.service';
 
 // Sweet Alert2 Import
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 // Variables for jQuery
 declare var $: any;
@@ -24,7 +24,8 @@ export class ClientFormComponent implements OnInit {
   @Input() client: Client;
   @Input() status: number;
 
-  constructor(private service: ClientService) { }
+  constructor(private service: ClientService,
+    private state: AddressService) { }
 
   ngOnInit() {
     this.clrModel();
@@ -32,7 +33,11 @@ export class ClientFormComponent implements OnInit {
 
   public clrModel(): void {
     this.client = new Client();
-    this.client.address = new Address();
+    // this.client.address = new Address();
+  }
+
+  public getState(): Array<string> {
+    return this.state.getList();
   }
 
   public closeModal(): void {
@@ -45,8 +50,8 @@ export class ClientFormComponent implements OnInit {
     const data = this.client;
     this.service.newClient(this.client).subscribe(response => {
       if (response.status) {
-        this.service.addList(data);
-        swal({
+        this.service.insert(data);
+        Swal({
           position: 'top-end',
           type: 'success',
           title: 'Correcto :D',
@@ -56,7 +61,7 @@ export class ClientFormComponent implements OnInit {
       }
     }, error => {
       console.log(error);
-      swal({
+      Swal({
         position: 'top-end',
         type: 'error',
         title: 'Error :(',
@@ -73,7 +78,7 @@ export class ClientFormComponent implements OnInit {
     this.service.updClient(id, this.client).subscribe(response => {
       if (response.status) {
         this.service.setItemList(data);
-        swal({
+        Swal({
           position: 'top-end',
           type: 'success',
           title: 'Actualizado :D',
@@ -83,7 +88,7 @@ export class ClientFormComponent implements OnInit {
       }
     }, error => {
       console.log(error);
-      swal({
+      Swal({
         position: 'top-end',
         type: 'error',
         title: 'Error :(',
