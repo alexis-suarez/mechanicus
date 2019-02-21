@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_restful import Api
 
 # Resources
-from Automobile import Automobile, AutomobileParams
+from Automobile import Automobile, AutomobileParams, AutomobileOne
 from Client import Client, ClientParams
 from Employee import Employee, EmployeeParams
 from Service import Service, ServiceParams, ServiceDeliver, ServiceFinish
@@ -21,6 +21,7 @@ CORS(app)
 # Automobile
 api.add_resource(Automobile, '/automobile')
 api.add_resource(AutomobileParams, '/automobile/<string:id>')
+api.add_resource(AutomobileOne, '/automobile/one/<string:id>')
 # Client
 api.add_resource(Client, '/client')
 api.add_resource(ClientParams, '/client/<string:id>')

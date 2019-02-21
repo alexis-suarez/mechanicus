@@ -32,7 +32,7 @@ export class AutomobileViewComponent implements OnInit {
   ngOnInit() {
     if (this.service.isEmpty()) {
       // Load the data on the table
-      this.getOne(this.id);
+      this.get(this.id);
     }
 
     // Initialize Model
@@ -81,7 +81,7 @@ export class AutomobileViewComponent implements OnInit {
   }
 
   // Function for CRUD
-  public delAutomobile(id: string, index: number): void {
+  public delete(id: string, index: number): void {
     Swal({
       title: '¿Seguro de Borrar?',
       text: 'No se podrá recuperar despues',
@@ -93,11 +93,12 @@ export class AutomobileViewComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.service.delete(id).subscribe(response => {
-          if (response.status) {
+          console.log(response);
+          if (response.success) {
             this.service.delList(index);
           }
         }, error => {
-          // console.log(error);
+          console.log(error);
         });
         Swal(
           '¡Borrado!',
@@ -108,23 +109,24 @@ export class AutomobileViewComponent implements OnInit {
     });
   }
 
-  private getOne(id: string): void {
+  public getOne(id: string): void {
     this.service.getOne(id).subscribe(response => {
-      if (response.status) {
-        this.service.setList(response.data);
+      console.log(response);
+      if (response.success) {
+        this.automobile = response.data;
       }
     }, error => {
-      // console.log(error);
+      console.log(error);
     });
   }
 
-  private get(): void {
-    this.service.get().subscribe(response => {
-      if (response.status) {
+  private get(id: string): void {
+    this.service.get(id).subscribe(response => {
+      if (response.success) {
         this.service.setList(response.data);
       }
     }, error => {
-      // console.log(error);
+      console.log(error);
     });
   }
 }

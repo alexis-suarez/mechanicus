@@ -109,6 +109,16 @@ export class AutomobileService {
     return this.list.length === 0;
   }
 
+  public setItemList(automobile: Automobile): void {
+    let i = 0;
+    while (i < this.list.length) {
+      if (this.list[i].id === automobile.id) {
+        this.list[i] = automobile;
+      }
+      i++;
+    }
+  }
+
   // Http Request
   public post(automobile: Automobile): any {
     return this.http.post<Response>(this.url, JSON.stringify(automobile), httpOptions);
@@ -118,15 +128,15 @@ export class AutomobileService {
     return this.http.delete<Response>(this.url + '/' + id, httpOptions);
   }
 
-  public put(automobile: Automobile): any {
-    return this.http.put<Response>(this.url, httpOptions);
+  public put(id: string, automobile: Automobile): any {
+    return this.http.put<Response>(this.url + '/' + id, JSON.stringify(automobile), httpOptions);
   }
 
   public getOne(id: string): any {
-    return this.http.get<Response>(this.url + '/' + id, httpOptions);
+    return this.http.get<Response>(this.url + '/one/' + id, httpOptions);
   }
 
-  public get(): any {
-    return this.http.get<Response>(this.url, httpOptions);
+  public get(id: string): any {
+    return this.http.get<Response>(this.url + '/' + id, httpOptions);
   }
 }

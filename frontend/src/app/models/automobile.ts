@@ -1,5 +1,5 @@
 export class Automobile {
-    id: number;
+    id: string;
     client: string;
     brand: string;
     model: string;

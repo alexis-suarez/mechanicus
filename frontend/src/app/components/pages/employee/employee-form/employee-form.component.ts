@@ -2,14 +2,13 @@ import { Component, OnInit, Input } from '@angular/core';
 
 // Models
 import { Employee } from 'src/app/models/employee';
-import { Address } from 'src/app/models/address';
 
 // Service
 import { EmployeeService } from 'src/app/services/employee.service';
 import { AddressService } from 'src/app/services/address.service';
 
 // Sweet Alert2 Import
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 // Variables for jQuery
 declare var $: any;
@@ -36,7 +35,6 @@ export class EmployeeFormComponent implements OnInit {
   // Clear and Initialize Model
   public clrModel(): void {
     this.employee = new Employee();
-    // this.employee.address = new Address();
   }
 
   public getState(): Array<string> {
@@ -50,12 +48,13 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   // Function for CRUD
-  public newEmployee(): void {
+  public post(): void {
     const data = this.employee;
     this.service.post(this.employee).subscribe(response => {
-      if (response.status) {
+      console.log(response);
+      if (response.success) {
         this.service.addList(data);
-        swal({
+        Swal({
           position: 'top-end',
           type: 'success',
           title: 'Correcto :D',
@@ -65,7 +64,7 @@ export class EmployeeFormComponent implements OnInit {
       }
     }, error => {
       console.log(error);
-      swal({
+      Swal({
         position: 'top-end',
         type: 'error',
         title: 'Error :(',
@@ -77,12 +76,13 @@ export class EmployeeFormComponent implements OnInit {
     this.closeModal();
   }
 
-  public updEmployee(id: string): void {
+  public put(id: string): void {
     const data = this.employee;
     this.service.put(this.employee.id, this.employee).subscribe(response => {
-      if (response.status) {
+      console.log(response);
+      if (response.success) {
         this.service.setItemList(data);
-        swal({
+        Swal({
           position: 'top-end',
           type: 'success',
           title: 'Actualizado :D',
@@ -91,8 +91,8 @@ export class EmployeeFormComponent implements OnInit {
         });
       }
     }, error => {
-      console.log(error);
-      swal({
+      // console.log(error);
+      Swal({
         position: 'top-end',
         type: 'error',
         title: 'Error :(',

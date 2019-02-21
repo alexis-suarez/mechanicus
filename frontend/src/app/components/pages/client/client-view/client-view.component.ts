@@ -82,7 +82,7 @@ export class ClientViewComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.service.delClient(id).subscribe(response => {
-          if (response.status) {
+          if (response.success) {
             this.service.delete(index);
           }
         }, error => {
@@ -99,7 +99,7 @@ export class ClientViewComponent implements OnInit {
 
   public getClient(id: string): void {
     this.service.getClient(id).subscribe(response => {
-      if (response.status) {
+      if (response.success) {
         this.client = response.data;
       }
     }, error => {
@@ -109,7 +109,7 @@ export class ClientViewComponent implements OnInit {
 
   public viewClient(): void {
     this.service.viewClient().subscribe(response => {
-      if (response.status) {
+      if (response.success) {
         this.service.setList(response.data);
       }
     }, error => {

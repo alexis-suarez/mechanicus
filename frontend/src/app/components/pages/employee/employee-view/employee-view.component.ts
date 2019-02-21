@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 
 // Models
 import { Employee } from 'src/app/models/employee';
-import { Address } from 'src/app/models/address';
 
 // Service
 import { EmployeeService } from 'src/app/services/employee.service';
 
 // Sweet Alert2 Import
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-view',
@@ -65,7 +64,7 @@ export class EmployeeViewComponent implements OnInit {
 
   // Function for CRUD
   public delEmployee(id: string, index: number): void {
-    swal({
+    Swal({
       title: '¿Seguro de Borrar?',
       text: 'No se podrá recuperar despues',
       type: 'warning',
@@ -76,13 +75,14 @@ export class EmployeeViewComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.service.delete(id).subscribe(response => {
-          if (response.status) {
+          console.log(response);
+          if (response.success) {
             this.service.delList(index);
           }
         }, error => {
           console.log(error);
         });
-        swal(
+        Swal(
           '¡Borrado!',
           'Información Borrada Correctamente :D',
           'success'
@@ -93,7 +93,8 @@ export class EmployeeViewComponent implements OnInit {
 
   public getEmployee(id: string): void {
     this.service.get(id).subscribe(response => {
-      if (response.status) {
+      console.log(response);
+      if (response.success) {
         this.employee = response.data;
       }
     }, error => {
@@ -103,7 +104,8 @@ export class EmployeeViewComponent implements OnInit {
 
   public viewEmployee(): void {
     this.service.viewEmployee().subscribe(response => {
-      if (response.status) {
+      console.log(response);
+      if (response.success) {
         this.service.setList(response.data);
       }
     }, error => {

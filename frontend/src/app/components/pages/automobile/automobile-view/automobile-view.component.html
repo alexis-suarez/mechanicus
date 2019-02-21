@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-2">
       <!-- Botton to register new Client -->
-      <button (click)="setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#FormModal"><i
+      <button (click)="setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i
           class="fas fa-plus"></i></button>
     </div>
     <div class="col-4">
@@ -35,20 +35,20 @@
         <tbody>
           <!-- List of Clients -->
           <tr *ngFor="let item of getList(); let i = index;">
-            <td (click)="setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
+            <td (click)="getOne(item.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
               {{ item.brand }}</td>
-            <td (click)="setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
+            <td (click)="getOne(item.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
               {{ item.model }}</td>
-            <td (click)="setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
+            <td (click)="getOne(item.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
               {{ item.year }}</td>
-            <td (click)="setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">
+            <td (click)="getOne(item.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">
               {{ item.colour }}</td>
             <td class="d-flex justify-content-center">
               <!-- Botton to edite a Automobile -->
-              <button (click)="getAutomobile(item.id)" class="mr-1 btn-sm btn btn-warning"><i
+              <button (click)="getOne(item.id); setStatus(-1)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i
                   class="fas fa-edit"></i></button>
               <!-- Botton to delete a Automobile -->
-              <button (click)="delAutomobile(item.id, i)" class="ml-1 btn-sm btn btn-danger"><i
+              <button (click)="delete(item.id, i)" class="ml-1 btn-sm btn btn-danger"><i
                   class="fas fa-trash-alt"></i></button>
             </td>
           </tr>
@@ -64,7 +64,7 @@
 </div>
 
 <!-- Modal From Automobile -->
-<div class="modal fade" id="FormModal" tabindex="-1" role="dialog" aria-labelledby="FormModalTitle" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">

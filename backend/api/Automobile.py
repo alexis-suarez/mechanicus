@@ -51,6 +51,7 @@ class AutomobileParams(Resource):
     
     def put(self, id):
         try:
+            data = request.json
             where = {'_id':ObjectId(id)}
             value = {'$set':{'client':data['client'],
                             'brand':data['brand'],
@@ -60,6 +61,7 @@ class AutomobileParams(Resource):
                             'cilinder':data['cilinder'],
                             'colour':data['colour'],
                             'transmision':data['transmision']}}
+            connector.collection('automobile').update_one(where, value)
             return jsonify({'message':'success', 'status':True})
         except:
             return jsonify({'message':'error', 'status':False})
@@ -67,6 +69,27 @@ class AutomobileParams(Resource):
     def get(self, id):
         try:
             document = connector.collection('automobile').find({'client':id})
+            data = []
+            for field in document:
+                data.append({'id':str(field['_id']),
+                             'client':field['client'],
+                             'brand':field['brand'],
+                             'model':field['model'],
+                             'year':field['year'],
+                             'milage':field['milage'],
+                             'cilinder':field['cilinder'],
+                             'colour':field['colour'],
+                             'transmision':field['transmision'],
+                             'status':field['status']})
+            response = {'message':'success', 'status':True, 'data':data}
+            return jsonify(response)
+        except:
+            return jsonify({'message':'error', 'status':False})
+
+class AutomobileOne(Resource):
+    def get(self, id):
+        try:
+            document = connector.collection('automobile').find({'_id':ObjectId(id)})
             data = []
             for field in document:
                 data.append({'id':str(field['_id']),

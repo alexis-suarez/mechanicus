@@ -49,7 +49,7 @@ export class ClientFormComponent implements OnInit {
   public newClient(): void {
     const data = this.client;
     this.service.newClient(this.client).subscribe(response => {
-      if (response.status) {
+      if (response.success) {
         this.service.insert(data);
         Swal({
           position: 'top-end',
@@ -76,7 +76,7 @@ export class ClientFormComponent implements OnInit {
   public updClient(id: string): void {
     const data = this.client;
     this.service.updClient(id, this.client).subscribe(response => {
-      if (response.status) {
+      if (response.success) {
         this.service.setItemList(data);
         Swal({
           position: 'top-end',

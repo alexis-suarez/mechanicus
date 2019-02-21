@@ -21,7 +21,7 @@ declare var jQuery: any;
 export class AutomobileFormComponent implements OnInit {
 
   @Input() automobile: Automobile;
-  @Input() status: boolean;
+  @Input() status: number;
   @Input() id: string;
 
   private list = [
@@ -35,9 +35,11 @@ export class AutomobileFormComponent implements OnInit {
   constructor(private service: AutomobileService) { }
 
   ngOnInit() {
+    // Initialize Model
     this.clrModel();
   }
 
+  // Clear and Initialize Model
   public clrModel(): void {
     this.automobile = new Automobile();
   }
@@ -56,7 +58,7 @@ export class AutomobileFormComponent implements OnInit {
    });
   }
 
-  public newAutomobile(): void {
+  public post(): void {
     this.automobile.client = this.id;
     const data = this.automobile;
     this.service.post(this.automobile).subscribe(response => {
@@ -85,6 +87,29 @@ export class AutomobileFormComponent implements OnInit {
   }
 
   public updAutomobile(id: string): void {
-    //
+    const data = this.automobile;
+    this.service.put(this.automobile.id, this.automobile).subscribe(response => {
+      if (response.success) {
+        this.service.setItemList(data);
+        Swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Actualizado :D',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    }, error => {
+      // console.log(error);
+      Swal({
+        position: 'top-end',
+        type: 'error',
+        title: 'Error :(',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    });
+    this.clrModel();
+    this.closeModal();
   }
 }
