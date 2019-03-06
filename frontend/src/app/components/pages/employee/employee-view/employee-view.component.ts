@@ -16,10 +16,13 @@ import Swal from 'sweetalert2';
 })
 export class EmployeeViewComponent implements OnInit {
 
+  private list: Array<Employee>;
   private employee: Employee;
   private status: number;
 
-  constructor(private service: EmployeeService) { }
+  constructor(private service: EmployeeService) {
+    this.list = new Array<Employee>();
+  }
 
   ngOnInit() {
     if (this.service.isEmpty()) {
@@ -59,7 +62,37 @@ export class EmployeeViewComponent implements OnInit {
   // Clear and Initialize Model
   public clrModel(): void {
     this.employee = new Employee();
-    // this.employee.address = new Address();
+  }
+
+  // Search
+  public search(value: string): void {
+    if (value !== null) {
+      console.log('entra');
+      this.service.setList(this.filter(value));
+    } else {
+      console.log('fuera');
+      this.service.setList(this.list);
+    }
+  }
+
+  // Filter
+  private filter(value: string): Array<Employee> {
+    let list = new Array<Employee>();
+
+    value = value.toLowerCase();
+
+    for (let i = 0; i < this.service.getList().length; i++ ) {
+
+      let data = this.service.getList()[i];
+      let name = data.name.toLowerCase();
+
+      if ( name.indexOf(value) >= 0) {
+        list.push(data);
+      }
+
+    }
+
+    return list;
   }
 
   // Function for CRUD
@@ -107,6 +140,7 @@ export class EmployeeViewComponent implements OnInit {
       console.log(response);
       if (response.success) {
         this.service.setList(response.data);
+        this.list = this.service.getList();
       }
     }, error => {
       console.log(error);

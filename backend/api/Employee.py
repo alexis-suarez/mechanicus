@@ -14,9 +14,9 @@ class Employee(Resource):
         try:
             data = request.json
             connector.collection('employee').insert_one(data)
-            return jsonify({'message':'success', 'status':True})
+            return jsonify({'success':True, 'message':'success!'})
         except:
-            return jsonify({'message':'error', 'status':False, 'exception':ex.message})
+            return jsonify({'success':False, 'message':'error!'})
     
     def get(self):
         try:
@@ -35,10 +35,10 @@ class Employee(Resource):
                              'salary':field['salary'],
                              'role':field['role'],
                              'status':field['status']})
-            response = {'message':'success', 'status':True, 'data':data}
+            response = {'success':True, 'message':'success!', 'data':data}
             return jsonify(response)
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
 
 class EmployeeParams(Resource):
     
@@ -47,9 +47,9 @@ class EmployeeParams(Resource):
             where = {'_id':ObjectId(id)}
             value = {'$set':{'status':False}}
             connector.collection('employee').update_one(where, value)
-            return jsonify({'message':'success', 'status':True})
+            return jsonify({'success':True, 'message':'success!'})
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
     
     def put(self, id):
         try:
@@ -66,9 +66,9 @@ class EmployeeParams(Resource):
                             'salary':data['salary'],
                             'role':data['role']}}
             connector.collection('employee').update_one(where, value)
-            return jsonify({'message':'success', 'status':True})
+            return jsonify({'success':True, 'message':'success!'})
         except:
-            return jsonify({'message':'success', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
     
     def get(self, id):
         try:
@@ -85,7 +85,7 @@ class EmployeeParams(Resource):
                     'salary':document['salary'],
                     'role':document['role'],
                     'status':document['status']}
-            response = {'message':'success', 'status':True, 'data':data}
+            response = {'success':True, 'message':'success!', 'data':data}
             return jsonify(response)
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})

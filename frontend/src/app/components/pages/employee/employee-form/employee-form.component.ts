@@ -74,11 +74,12 @@ export class EmployeeFormComponent implements OnInit {
     });
     this.clrModel();
     this.closeModal();
+    this.viewEmployee();
   }
 
   public put(id: string): void {
     const data = this.employee;
-    this.service.put(this.employee.id, this.employee).subscribe(response => {
+    this.service.put(id, this.employee).subscribe(response => {
       console.log(response);
       if (response.success) {
         this.service.setItemList(data);
@@ -91,7 +92,7 @@ export class EmployeeFormComponent implements OnInit {
         });
       }
     }, error => {
-      // console.log(error);
+      console.log(error);
       Swal({
         position: 'top-end',
         type: 'error',
@@ -102,5 +103,17 @@ export class EmployeeFormComponent implements OnInit {
     });
     this.clrModel();
     this.closeModal();
+    this.viewEmployee();
+  }
+
+  public viewEmployee(): void {
+    this.service.viewEmployee().subscribe(response => {
+      console.log(response);
+      if (response.success) {
+        this.service.setList(response.data);
+      }
+    }, error => {
+      console.log(error);
+    });
   }
 }

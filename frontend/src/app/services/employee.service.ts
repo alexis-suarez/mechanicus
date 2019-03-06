@@ -27,7 +27,7 @@ export class EmployeeService {
   // private url = 'http://argentum.sytes.net:5000/api/employee';
 
   constructor(private http: HttpClient) {
-    this.list = [];
+    this.list = new Array<Employee>();
   }
 
   // Function for List
