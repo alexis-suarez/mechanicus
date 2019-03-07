@@ -125,7 +125,7 @@ export class ServiceFormComponent implements OnInit {
   }
 
   public viewClient(): void {
-    this.cliServ.viewClient().subscribe(response => {
+    this.cliServ.get().subscribe(response => {
       this.cliServ.setList(response.data);
     }, error => {
       console.log(error);

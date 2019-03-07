@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // Models
 import { Client } from '../models/client';
-import { Address } from '../models/address';
 import { Response } from '../models/response';
 
 // Header Options
@@ -14,17 +13,6 @@ const httpOptions = {
     // 'Authorization': 'my-auth-token'
   })
 };
-
-export interface ClientInterface {
-  id: string;
-  name: string;
-  address: Address;
-  auto: string[];
-  rfc: string;
-  phone: string;
-  email: string;
-  status: boolean;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +27,7 @@ export class ClientService {
   // private url = 'http://argentum.sytes.net:5000/api/client';
 
   constructor(private http: HttpClient) {
-    this.list = [];
+    this.list = new Array<Client>();
   }
 
   // Function for List
@@ -61,7 +49,7 @@ export class ClientService {
     this.list.push(data);
   }
 
-  public delete(index: number): void {
+  public remove(index: number): void {
     if (index !== -1 && !this.isEmpty()) {
       this.list.splice(index, 1);
     }
@@ -105,23 +93,23 @@ export class ClientService {
   }
 
   // Http Request
-  public newClient(client: Client): any {
+  public post(client: Client): any {
     return this.http.post<Response>(this.url, JSON.stringify(client), httpOptions);
   }
 
-  public delClient(id: string): any {
+  public delete(id: string): any {
     return this.http.delete<Response>(this.url + '/' + id, httpOptions);
   }
 
-  public updClient(id: string, client: Client): any {
+  public put(id: string, client: Client): any {
     return this.http.put<Response>(this.url + '/' + id, JSON.stringify(client), httpOptions);
   }
 
-  public getClient(id: string): any {
+  public getOne(id: string): any {
     return this.http.get<Response>(this.url + '/' + id, httpOptions);
   }
 
-  public viewClient(): any {
+  public get(): any {
     return this.http.get<Response>(this.url, httpOptions);
   }
 }

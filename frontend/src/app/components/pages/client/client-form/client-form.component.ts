@@ -33,7 +33,6 @@ export class ClientFormComponent implements OnInit {
 
   public clrModel(): void {
     this.client = new Client();
-    // this.client.address = new Address();
   }
 
   public getState(): Array<string> {
@@ -48,7 +47,7 @@ export class ClientFormComponent implements OnInit {
 
   public newClient(): void {
     const data = this.client;
-    this.service.newClient(this.client).subscribe(response => {
+    this.service.post(this.client).subscribe(response => {
       if (response.success) {
         this.service.insert(data);
         Swal({
@@ -71,11 +70,12 @@ export class ClientFormComponent implements OnInit {
     });
     this.clrModel();
     this.closeModal();
+    this.viewClient();
   }
 
   public updClient(id: string): void {
     const data = this.client;
-    this.service.updClient(id, this.client).subscribe(response => {
+    this.service.put(id, this.client).subscribe(response => {
       if (response.success) {
         this.service.setItemList(data);
         Swal({
@@ -98,5 +98,17 @@ export class ClientFormComponent implements OnInit {
     });
     this.clrModel();
     this.closeModal();
+    this.viewClient();
+  }
+
+  private viewClient(): void {
+    this.service.get().subscribe(response => {
+      console.log(response);
+      if (response.success) {
+        this.service.setList(response.data);
+      }
+    }, error => {
+      console.log(error);
+    });
   }
 }

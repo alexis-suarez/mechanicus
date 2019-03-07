@@ -14,9 +14,9 @@ class Client(Resource):
         try:
             data = request.json
             connector.collection('client').insert_one(data)
-            return jsonify({'message':'success', 'status':True})
+            return jsonify({'success':True, 'message':'success!'})
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
 
     def get(self):
         try:
@@ -29,10 +29,10 @@ class Client(Resource):
                              'phone':field['phone'],
                              'email':field['email'],
                              'status':field['status']})
-            response = {'message':'success', 'status':True, 'data':data}
+            response = {'success':True, 'message':'success!', 'data':data}
             return jsonify(response)
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
 
 class ClientParams(Resource):
 
@@ -41,9 +41,9 @@ class ClientParams(Resource):
             where = {'_id':ObjectId(id)}
             value = {'$set':{'status':False}}
             connector.collection('client').update_one(where, value)
-            return jsonify({'message':'success', 'status':True})
+            return jsonify({'success':True, 'message':'success!'})
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
     
     def put(self, id):
         try:
@@ -55,9 +55,9 @@ class ClientParams(Resource):
                             'phone':data['phone'],
                             'email':data['email']}}
             connector.collection('client').update_one(where, value)
-            return jsonify({'message':'success', 'status':True})
+            return jsonify({'success':True, 'message':'success!'})
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
 
     def get(self, id):
         try:
@@ -69,7 +69,7 @@ class ClientParams(Resource):
                              'phone':document['phone'],
                              'email':document['email'],
                              'status':document['status']}
-            response = {'message':'success', 'status':True, 'data':data}
+            response = {'success':True, 'message':'success!', 'data':data}
             return jsonify(response)
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})

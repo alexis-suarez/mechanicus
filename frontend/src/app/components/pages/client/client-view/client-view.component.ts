@@ -3,13 +3,12 @@ import { Router } from '@angular/router';
 
 // Models
 import { Client } from 'src/app/models/client';
-import { Address } from 'src/app/models/address';
 
 // Service
 import { ClientService } from 'src/app/services/client.service';
 
 // Sweet Alert2 Import
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-client-view',
@@ -66,12 +65,11 @@ export class ClientViewComponent implements OnInit {
   // Clear and Initialize Model
   public clrModel(): void {
     this.client = new Client();
-    // this.client.address = new Address();
   }
 
   // Function for CRUD
   public delClient(id: string, index: number): void {
-    swal({
+    Swal({
       title: '¿Seguro de Borrar?',
       text: 'No se podrá recuperar despues',
       type: 'warning',
@@ -81,14 +79,15 @@ export class ClientViewComponent implements OnInit {
       confirmButtonText: '¡Sí, Eliminar!'
     }).then((result) => {
       if (result.value) {
-        this.service.delClient(id).subscribe(response => {
+        this.service.delete(id).subscribe(response => {
+          console.log(response);
           if (response.success) {
-            this.service.delete(index);
+            this.service.remove(index);
           }
         }, error => {
           console.log(error);
         });
-        swal(
+        Swal(
           '¡Borrado!',
           'Información Borrada Correctamente :D',
           'success'
@@ -98,7 +97,8 @@ export class ClientViewComponent implements OnInit {
   }
 
   public getClient(id: string): void {
-    this.service.getClient(id).subscribe(response => {
+    this.service.getOne(id).subscribe(response => {
+      console.log(response);
       if (response.success) {
         this.client = response.data;
       }
@@ -107,8 +107,9 @@ export class ClientViewComponent implements OnInit {
     });
   }
 
-  public viewClient(): void {
-    this.service.viewClient().subscribe(response => {
+  private viewClient(): void {
+    this.service.get().subscribe(response => {
+      console.log(response);
       if (response.success) {
         this.service.setList(response.data);
       }
