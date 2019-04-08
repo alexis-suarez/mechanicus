@@ -14,9 +14,9 @@ class Automobile(Resource):
         try:
             data = request.json
             connector.collection('automobile').insert_one(data)
-            return jsonify({'message':'success', 'status':True})
+            return jsonify({'success':True, 'message':'success!'})
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
 
     def get(self):
         try:
@@ -33,10 +33,10 @@ class Automobile(Resource):
                              'colour':field['colour'],
                              'transmision':field['transmision'],
                              'status':field['status']})
-            response = {'message':'success', 'status':True, 'data':data}
+            response = {'success':True, 'message':'success!', 'data':data}
             return jsonify(response)
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
 
 class AutomobileParams(Resource):
 
@@ -45,9 +45,9 @@ class AutomobileParams(Resource):
             where = {'_id':ObjectId(id)}
             value = {'$set':{'status':False}}
             connector.collection('automobile').update_one(where, value)
-            return jsonify({'message':'success', 'status':True})
+            return jsonify({'success':True, 'message':'success!'})
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
     
     def put(self, id):
         try:
@@ -62,9 +62,9 @@ class AutomobileParams(Resource):
                             'colour':data['colour'],
                             'transmision':data['transmision']}}
             connector.collection('automobile').update_one(where, value)
-            return jsonify({'message':'success', 'status':True})
+            return jsonify({'success':True, 'message':'success!'})
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
 
     def get(self, id):
         try:
@@ -81,28 +81,26 @@ class AutomobileParams(Resource):
                              'colour':field['colour'],
                              'transmision':field['transmision'],
                              'status':field['status']})
-            response = {'message':'success', 'status':True, 'data':data}
+            response = {'success':True, 'message':'success!', 'data':data}
             return jsonify(response)
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})
 
 class AutomobileOne(Resource):
     def get(self, id):
         try:
-            document = connector.collection('automobile').find({'_id':ObjectId(id)})
-            data = []
-            for field in document:
-                data.append({'id':str(field['_id']),
-                             'client':field['client'],
-                             'brand':field['brand'],
-                             'model':field['model'],
-                             'year':field['year'],
-                             'milage':field['milage'],
-                             'cilinder':field['cilinder'],
-                             'colour':field['colour'],
-                             'transmision':field['transmision'],
-                             'status':field['status']})
-            response = {'message':'success', 'status':True, 'data':data}
+            document = connector.collection('automobile').find_one({'_id':ObjectId(id)})
+            data = {'id':str(document['_id']),
+                    'client':document['client'],
+                    'brand':document['brand'],
+                    'model':document['model'],
+                    'year':document['year'],
+                    'milage':document['milage'],
+                    'cilinder':document['cilinder'],
+                    'colour':document['colour'],
+                    'transmision':document['transmision'],
+                    'status':document['status']}
+            response = {'success':True, 'message':'success!', 'data':data}
             return jsonify(response)
         except:
-            return jsonify({'message':'error', 'status':False})
+            return jsonify({'success':False, 'message':'error!'})

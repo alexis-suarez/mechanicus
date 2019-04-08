@@ -62,7 +62,7 @@ export class AutomobileFormComponent implements OnInit {
     this.automobile.client = this.id;
     const data = this.automobile;
     this.service.post(this.automobile).subscribe(response => {
-      if (response.status) {
+      if (response.success) {
         this.service.addList(data);
         Swal({
           position: 'top-end',
@@ -73,7 +73,7 @@ export class AutomobileFormComponent implements OnInit {
         });
       }
     }, error => {
-      // console.log(error);
+      console.log(error);
       Swal({
         position: 'top-end',
         type: 'error',
@@ -86,9 +86,9 @@ export class AutomobileFormComponent implements OnInit {
     this.closeModal();
   }
 
-  public updAutomobile(id: string): void {
+  public put(id: string): void {
     const data = this.automobile;
-    this.service.put(this.automobile.id, this.automobile).subscribe(response => {
+    this.service.put(id, this.automobile).subscribe(response => {
       if (response.success) {
         this.service.setItemList(data);
         Swal({
@@ -100,7 +100,7 @@ export class AutomobileFormComponent implements OnInit {
         });
       }
     }, error => {
-      // console.log(error);
+      console.log(error);
       Swal({
         position: 'top-end',
         type: 'error',
