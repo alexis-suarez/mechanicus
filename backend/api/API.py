@@ -9,6 +9,7 @@ from Client import Client, ClientParams
 from Employee import Employee, EmployeeParams
 from Service import Service, ServiceParams, ServiceDeliver, ServiceFinish
 from User import User, UserParams, UserLogin
+from Repositories.Analytics import Analytics
 
 # Flask Application and API
 app = Flask(__name__)
