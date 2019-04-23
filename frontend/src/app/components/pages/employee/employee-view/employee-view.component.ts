@@ -8,6 +8,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 
 // Sweet Alert2 Import
 import Swal from 'sweetalert2';
+import { element } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-employee-view',
@@ -67,10 +68,10 @@ export class EmployeeViewComponent implements OnInit {
   // Search
   public search(value: string): void {
     if (value !== null) {
-      console.log('entra');
+      console.log('entra ' + value);
       this.service.setList(this.filter(value));
     } else {
-      console.log('fuera');
+      console.log('fuera ' + value);
       this.service.setList(this.list);
     }
   }
@@ -79,18 +80,9 @@ export class EmployeeViewComponent implements OnInit {
   private filter(value: string): Array<Employee> {
     let list = new Array<Employee>();
 
-    value = value.toLowerCase();
-
-    for (let i = 0; i < this.service.getList().length; i++ ) {
-
-      let data = this.service.getList()[i];
-      let name = data.name.toLowerCase();
-
-      if ( name.indexOf(value) >= 0) {
-        list.push(data);
-      }
-
-    }
+    this.service.getList().filter(element => {
+      return element.name.toUpperCase().includes(value.toUpperCase());
+    });
 
     return list;
   }

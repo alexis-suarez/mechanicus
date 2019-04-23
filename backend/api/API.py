@@ -34,11 +34,12 @@ api.add_resource(Service, '/service')
 api.add_resource(ServiceParams, '/service/<string:id>')
 api.add_resource(ServiceDeliver, '/service/deliver/<string:id>')
 api.add_resource(ServiceFinish, '/service/finish/<string:id>')
-
 # User
 api.add_resource(User, '/user')
 api.add_resource(UserParams, '/user/<string:id>')
 api.add_resource(UserLogin, '/user/chck/<string:username>/<string:password>')
+# Analytics
+api.add_resource(Analytics, '/analytics')
 
 # Main fuction in debug Mode
 if __name__ == "__main__":

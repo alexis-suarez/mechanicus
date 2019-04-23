@@ -14,4 +14,4 @@ class Analytics(Resource):
         try:
             return jsonify({'success':True, 'message':'success'})
         except:
-            return jsonify({'success':False, 'message';'error!'})
+            return jsonify({'success':False, 'message':'error!'})
