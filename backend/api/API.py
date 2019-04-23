@@ -4,11 +4,11 @@ from flask_cors import CORS
 from flask_restful import Api
 
 # Resources
-from Automobile import Automobile, AutomobileParams, AutomobileOne
-from Client import Client, ClientParams
-from Employee import Employee, EmployeeParams
-from Service import Service, ServiceParams, ServiceDeliver, ServiceFinish
-from User import User, UserParams, UserLogin
+from Repositories.Automobile import Automobile, AutomobileParams, AutomobileOne
+from Repositories.Client import Client, ClientParams
+from Repositories.Employee import Employee, EmployeeParams
+from Repositories.Service import Service, ServiceParams, ServiceDeliver, ServiceFinish
+from Repositories.User import User, UserParams, UserLogin
 from Repositories.Analytics import Analytics
 
 # Flask Application and API

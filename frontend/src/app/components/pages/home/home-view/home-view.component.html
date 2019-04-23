@@ -19,7 +19,7 @@
     <hr>
     <div class="row">
         <div class="col-sm-6">
-            <div *ngFor="let serv of getList(); let i = index;" class="card text-center bg-light m-2">
+            <div *ngFor="let serv of getListPending(); let i = index;" class="card text-center bg-light m-2">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-8">
@@ -38,12 +38,18 @@
                         </div>
                     </div>
                     <p class="card-text text-uppercase">{{ serv.description }}</p>
-                    <!-- Button for Delete Service -->
-                    <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i
-                            class="fas fa-times"></i></button>
-                    <!-- Button for Finish Service -->
-                    <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-success"><i
-                            class="fas fa-check"></i></button>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Button for Delete Service -->
+                            <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-block btn-danger"><i
+                                    class="fas fa-times"></i></button>
+                        </div>
+                        <div class="col">
+                            <!-- Button for Finish Service -->
+                            <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-block btn-success"><i
+                                    class="fas fa-check"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">
@@ -51,7 +57,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div *ngFor="let serv of getList(); let i = index;" class="card text-center bg-light m-2">
+            <div *ngFor="let serv of getListFinished(); let i = index;" class="card text-center bg-light m-2">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-8">
@@ -70,12 +76,18 @@
                         </div>
                     </div>
                     <p class="card-text text-uppercase">{{ serv.description }}</p>
-                    <!-- Button for Delete Service -->
-                    <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-danger"><i
-                            class="fas fa-times"></i></button>
-                    <!-- Button for Finish Service -->
-                    <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-success"><i
-                            class="fas fa-check"></i></button>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Button for Delete Service -->
+                            <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-block btn-danger"><i
+                                    class="fas fa-times"></i></button>
+                        </div>
+                        <div class="col">
+                            <!-- Button for Finish Service -->
+                            <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-block btn-success"><i
+                                    class="fas fa-check"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">

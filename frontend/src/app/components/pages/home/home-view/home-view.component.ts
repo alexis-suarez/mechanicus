@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Service } from 'src/app/models/service';
-import { Client } from 'src/app/models/client';
-import { Address } from 'src/app/models/address';
-import { Employee } from 'src/app/models/employee';
-import { Automobile } from 'src/app/models/automobile';
 
 // Service
 import { AuthService } from 'src/app/services/auth.service';
 import { ServiceService } from 'src/app/services/service.service';
 
 // Sweet Alert2 Import
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home-view',
@@ -29,8 +25,7 @@ export class HomeViewComponent implements OnInit {
   ngOnInit() {
     if (this.service.isEmpty()) {
       // Load the data on the table
-      this.viewServicePending();
-      this.viewServiceFinish();
+      this.get();
     }
 
     // Initialize Model
@@ -42,8 +37,12 @@ export class HomeViewComponent implements OnInit {
   }
 
   // Return the list
-  public getList(): Array<Service> {
+  public getListPending(): Array<Service> {
     return this.service.getList();
+  }
+
+  public getListFinished(): Array<Service> {
+    return this.service.getListFinished();
   }
 
   // Check if is Empty
@@ -73,7 +72,7 @@ export class HomeViewComponent implements OnInit {
 
   // Function for CRUD
   public delService(id: string, index: number): void {
-    swal({
+    Swal({
       title: '¿Seguro de Cancelar?',
       text: 'No se podrá recuperar despues',
       type: 'warning',
@@ -90,7 +89,7 @@ export class HomeViewComponent implements OnInit {
         }, error => {
           console.log(error);
         });
-        swal(
+        Swal(
           '¡Cancelado!',
           'Información Borrada Correctamente :D',
           'success'
@@ -100,7 +99,7 @@ export class HomeViewComponent implements OnInit {
   }
 
   public delServiceFinish(id: string, index: number): void {
-    swal({
+    Swal({
       title: 'Finalizar Servicio',
       text: 'Quedará pendiente por Entregar',
       type: 'warning',
@@ -117,7 +116,7 @@ export class HomeViewComponent implements OnInit {
         }, error => {
           console.log(error);
         });
-        swal(
+        Swal(
           'Finalizado!',
           '',
           'success'
@@ -144,13 +143,5 @@ export class HomeViewComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-  }
-
-  public viewServicePending(): void {
-    //
-  }
-
-  public viewServiceFinish(): void {
-    // this.service.getListFinished().filter(element => element.finished === true);
   }
 }
