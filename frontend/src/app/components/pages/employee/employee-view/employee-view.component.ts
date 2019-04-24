@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit, ViewChild } from '@angular/core';
+
+// DataTables
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 
 // Models
 import { Employee } from 'src/app/models/employee';
@@ -8,22 +12,24 @@ import { EmployeeService } from 'src/app/services/employee.service';
 
 // Sweet Alert2 Import
 import Swal from 'sweetalert2';
-import { element } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-employee-view',
   templateUrl: './employee-view.component.html',
   styleUrls: ['./employee-view.component.css']
 })
-export class EmployeeViewComponent implements OnInit {
+export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
 
-  private list: Array<Employee>;
+  // Datatables
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+
   private employee: Employee;
   private status: number;
 
-  constructor(private service: EmployeeService) {
-    this.list = new Array<Employee>();
-  }
+  constructor(private service: EmployeeService) { }
 
   ngOnInit() {
     if (this.service.isEmpty()) {
@@ -33,6 +39,28 @@ export class EmployeeViewComponent implements OnInit {
 
     // Initialize Model
     this.clrModel();
+
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
+  }
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
   }
 
   // Return the list
@@ -63,28 +91,6 @@ export class EmployeeViewComponent implements OnInit {
   // Clear and Initialize Model
   public clrModel(): void {
     this.employee = new Employee();
-  }
-
-  // Search
-  public search(value: string): void {
-    if (value !== null) {
-      console.log('entra ' + value);
-      this.service.setList(this.filter(value));
-    } else {
-      console.log('fuera ' + value);
-      this.service.setList(this.list);
-    }
-  }
-
-  // Filter
-  private filter(value: string): Array<Employee> {
-    let list = new Array<Employee>();
-
-    this.service.getList().filter(element => {
-      return element.name.toUpperCase().includes(value.toUpperCase());
-    });
-
-    return list;
   }
 
   // Function for CRUD
@@ -121,6 +127,8 @@ export class EmployeeViewComponent implements OnInit {
       console.log(response);
       if (response.success) {
         this.employee = response.data;
+        // this.dtTrigger.next();
+        this.rerender();
       }
     }, error => {
       console.log(error);
@@ -132,7 +140,6 @@ export class EmployeeViewComponent implements OnInit {
       console.log(response);
       if (response.success) {
         this.service.setList(response.data);
-        this.list = this.service.getList();
       }
     }, error => {
       console.log(error);

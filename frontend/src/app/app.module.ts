@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 // Charts
 import { ChartsModule } from 'ng2-charts';
 
+// Datatables
+import { DataTablesModule } from 'angular-datatables';
+
 // Routes
 import { AppRoutingModule } from './app-routing.module';
 
@@ -73,7 +76,8 @@ import { UserFormComponent } from './components/pages/user/user-form/user-form.c
     ChartsModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DataTablesModule
   ],
   providers: [
     AuthService,
