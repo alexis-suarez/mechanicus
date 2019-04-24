@@ -12,7 +12,7 @@ import { AutomobileService } from 'src/app/services/automobile.service';
 import { ServiceService } from 'src/app/services/service.service';
 
 // Sweet Alert2 Import
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { Automobile } from 'src/app/models/automobile';
 
 // Variables for jQuery
@@ -68,6 +68,11 @@ export class ServiceFormComponent implements OnInit {
    });
   }
 
+  public onChange(value: string): void {
+    this.autServ.setList([]);
+    this.getAutomobile(value);
+  }
+
   // Function for CRUD
   public newService(): void {
     const data = this.servic;
@@ -75,7 +80,7 @@ export class ServiceFormComponent implements OnInit {
       console.log(response);
       if (response.status) {
         this.serServ.addList(data);
-        swal({
+        Swal({
           position: 'top-end',
           type: 'success',
           title: 'Correcto :D',
@@ -85,7 +90,7 @@ export class ServiceFormComponent implements OnInit {
       }
     }, error => {
       console.log(error);
-      swal({
+      Swal({
         position: 'top-end',
         type: 'error',
         title: 'Error :(',
@@ -102,7 +107,7 @@ export class ServiceFormComponent implements OnInit {
     this.serServ.updService(this.servic.id, this.servic).subscribe(response => {
       if (response.status) {
         this.serServ.setItemList(data);
-        swal({
+        Swal({
           position: 'top-end',
           type: 'success',
           title: 'Actualizado :D',
@@ -112,7 +117,7 @@ export class ServiceFormComponent implements OnInit {
       }
     }, error => {
       console.log(error);
-      swal({
+      Swal({
         position: 'top-end',
         type: 'error',
         title: 'Error :(',
@@ -133,7 +138,7 @@ export class ServiceFormComponent implements OnInit {
   }
 
   public getAutomobile(id: string): void {
-    this.autServ.getOne(id).subscribe(response => {
+    this.autServ.get(id).subscribe(response => {
       if (response.success) {
         this.autServ.setList(response.data);
       }

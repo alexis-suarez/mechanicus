@@ -2,23 +2,22 @@
   <div class="form-row">
     <div class="form-group col-md-4">
       <!-- Botton to register new Client -->
-      <button (click)="clrModel(); setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
-      <label for="inputtransmision">Client</label>
-      <select [(ngModel)]="servic.client" name="client" id="inputtransmision" class="form-control text-uppercase" required>
+      <!-- <button (click)="clrModel(); setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button> -->
+      <label for="inputclient">Client</label>
+      <select [(ngModel)]="servic.client" name="client" id="inputclient" class="form-control text-uppercase" (change)="onChange($event.target.value);" required>
         <!-- <option selected>Choose...</option> -->
         <option *ngFor="let client of getListCli()" [value]="client.id">{{ client.name }}</option>
       </select>
     </div>
     <div class="form-group col-md-4">
-      <label for="inputtransmision">Vehiculo</label>
-      <select [(ngModel)]="servic.auto" name="auto" id="inputtransmision" class="form-control text-uppercase" required>
-        <option selected>Choose...</option>
-        <option>...</option>
+      <label for="inputautomobile">Vehiculo</label>
+      <select [(ngModel)]="servic.auto" name="auto" id="inputautomobile" class="form-control text-uppercase" required>
+        <option *ngFor="let item of getListAut()" [value]="item.id">{{ item.brand }}</option>
       </select>
     </div>
     <div class="form-group col-md-4">
-      <label for="inputtransmision">Empleado</label>
-      <select [(ngModel)]="servic.employee" name="employee" id="inputtransmision" class="form-control text-uppercase" required>
+      <label for="inputemployee">Empleado</label>
+      <select [(ngModel)]="servic.employee" name="employee" id="inputemployee" class="form-control text-uppercase" required>
         <!-- <option selected>Choose...</option> -->
         <option *ngFor="let employee of getListEmp()" [value]="employee.name">{{ employee.name }}</option>
       </select>
