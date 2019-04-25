@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 // Models
 import { Employee } from 'src/app/models/employee';
@@ -24,8 +24,12 @@ export class EmployeeFormComponent implements OnInit {
   @Input() employee: Employee;
   @Input() status: number;
 
+  @Output() reflesh: EventEmitter<any>;
+
   constructor(private service: EmployeeService,
-    private state: AddressService) { }
+    private state: AddressService) {
+      this.reflesh = new EventEmitter();
+    }
 
   ngOnInit() {
     // Initialize Model
@@ -74,7 +78,8 @@ export class EmployeeFormComponent implements OnInit {
     });
     this.clrModel();
     this.closeModal();
-    this.viewEmployee();
+    // this.viewEmployee();
+    this.reflesh.emit(1);
   }
 
   public put(id: string): void {
@@ -103,7 +108,8 @@ export class EmployeeFormComponent implements OnInit {
     });
     this.clrModel();
     this.closeModal();
-    this.viewEmployee();
+    // this.viewEmployee();
+    this.reflesh.emit(1);
   }
 
   public viewEmployee(): void {

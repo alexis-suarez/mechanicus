@@ -60,7 +60,7 @@
             </div>
         <div class="modal-body">
           <!-- Form -->
-          <app-employee-form [status]="getStatus()" [employee]="getModel()"></app-employee-form>
+          <app-employee-form (reflesh)="viewEmployee()" [status]="getStatus()" [employee]="getModel()"></app-employee-form>
         </div>
       </div>
     </div>
