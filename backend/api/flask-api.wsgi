@@ -1,11 +1,5 @@
 #!/usr/bin/python3
 import sys
-import logging
-# logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0,"/var/www/api/")
+sys.path.insert(0,"/var/www/html/api/")
 
-from API import app as application
-
-# Main fuction in debug Mode
-if __name__ == "__main__":
-    application.run(debug=False)
+from __init__ import app as application
