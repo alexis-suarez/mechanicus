@@ -1,67 +1,81 @@
 <!-- Main div Container -->
 <br>
 <div class="container mt-5 shadow-lg p-3 mb-5 bg-white rounded op-4">
-    <!-- -->
-    <div class="row">
-      <div class="col-2">
-        <!-- Botton to register new Employee -->
-        <button (click)="clrModel(); setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
-      </div>
-      <div class="col-4"><h3>Empleados</h3></div>
-      <div class="col-6">
-          <!-- <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2 text-uppercase" type="search" placeholder="Buscar..." aria-label="Search" (keyup)="search(searchText.value)" #searchText> -->
-      </div>
+  <!-- Header Container -->
+  <div class="row">
+    <div class="col-2">
+      <!-- Botton to register new Employee -->
+      <button (click)="clrModel(); setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i
+          class="fas fa-plus"></i></button>
     </div>
+    <div class="col-4">
+      <h3>Empleados</h3>
+    </div>
+    <div class="col-6">
+      <!-- <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2 text-uppercase" type="search" placeholder="Buscar..." aria-label="Search" (keyup)="search(searchText.value)" #searchText> -->
+    </div>
+  </div>
+  <ng-template [ngIf]="!isEmpty()" [ngIfElse]="exception">
     <!-- Table of Employees -->
-    <div class="table-responsive">
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover table-striped table-borderless table-sm">
-        <thead class="thead-dark text-center">
-          <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">RFC</th>
-            <th scope="col">NSS</th>
-            <th scope="col">Télefono</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- List of Employees -->
-          <tr *ngFor="let employee of getList(); let i = index;">
-            <td (click)="getEmployee(employee.id); setStatus(0)" class="text-uppercase" data-toggle="modal" data-target="#modal">{{ employee.name }}</td>
-            <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">{{ employee.rfc }}</td>
-            <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">{{ employee.nss }}</td>
-            <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">{{ employee.phone }}</td>
-            <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">{{ employee.email }}</td>
-            <td class="d-flex justify-content-center">
-              <!-- Botton to edite a Employee -->
-              <button (click)="getEmployee(employee.id); setStatus(-1)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
-              <!-- Botton to delete a Employee -->
-              <button (click)="delEmployee(employee.id, i)" class="ml-1 btn-sm btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+      class="table table-hover table-striped table-borderless table-sm">
+      <thead class="thead-dark text-center">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">RFC</th>
+          <th scope="col">NSS</th>
+          <th scope="col">Télefono</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- List of Employees -->
+        <tr *ngFor="let employee of getList(); let i = index;">
+          <td (click)="getEmployee(employee.id); setStatus(0)" class="text-uppercase" data-toggle="modal"
+            data-target="#modal">{{ employee.name }}</td>
+          <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal"
+            data-target="#modal">{{ employee.rfc }}</td>
+          <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal"
+            data-target="#modal">{{ employee.nss }}</td>
+          <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal"
+            data-target="#modal">{{ employee.phone }}</td>
+          <td (click)="getEmployee(employee.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal"
+            data-target="#modal">{{ employee.email }}</td>
+          <td class="d-flex justify-content-center">
+            <!-- Botton to edite a Employee -->
+            <button (click)="getEmployee(employee.id); setStatus(-1)" class="mr-1 btn-sm btn btn-warning"
+              data-toggle="modal" data-target="#modal"><i class="fas fa-edit"></i></button>
+            <!-- Botton to delete a Employee -->
+            <button (click)="delEmployee(employee.id, i)" class="ml-1 btn-sm btn btn-danger"><i
+                class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+  <ng-template #exception>
+    <div class="alert alert-info text-center btn-block" role="alert">
       ¡No hay información en la Aplicación!
     </div>
-  </div>
-  
-  <!-- Modal From Employee -->
-  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title text-center" id="InsertModalTitle">Formulario</h5>
-              <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-        <div class="modal-body">
-          <!-- Form -->
-          <app-employee-form (reflesh)="viewEmployee()" [status]="getStatus()" [employee]="getModel()"></app-employee-form>
-        </div>
+  </ng-template>
+</div>
+
+<!-- Modal From Employee -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="InsertModalTitle">Formulario</h5>
+        <button (click)="clrModel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form -->
+        <app-employee-form (reflesh)="viewEmployee()" [status]="getStatus()" [employee]="getModel()">
+        </app-employee-form>
       </div>
     </div>
   </div>
+</div>

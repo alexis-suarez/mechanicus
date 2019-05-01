@@ -5,8 +5,7 @@
   <div class="row">
     <div class="col-2">
       <!-- Botton to register new Client -->
-      <button (click)="setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i
-          class="fas fa-plus"></i></button>
+      <!-- <button (click)="setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button> -->
     </div>
     <div class="col-4">
       <h3>Vehiculos</h3>
@@ -21,40 +20,43 @@
   </div>
   <ng-template [ngIf]="!isEmpty()" [ngIfElse]="exception">
     <!-- Table of Clients table-wrapper-scroll-y-->
-    <div class="table-responsive table-borderless ">
-      <table class="table table-hover table-striped table-sm">
-        <thead class="thead-dark text-center">
-          <tr>
-            <th scope="col">Marca</th>
-            <th scope="col">Modelo</th>
-            <th scope="col">Año</th>
-            <th scope="col">Color</th>
-            <th scope="col">Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- List of Clients -->
-          <tr *ngFor="let item of getList(); let i = index;">
-            <td (click)="getOne(item.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
-              {{ item.brand }}</td>
-            <td (click)="getOne(item.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
-              {{ item.model }}</td>
-            <td (click)="getOne(item.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal" data-target="#modal">
-              {{ item.year }}</td>
-            <td (click)="getOne(item.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal" data-target="#modal">
-              {{ item.colour }}</td>
-            <td class="d-flex justify-content-center">
-              <!-- Botton to edite a Automobile -->
-              <button (click)="getOne(item.id); setStatus(-1)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal" data-target="#modal"><i
-                  class="fas fa-edit"></i></button>
-              <!-- Botton to delete a Automobile -->
-              <button (click)="delete(item.id, i)" class="ml-1 btn-sm btn btn-danger"><i
-                  class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+      class="table table-hover table-striped table-borderless table-sm">
+      <thead class="thead-dark text-center">
+        <tr>
+          <th scope="col">Marca</th>
+          <th scope="col">Modelo</th>
+          <th scope="col">Año</th>
+          <th scope="col">Color</th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- List of Clients -->
+        <tr *ngFor="let item of getList(); let i = index;">
+          <td (click)="getOne(item.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal"
+            data-target="#modal">
+            {{ item.brand }}</td>
+          <td (click)="getOne(item.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal"
+            data-target="#modal">
+            {{ item.model }}</td>
+          <td (click)="getOne(item.id); setStatus(0)" class="text-center text-uppercase" data-toggle="modal"
+            data-target="#modal">
+            {{ item.year }}</td>
+          <td (click)="getOne(item.id); setStatus(0)" class="text-center text-lowercase" data-toggle="modal"
+            data-target="#modal">
+            {{ item.colour }}</td>
+          <td class="d-flex justify-content-center">
+            <!-- Botton to edite a Automobile -->
+            <button (click)="getOne(item.id); setStatus(-1)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal"
+              data-target="#modal"><i class="fas fa-edit"></i></button>
+            <!-- Botton to delete a Automobile -->
+            <button (click)="delete(item.id, i)" class="ml-1 btn-sm btn btn-danger"><i
+                class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </ng-template>
   <ng-template #exception>
     <div class="alert alert-info text-center btn-block" role="alert">

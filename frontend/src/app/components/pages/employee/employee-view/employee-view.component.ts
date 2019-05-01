@@ -41,6 +41,9 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
     this.clrModel();
 
     this.dtOptions = {
+      dom: '<\'row mt-4\'<\'col-sm-12 col-md-6\'lB><\'col-sm-12 col-md-6\'f>>' +
+      '<\'row\'<\'table-responsive\'<\'col-sm-12\'tr>>>' +
+      '<\'row\'<\'col-sm-12 col-md-5\'i><\'col-sm-12 col-md-7\'p>>',
       pagingType: 'full_numbers'
     };
   }
@@ -127,9 +130,8 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log(response);
       if (response.success) {
         this.employee = response.data;
-        // this.dtTrigger.next();
-        this.rerender();
       }
+      this.rerender();
     }, error => {
       console.log(error);
     });
@@ -141,6 +143,7 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
       if (response.success) {
         this.service.setList(response.data);
       }
+      this.rerender();
     }, error => {
       console.log(error);
     });

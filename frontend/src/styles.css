@@ -1,45 +1,75 @@
 /* You can add global styles to this file, and also import other style files */
 .op-0 {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .op-1 {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 .op-2 {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 .op-3 {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .op-4 {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .op-5 {
-    opacity: 1;
+  opacity: 1;
 }
 
 .uppercase {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 /* Validation styles */
-.ng-valid[required], .ng-valid.required  {
-    border-left: 5px solid #42A948; /* green */
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42a948; /* green */
 }
-  
-.ng-invalid:not(form)  {
-    border-left: 5px solid #a94442; /* red */
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442; /* red */
 }
 
 /* Static table vertical scroll */
 .table-wrapper-scroll-y {
-    display: block;
-    max-height: 350px;
-    overflow-y: auto;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
+  display: block;
+  max-height: 350px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/* Animations */
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.fast {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+
+  to {
+      opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
 }

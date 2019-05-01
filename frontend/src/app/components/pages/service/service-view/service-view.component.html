@@ -1,63 +1,70 @@
 <!-- Main div Container -->
 <br>
 <div class="container mt-5 shadow-lg p-3 mb-5 bg-white rounded">
-    <!-- -->
-    <div class="row">
-      <div class="col-2">
-        <!-- Botton to register new Service -->
-        <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button>
-      </div>
-      <div class="col-4"><h3>Servicios Terminados</h3></div>
-      <div class="col-6">
-          <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
-      </div>
+  <!-- -->
+  <div class="row">
+    <div class="col-2">
+      <!-- Botton to register new Service -->
+      <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i
+          class="fas fa-plus"></i></button>
     </div>
+    <div class="col-4">
+      <h3>Servicios Terminados</h3>
+    </div>
+    <div class="col-6">
+      <!-- <input class="shadow-sm p-3 mb-5 bg-white rounded form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search"> -->
+    </div>
+  </div>
+  <ng-template [ngIf]="!isEmpty()" [ngIfElse]="exception">
     <!-- Table of Services -->
-    <div class="table-responsive">
-      <table class="table table-hover table-striped table-borderless table-sm">
-        <thead class="thead-dark text-center">
-          <tr class="text-center">
-            <th scope="col">Automovil</th>
-            <th scope="col">Fecha de Ingreso</th>
-            <th scope="col">Fecha de Salida</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- List of Services -->
-          <tr *ngFor="let ser of getList(); let i = index;">
-            <td class="text-center">{{ ser.auto }}</td>
-            <td class="text-center">{{ ser.entreDate | date }}</td>
-            <td class="text-center">{{ ser.endedDate | date }}</td>
-            <td>{{ ser.description }}</td>
-            <td class="d-flex justify-content-center">
-              <!-- Botton to delete a Service -->
-              <button (click)="delService(ser.id, i)" class="ml-1 btn-sm btn btn-danger" data-toggle="modal" data-target="#DeleteModal"><i class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+      class="table table-hover table-striped table-borderless table-sm">
+      <thead class="thead-dark text-center">
+        <tr class="text-center">
+          <th scope="col">Automovil</th>
+          <th scope="col">Fecha de Ingreso</th>
+          <th scope="col">Fecha de Salida</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- List of Services -->
+        <tr *ngFor="let ser of getList(); let i = index;">
+          <td class="text-center">{{ ser.auto }}</td>
+          <td class="text-center">{{ ser.entreDate | date }}</td>
+          <td class="text-center">{{ ser.endedDate | date }}</td>
+          <td>{{ ser.description }}</td>
+          <td class="d-flex justify-content-center">
+            <!-- Botton to delete a Service -->
+            <button (click)="delService(ser.id, i)" class="ml-1 btn-sm btn btn-danger" data-toggle="modal"
+              data-target="#DeleteModal"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+  <ng-template #exception>
+    <div class="alert alert-info text-center btn-block" role="alert">
+      ¡No hay información en la Aplicación!
     </div>
-    <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">
-        ¡No hay información en la Aplicación!
+  </ng-template>
+</div>
+
+<!-- Modal From Service -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="modalTitle">Formulario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-  </div>
-  
-  <!-- Modal From Service -->
-  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-center" id="modalTitle">Formulario</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Form to Register -->
-          <app-service-form [servic]="getModel()"></app-service-form>
-        </div>
+      <div class="modal-body">
+        <!-- Form to Register -->
+        <app-service-form [servic]="getModel()"></app-service-form>
       </div>
     </div>
   </div>
+</div>
