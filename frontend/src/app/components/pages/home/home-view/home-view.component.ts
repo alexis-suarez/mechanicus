@@ -50,6 +50,14 @@ export class HomeViewComponent implements OnInit {
     return this.service.isEmpty();
   }
 
+  public isEmptyListFinished(): boolean {
+    return this.service.isEmptyListFinished();
+  }
+
+  public isEmptyListDelivered(): boolean {
+    return this.service.isEmptyListDelivered();
+  }
+
   // Get Model
   public getModel(): Service {
     return this.servic;

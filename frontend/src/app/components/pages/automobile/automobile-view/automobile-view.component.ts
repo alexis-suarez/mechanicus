@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
+// DataTables
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 
 // Models
 import { Automobile } from 'src/app/models/automobile';
@@ -15,7 +19,13 @@ import Swal from 'sweetalert2';
   templateUrl: './automobile-view.component.html',
   styleUrls: ['./automobile-view.component.css']
 })
-export class AutomobileViewComponent implements OnInit {
+export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit {
+
+  // Datatables
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
   private automobile: Automobile;
   private status: number;
@@ -37,6 +47,33 @@ export class AutomobileViewComponent implements OnInit {
 
     // Initialize Model
     this.clrModel();
+
+    this.dtOptions = {
+      dom: '<\'row mt-4\'<\'col-sm-12 col-md-6\'lB><\'col-sm-12 col-md-6\'f>>' +
+      '<\'row\'<\'table-responsive\'<\'col-sm-12\'tr>>>' +
+      '<\'row\'<\'col-sm-12 col-md-5\'i><\'col-sm-12 col-md-7\'p>>',
+      pagingType: 'full_numbers'
+    };
+
+    this.rerender();
+  }
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
   }
 
   // Return the list
@@ -115,6 +152,7 @@ export class AutomobileViewComponent implements OnInit {
       if (response.success) {
         this.automobile = response.data;
       }
+      this.rerender();
     }, error => {
       console.log(error);
     });
@@ -125,6 +163,7 @@ export class AutomobileViewComponent implements OnInit {
       if (response.success) {
         this.service.setList(response.data);
       }
+      this.rerender();
     }, error => {
       console.log(error);
     });

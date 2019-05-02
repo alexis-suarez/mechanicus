@@ -19,80 +19,71 @@
     <hr>
     <div class="row">
         <div class="col-sm-6">
-            <div *ngFor="let serv of getListPending(); let i = index;" class="card text-center bg-light m-2">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-8">
-                            <h5 class="card-title text-left">{{ serv.auto }}</h5>
+            <ng-template [ngIf]="!isEmpty()" [ngIfElse]="exception">
+                <ul class="list-unstyled">
+                    <li *ngFor="let serv of getListPending(); let i = index;" class="media mb-5">
+                        <!-- <img src="..." class="mr-3" alt="..."> -->
+                        <div class="row mr-3">
+                            <div class="col">
+                                <!-- Button for Delete Service -->
+                                <div class="btn-group-vertical">
+                                    <button (click)="delService(serv.id, i)" type="button"
+                                        class="btn btn-block btn-danger"><i class="fas fa-times"></i></button>
+                                    <button (click)="delServiceFinish(serv.id, i)" type="button"
+                                        class="btn btn-block btn-success"><i class="fas fa-check"></i></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-3">
-                            <p class="card-text text-left">{{ serv.entreDate | date}}</p>
+                        <div class="media-body text-left text-uppercase">
+                            <h5 class="mt-0 mb-1"><i class="fas fa-car"></i> {{ serv.auto }}</h5>
+                            <p class="card-text"><i class="fas fa-user-tie"></i> Cliente: {{ serv.client }}</p>
+                            <p class="card-text "><i class="far fa-calendar-alt"></i> Fecha: {{ serv.entreDate | date }}
+                            </p>
+                            <p class="card-text"><i class="fas fa-user"></i> Empleado: {{ serv.employee }}</p>
+                            <i class="fas fa-align-justify"></i> {{ serv.description }}
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="card-text text-left text-uppercase">{{ serv.client }}</p>
-                        </div>
-                        <div class="col">
-                            <p class="card-text text-left text-uppercase">{{ serv.employee }}</p>
-                        </div>
-                    </div>
-                    <p class="card-text text-uppercase">{{ serv.description }}</p>
-                    <div class="row">
-                        <div class="col">
-                            <!-- Button for Delete Service -->
-                            <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-block btn-danger"><i
-                                    class="fas fa-times"></i></button>
-                        </div>
-                        <div class="col">
-                            <!-- Button for Finish Service -->
-                            <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-block btn-success"><i
-                                    class="fas fa-check"></i></button>
-                        </div>
-                    </div>
+                    </li>
+                </ul>
+            </ng-template>
+            <ng-template #exception>
+                <div class="alert alert-info text-center btn-block" role="alert">
+                    No hay Servicios Pendientes
                 </div>
-            </div>
-            <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">
-                ¡No hay información en la Aplicación!
-            </div>
+            </ng-template>
         </div>
+
         <div class="col-sm-6">
-            <div *ngFor="let serv of getListFinished(); let i = index;" class="card text-center bg-light m-2">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-8">
-                            <h5 class="card-title text-left">{{ serv.auto }}</h5>
+            <ng-template [ngIf]="!isEmptyListFinished()" [ngIfElse]="exception">
+                <ul class="list-unstyled">
+                    <li *ngFor="let serv of getListFinished(); let i = index;" class="media mb-5">
+                        <!-- <img src="..." class="mr-3" alt="..."> -->
+                        <div class="row mr-3">
+                            <div class="col">
+                                <!-- Button for Delete Service -->
+                                <div class="btn-group-vertical">
+                                    <button (click)="delService(serv.id, i)" type="button"
+                                        class="btn btn-block btn-danger"><i class="fas fa-times"></i></button>
+                                    <button (click)="delServiceFinish(serv.id, i)" type="button"
+                                        class="btn btn-block btn-success"><i class="fas fa-check"></i></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-3">
-                            <p class="card-text text-left">{{ serv.entreDate | date}}</p>
+                        <div class="media-body text-left text-uppercase">
+                            <h5 class="mt-0 mb-1"><i class="fas fa-car"></i> {{ serv.auto }}</h5>
+                            <p class="card-text"><i class="fas fa-user-tie"></i> Cliente: {{ serv.client }}</p>
+                            <p class="card-text "><i class="far fa-calendar-alt"></i> Fecha: {{ serv.entreDate | date }}
+                            </p>
+                            <p class="card-text"><i class="fas fa-user"></i> Empleado: {{ serv.employee }}</p>
+                            <i class="fas fa-align-justify"></i> {{ serv.description }}
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p class="card-text text-left text-uppercase">{{ serv.client }}</p>
-                        </div>
-                        <div class="col">
-                            <p class="card-text text-left text-uppercase">{{ serv.employee }}</p>
-                        </div>
-                    </div>
-                    <p class="card-text text-uppercase">{{ serv.description }}</p>
-                    <div class="row">
-                        <div class="col">
-                            <!-- Button for Delete Service -->
-                            <button (click)="delService(serv.id, i)" type="button" class="mr-3 btn btn-block btn-danger"><i
-                                    class="fas fa-times"></i></button>
-                        </div>
-                        <div class="col">
-                            <!-- Button for Finish Service -->
-                            <button (click)="delServiceFinish(serv.id, i)" type="button" class="ml-3 btn btn-block btn-success"><i
-                                    class="fas fa-check"></i></button>
-                        </div>
-                    </div>
+                    </li>
+                </ul>
+            </ng-template>
+            <ng-template #exception>
+                <div class="alert alert-info text-center btn-block" role="alert">
+                    No hay Servicios Pendientes
                 </div>
-            </div>
-            <div *ngIf="isEmpty()" class="alert alert-info text-center btn-block" role="alert">
-                ¡No hay información en la Aplicación!
-            </div>
+            </ng-template>
         </div>
     </div>
 </div>

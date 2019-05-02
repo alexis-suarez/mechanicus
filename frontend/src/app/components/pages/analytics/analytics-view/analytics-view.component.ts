@@ -11,5 +11,4 @@ export class AnalyticsViewComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

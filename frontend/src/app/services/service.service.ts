@@ -65,6 +65,14 @@ export class ServiceService {
     return this.list.length === 0;
   }
 
+  public isEmptyListFinished(): boolean {
+    return this.listFinished.length === 0;
+  }
+
+  public isEmptyListDelivered(): boolean {
+    return this.listDelivered.length === 0;
+  }
+
   public setItemList(service: Service): void {
     let i = 0;
     while (i < this.list.length) {
