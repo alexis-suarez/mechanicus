@@ -55,7 +55,7 @@ export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit
       pagingType: 'full_numbers'
     };
 
-    this.rerender();
+    // this.rerender();
   }
 
   ngAfterViewInit(): void {
@@ -152,7 +152,7 @@ export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit
       if (response.success) {
         this.automobile = response.data;
       }
-      this.rerender();
+      // this.rerender();
     }, error => {
       console.log(error);
     });

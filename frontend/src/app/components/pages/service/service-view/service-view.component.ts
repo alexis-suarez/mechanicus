@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit, ViewChild } from '@angular/core';
+
+// DataTables
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 
 // Models
 import { Service } from 'src/app/models/service';
@@ -14,7 +18,13 @@ import swal from 'sweetalert2';
   templateUrl: './service-view.component.html',
   styleUrls: ['./service-view.component.css']
 })
-export class ServiceViewComponent implements OnInit {
+export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
+
+  // Datatables
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
   private servic: Service;
   private status: boolean;
@@ -22,13 +32,40 @@ export class ServiceViewComponent implements OnInit {
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
-    if (this.service.isEmpty()) {
-      // Load the data on the table
-      this.get();
-    }
+    // if (this.service.isEmpty()) {
+    //   // Load the data on the table
+    // }
+    this.get();
 
     // Initialize Model
     this.clrModel();
+
+    this.dtOptions = {
+      dom: '<\'row mt-4\'<\'col-sm-12 col-md-6\'lB><\'col-sm-12 col-md-6\'f>>' +
+      '<\'row\'<\'table-responsive\'<\'col-sm-12\'tr>>>' +
+      '<\'row\'<\'col-sm-12 col-md-5\'i><\'col-sm-12 col-md-7\'p>>',
+      pagingType: 'full_numbers'
+    };
+
+    // this.rerender();
+  }
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
   }
 
   // Return the list
@@ -95,6 +132,7 @@ export class ServiceViewComponent implements OnInit {
       if (response.status) {
         this.servic = response.data;
       }
+      this.rerender();
     }, error => {
       console.log(error);
     });
@@ -105,6 +143,7 @@ export class ServiceViewComponent implements OnInit {
       if (response.status) {
         this.service.setList(response.data);
       }
+      this.rerender();
     }, error => {
       console.log(error);
     });

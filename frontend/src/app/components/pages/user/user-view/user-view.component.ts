@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit, ViewChild } from '@angular/core';
+
+// DataTables
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 
 // Models
 import { User } from 'src/app/models/user';
@@ -14,7 +18,13 @@ import swal from 'sweetalert2';
   templateUrl: './user-view.component.html',
   styleUrls: ['./user-view.component.css']
 })
-export class UserViewComponent implements OnInit {
+export class UserViewComponent implements AfterViewInit, OnDestroy, OnInit {
+
+  // Datatables
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
   private user: User;
   private status: boolean;
@@ -27,9 +37,34 @@ export class UserViewComponent implements OnInit {
 
     // Initialize Model
     this.clrModel();
+
+    this.dtOptions = {
+      dom: '<\'row mt-4\'<\'col-sm-12 col-md-6\'lB><\'col-sm-12 col-md-6\'f>>' +
+      '<\'row\'<\'table-responsive\'<\'col-sm-12\'tr>>>' +
+      '<\'row\'<\'col-sm-12 col-md-5\'i><\'col-sm-12 col-md-7\'p>>',
+      pagingType: 'full_numbers'
+    };
   }
 
-    // Return the list
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  }
+
+  // Return the list
   public getList(): Array<User> {
     return this.service.getList();
   }
@@ -74,6 +109,7 @@ export class UserViewComponent implements OnInit {
         this.service.delUser(id).subscribe(response => {
           if (response.status) {
             this.service.delList(index);
+            this.rerender();
           }
         }, error => {
           console.log(error);
@@ -102,6 +138,7 @@ export class UserViewComponent implements OnInit {
       if (response.status) {
         this.service.setList(response.data);
       }
+      this.rerender();
     }, error => {
       console.log(error);
     });

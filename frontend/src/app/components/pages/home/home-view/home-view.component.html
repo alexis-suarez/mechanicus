@@ -22,7 +22,6 @@
             <ng-template [ngIf]="!isEmpty()" [ngIfElse]="exception">
                 <ul class="list-unstyled">
                     <li *ngFor="let serv of getListPending(); let i = index;" class="media mb-5">
-                        <!-- <img src="..." class="mr-3" alt="..."> -->
                         <div class="row mr-3">
                             <div class="col">
                                 <!-- Button for Delete Service -->
@@ -56,7 +55,6 @@
             <ng-template [ngIf]="!isEmptyListFinished()" [ngIfElse]="exception">
                 <ul class="list-unstyled">
                     <li *ngFor="let serv of getListFinished(); let i = index;" class="media mb-5">
-                        <!-- <img src="..." class="mr-3" alt="..."> -->
                         <div class="row mr-3">
                             <div class="col">
                                 <!-- Button for Delete Service -->
