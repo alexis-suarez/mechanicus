@@ -22,19 +22,19 @@
       <thead class="thead-dark text-center">
         <tr class="text-center">
           <th scope="col">Automovil</th>
-          <th scope="col">Fecha de Ingreso</th>
-          <th scope="col">Fecha de Salida</th>
-          <th scope="col">Descripcion</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Ingreso</th>
+          <th scope="col">Salida</th>
           <th scope="col">Acción</th>
         </tr>
       </thead>
       <tbody>
         <!-- List of Services -->
         <tr *ngFor="let ser of getList(); let i = index;">
-          <td class="text-center">{{ ser.auto }}</td>
+          <td class="text-center text-uppercase">{{ ser.auto }}</td>
+          <td class="text-uppercase">{{ ser.description }}</td>
           <td class="text-center">{{ ser.entreDate | date }}</td>
           <td class="text-center">{{ ser.endedDate | date }}</td>
-          <td>{{ ser.description }}</td>
           <td class="d-flex justify-content-center">
             <!-- Botton to delete a Service -->
             <button (click)="delService(ser.id, i)" class="ml-1 btn-sm btn btn-danger" data-toggle="modal"

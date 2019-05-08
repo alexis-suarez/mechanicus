@@ -139,6 +139,6 @@ export class AutomobileService {
   }
 
   public get(id: string): any {
-    return this.http.get<Response>(this.url + 'automobile' + id, httpOptions);
+    return this.http.get<Response>(this.url + 'automobile/' + id, httpOptions);
   }
 }
