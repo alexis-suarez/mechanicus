@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+// API's
+import { environment } from 'src/environments/environment';
+
 // Header Options
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,8 +19,7 @@ const httpOptions = {
 export class AnalyticsService {
 
   // API URL
-  private url = 'http://127.0.0.1:5000/api/analytics';
-  // private url = 'http://argentum.sytes.net:5000/api/analytics';
+  private url = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 }

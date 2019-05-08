@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+// API's
+import { environment } from 'src/environments/environment';
+
 // Models
 import { Service } from '../models/service';
 import { Response } from '../models/response';
@@ -25,8 +28,7 @@ export class ServiceService {
   private listDelivered: Array<Service>;
 
   // API URL
-  private url = 'http://127.0.0.1:5000/api/service';
-  // private url = 'http://argentum.sytes.net:5000/api/service';
+  private url = environment.baseUrl;
 
   constructor(private http: HttpClient) {
     this.list = new Array<Service>();
@@ -85,30 +87,30 @@ export class ServiceService {
 
   // Http Request
   public post(service: Service): any {
-    return this.http.post<Response>(this.url, JSON.stringify(service), httpOptions);
+    return this.http.post<Response>(this.url + 'service', JSON.stringify(service), httpOptions);
   }
 
   public delete(id: string): any {
-    return this.http.delete<Response>(this.url + '/' + id, httpOptions);
+    return this.http.delete<Response>(this.url + 'service/' + id, httpOptions);
   }
 
   public delServiceDeliver(id: string): any {
-    return this.http.delete<Response>(this.url + '/deliver/' + id, httpOptions);
+    return this.http.delete<Response>(this.url + 'service/deliver/' + id, httpOptions);
   }
 
   public delServiceFinish(id: string): any {
-    return this.http.delete<Response>(this.url + '/finish/' + id, httpOptions);
+    return this.http.delete<Response>(this.url + 'service/finish/' + id, httpOptions);
   }
 
   public updService(id: string, service: Service): any {
-    return this.http.put<Response>(this.url + '/' + id, JSON.stringify(Service), httpOptions);
+    return this.http.put<Response>(this.url + 'service/' + id, JSON.stringify(Service), httpOptions);
   }
 
   public getService(id: string): any {
-    return this.http.get<Response>(this.url + '/' + id);
+    return this.http.get<Response>(this.url + 'service/' + id);
   }
 
   public get(): any {
-    return this.http.get<Response>(this.url, httpOptions);
+    return this.http.get<Response>(this.url + 'service', httpOptions);
   }
 }

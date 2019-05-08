@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+// API's
+import { environment } from 'src/environments/environment';
+
 // Models
 import { Client } from '../models/client';
 import { Response } from '../models/response';
@@ -23,8 +26,7 @@ export class ClientService {
   private list: Array<Client>;
 
   // API URL
-  private url = 'http://127.0.0.1:5000/api/client';
-  // private url = 'http://argentum.sytes.net:5000/api/client';
+  private url = environment.baseUrl;
 
   constructor(private http: HttpClient) {
     this.list = new Array<Client>();
@@ -94,22 +96,22 @@ export class ClientService {
 
   // Http Request
   public post(client: Client): any {
-    return this.http.post<Response>(this.url, JSON.stringify(client), httpOptions);
+    return this.http.post<Response>(this.url + 'client', JSON.stringify(client), httpOptions);
   }
 
   public delete(id: string): any {
-    return this.http.delete<Response>(this.url + '/' + id, httpOptions);
+    return this.http.delete<Response>(this.url + 'client/' + id, httpOptions);
   }
 
   public put(id: string, client: Client): any {
-    return this.http.put<Response>(this.url + '/' + id, JSON.stringify(client), httpOptions);
+    return this.http.put<Response>(this.url + 'client/' + id, JSON.stringify(client), httpOptions);
   }
 
   public getOne(id: string): any {
-    return this.http.get<Response>(this.url + '/' + id, httpOptions);
+    return this.http.get<Response>(this.url + 'client/' + id, httpOptions);
   }
 
   public get(): any {
-    return this.http.get<Response>(this.url, httpOptions);
+    return this.http.get<Response>(this.url + 'client', httpOptions);
   }
 }

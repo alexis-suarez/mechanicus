@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+// API's
+import { environment } from 'src/environments/environment';
+
 // Models
 import { User } from '../models/user';
 import { Response } from '../models/response';
@@ -23,8 +26,7 @@ export class UserService {
   private list: Array<User>;
 
   // API URL
-  private url = 'http://127.0.0.1:5000/api/user';
-  // private url = 'http://argentum.sytes.net:5000/api/user';
+  private url = environment.baseUrl;
 
   constructor(private http: HttpClient) {
     this.list = [];
@@ -65,26 +67,26 @@ export class UserService {
 
   // Http Request
   public newUser(user: User): any {
-    return this.http.post<Response>(this.url, JSON.stringify(user), httpOptions);
+    return this.http.post<Response>(this.url + 'user', JSON.stringify(user), httpOptions);
   }
 
   public delUser(id: string): any {
-    return this.http.delete<Response>(this.url + '/' + id, httpOptions);
+    return this.http.delete<Response>(this.url + 'user/' + id, httpOptions);
   }
 
   public updUser(id: string, user: User): any {
-    return this.http.put<Response>(this.url + '/' + id, JSON.stringify(user), httpOptions);
+    return this.http.put<Response>(this.url + 'user/' + id, JSON.stringify(user), httpOptions);
   }
 
   public getUser(id: string): any {
-    return this.http.get<Response>(this.url + '/' + id);
+    return this.http.get<Response>(this.url + 'user/' + id);
   }
 
   public viewUser(): any {
-    return this.http.get<Response>(this.url, httpOptions);
+    return this.http.get<Response>(this.url + 'user', httpOptions);
   }
 
   public chckUser(username: string, password: string): any {
-    return this.http.get<Response>(this.url + '/chck/' + username + '/' + password, httpOptions);
+    return this.http.get<Response>(this.url + 'user/chck/' + username + '/' + password, httpOptions);
   }
 }

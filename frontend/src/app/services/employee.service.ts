@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+// API's
+import { environment } from 'src/environments/environment';
+
 // Models
 import { Employee } from '../models/employee';
 import { Response } from '../models/response';
@@ -23,8 +26,7 @@ export class EmployeeService {
   private list: Array<Employee>;
 
   // API URL
-  private url = 'http://127.0.0.1:5000/api/employee';
-  // private url = 'http://argentum.sytes.net:5000/api/employee';
+  private url = environment.baseUrl;
 
   constructor(private http: HttpClient) {
     this.list = new Array<Employee>();
@@ -65,22 +67,22 @@ export class EmployeeService {
 
   // Http Request
   public post(employee: Employee): any {
-    return this.http.post<Response>(this.url, JSON.stringify(employee), httpOptions);
+    return this.http.post<Response>(this.url + 'employee', JSON.stringify(employee), httpOptions);
   }
 
   public delete(id: string): any {
-    return this.http.delete<Response>(this.url + '/' + id, httpOptions);
+    return this.http.delete<Response>(this.url + 'employee/' + id, httpOptions);
   }
 
   public put(id: string, employee: Employee): any {
-    return this.http.put<Response>(this.url + '/' + id, JSON.stringify(employee), httpOptions);
+    return this.http.put<Response>(this.url + 'employee/' + id, JSON.stringify(employee), httpOptions);
   }
 
   public get(id: string): any {
-    return this.http.get<Response>(this.url + '/' + id);
+    return this.http.get<Response>(this.url + 'employee/' + id);
   }
 
   public viewEmployee(): any {
-    return this.http.get<Response>(this.url, httpOptions);
+    return this.http.get<Response>(this.url + 'employee', httpOptions);
   }
 }

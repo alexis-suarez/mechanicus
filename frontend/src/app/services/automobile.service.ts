@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+// API's
+import { environment } from 'src/environments/environment';
+
 // Models
 import { Automobile } from '../models/automobile';
 import { Response } from '../models/response';
@@ -24,8 +27,7 @@ export class AutomobileService {
   private listBrand: Array<any>;
 
   // API URL
-  private url = 'http://127.0.0.1:5000/api/automobile';
-  // private url = 'http://argentum.sytes.net:5000/api/automobile';
+  private url = environment.baseUrl;
 
   constructor(private http: HttpClient) {
     this.list = new Array<Automobile>();
@@ -121,22 +123,22 @@ export class AutomobileService {
 
   // Http Request
   public post(automobile: Automobile): any {
-    return this.http.post<Response>(this.url, JSON.stringify(automobile), httpOptions);
+    return this.http.post<Response>(this.url + 'automobile', JSON.stringify(automobile), httpOptions);
   }
 
   public delete(id: string): any {
-    return this.http.delete<Response>(this.url + '/' + id, httpOptions);
+    return this.http.delete<Response>(this.url + 'automobile/' + id, httpOptions);
   }
 
   public put(id: string, automobile: Automobile): any {
-    return this.http.put<Response>(this.url + '/' + id, JSON.stringify(automobile), httpOptions);
+    return this.http.put<Response>(this.url + 'automobile/' + id, JSON.stringify(automobile), httpOptions);
   }
 
   public getOne(id: string): any {
-    return this.http.get<Response>(this.url + '/one/' + id, httpOptions);
+    return this.http.get<Response>(this.url + 'automobile/one/' + id, httpOptions);
   }
 
   public get(id: string): any {
-    return this.http.get<Response>(this.url + '/' + id, httpOptions);
+    return this.http.get<Response>(this.url + 'automobile' + id, httpOptions);
   }
 }
