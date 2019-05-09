@@ -9,7 +9,7 @@
                     class="fas fa-plus"></i></button>
         </div>
         <div class="col-4">
-            <h3>Servicios Pendientes</h3>
+            <h3>Pendientes</h3>
         </div>
         <div class="col-2"></div>
         <div class="col-4">
@@ -19,7 +19,7 @@
     <hr>
     <div class="row">
         <div class="col-sm-6">
-            <ng-template [ngIf]="!isEmpty()" [ngIfElse]="exception">
+            <ng-template [ngIf]="!isEmptyListPending()" [ngIfElse]="exception">
                 <ul class="list-unstyled">
                     <li *ngFor="let serv of getListPending(); let i = index;" class="media mb-5">
                         <div class="row mr-3">
@@ -79,7 +79,7 @@
             </ng-template>
             <ng-template #exception>
                 <div class="alert alert-info text-center btn-block" role="alert">
-                    No hay Servicios Pendientes
+                    No hay Servicios Terminados
                 </div>
             </ng-template>
         </div>

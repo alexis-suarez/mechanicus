@@ -24,6 +24,7 @@ export class ServiceService {
 
   // Service Main List
   private list: Array<Service>;
+  private listPending: Array<Service>;
   private listFinished: Array<Service>;
   private listDelivered: Array<Service>;
 
@@ -32,6 +33,7 @@ export class ServiceService {
 
   constructor(private http: HttpClient) {
     this.list = new Array<Service>();
+    this.listPending = new Array<Service>();
     this.listFinished = new Array<Service>();
     this.listDelivered = new Array<Service>();
   }
@@ -55,16 +57,30 @@ export class ServiceService {
     return this.list;
   }
 
+  public getListPending(): Array<Service> {
+    return this.listPending = this.list.filter(item => {
+      return item.finished === false && item.delived === false;
+    });
+  }
+
   public getListFinished(): Array<Service> {
-    return this.listFinished;
+    return this.listFinished = this.list.filter(item => {
+      return item.finished === true && item.delived === false;
+    });
   }
 
   public getListDelivered(): Array<Service> {
-    return this.listDelivered;
+    return this.listDelivered = this.list.filter(item => {
+      return item.finished === true && item.delived === true;
+    });
   }
 
   public isEmpty(): boolean {
     return this.list.length === 0;
+  }
+
+  public isEmptyListPending(): boolean {
+    return this.listPending.length === 0;
   }
 
   public isEmptyListFinished(): boolean {

@@ -10,7 +10,7 @@
             <input [(ngModel)]="user.username" name="username" type="text" id="inputUserName" class="form-control text-center" placeholder="Usuario" required autofocus>
           </div>
           <div class="form-group">
-            <input [(ngModel)]="user.password" name="password" type="password" id="inputPassword" class="form-control text-center" placeholder="Contraseña" required>
+            <input (keyup.enter)="signIn()" [(ngModel)]="user.password" name="password" type="password" id="inputPassword" class="form-control text-center" placeholder="Contraseña" required>
           </div>
           <div class="checkbox mb-3"><hr></div>
             <button [disabled]="!Form.form.valid" (click)="signIn()" class="btn btn-lg btn btn-success btn-block" type="button">Sign in</button>

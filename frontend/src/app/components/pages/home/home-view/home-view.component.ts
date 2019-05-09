@@ -38,7 +38,7 @@ export class HomeViewComponent implements OnInit {
 
   // Return the list
   public getListPending(): Array<Service> {
-    return this.service.getList();
+    return this.service.getListPending();
   }
 
   public getListFinished(): Array<Service> {
@@ -46,16 +46,12 @@ export class HomeViewComponent implements OnInit {
   }
 
   // Check if is Empty
-  public isEmpty(): boolean {
-    return this.service.isEmpty();
+  public isEmptyListPending(): boolean {
+    return this.service.isEmptyListPending();
   }
 
   public isEmptyListFinished(): boolean {
     return this.service.isEmptyListFinished();
-  }
-
-  public isEmptyListDelivered(): boolean {
-    return this.service.isEmptyListDelivered();
   }
 
   // Get Model

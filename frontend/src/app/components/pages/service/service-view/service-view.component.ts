@@ -70,7 +70,7 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
 
   // Return the list
   public getList(): Array<Service> {
-    return this.service.getList();
+    return this.service.getListDelivered();
   }
 
   // Check if is Empty
