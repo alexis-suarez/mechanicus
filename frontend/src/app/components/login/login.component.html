@@ -4,8 +4,8 @@
       <div class="col"></div>
       <div class="op-4 col-xl-6 col-lg-8 col-sm-10 col-12 mx-auto mt-5 shadow-lg p-4 mb-5 bg-white rounded">
         <form #Form="ngForm" class="mt-5 p-3 form-signin text-center">
-          <img class="mb-4" src="../../../assets/img/icon.jpeg" alt="" width="72" height="72">
-          <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+          <img class="mb-4" src="../../../assets/img/icon.jpeg" alt="" width="100" height="100">
+          <h1 class="display-3 mb-5">Mechanicus</h1>
           <div class="form-group">
             <input [(ngModel)]="user.username" name="username" type="text" id="inputUserName" class="form-control text-center" placeholder="Usuario" required autofocus>
           </div>
@@ -13,7 +13,7 @@
             <input (keyup.enter)="signIn()" [(ngModel)]="user.password" name="password" type="password" id="inputPassword" class="form-control text-center" placeholder="Contraseña" required>
           </div>
           <div class="checkbox mb-3"><hr></div>
-            <button [disabled]="!Form.form.valid" (click)="signIn()" class="btn btn-lg btn btn-success btn-block" type="button">Sign in</button>
+            <button [disabled]="!Form.form.valid" (click)="signIn()" class="btn btn-lg btn btn-success btn-block" type="button">Acceder</button>
         </form>
       </div>
       <div class="col"></div>

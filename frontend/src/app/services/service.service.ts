@@ -51,6 +51,15 @@ export class ServiceService {
 
   public setList(data: any): void {
     this.list = data;
+    this.listPending = this.list.filter(item => {
+      return item.finished === false && item.delived === false;
+    });
+    this.listFinished = this.list.filter(item => {
+      return item.finished === true && item.delived === false;
+    });
+    this.listDelivered = this.list.filter(item => {
+      return item.finished === true && item.delived === true;
+    });
   }
 
   public getList(): Array<Service> {
@@ -58,21 +67,15 @@ export class ServiceService {
   }
 
   public getListPending(): Array<Service> {
-    return this.listPending = this.list.filter(item => {
-      return item.finished === false && item.delived === false;
-    });
+    return this.listPending;
   }
 
   public getListFinished(): Array<Service> {
-    return this.listFinished = this.list.filter(item => {
-      return item.finished === true && item.delived === false;
-    });
+    return this.listFinished;
   }
 
   public getListDelivered(): Array<Service> {
-    return this.listDelivered = this.list.filter(item => {
-      return item.finished === true && item.delived === true;
-    });
+    return this.listDelivered;
   }
 
   public isEmpty(): boolean {
