@@ -74,8 +74,8 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   // Check if is Empty
-  public isEmpty(): boolean {
-    return this.service.isEmpty();
+  public isEmptyListDelivered(): boolean {
+    return this.service.isEmptyListDelivered();
   }
 
   // Get Model

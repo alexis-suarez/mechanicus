@@ -12,7 +12,7 @@
       <h1 class="display-4">Servicios Terminados</h1>
     </div>
   </div>
-  <ng-template [ngIf]="!isEmpty()" [ngIfElse]="exception">
+  <ng-template [ngIf]="!isEmptyListDelivered()" [ngIfElse]="exception">
     <!-- Table of Services -->
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
       class="table table-hover table-striped table-borderless table-sm">
