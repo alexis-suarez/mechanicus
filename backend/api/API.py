@@ -43,4 +43,4 @@ api.add_resource(Analytics, '/analytics')
 
 # Main fuction in debug Mode
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(host='192.168.15.10', debug=False)
