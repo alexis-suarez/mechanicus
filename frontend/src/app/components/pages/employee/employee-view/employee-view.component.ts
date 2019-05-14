@@ -130,8 +130,8 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log(response);
       if (response.success) {
         this.employee = response.data;
+        this.rerender();
       }
-      this.rerender();
     }, error => {
       console.log(error);
     });
@@ -142,8 +142,8 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log(response);
       if (response.success) {
         this.service.setList(response.data);
+        this.rerender();
       }
-      this.rerender();
     }, error => {
       console.log(error);
     });

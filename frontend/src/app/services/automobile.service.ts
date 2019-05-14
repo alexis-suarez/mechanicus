@@ -85,14 +85,31 @@ export class AutomobileService {
   }
 
   // Function for List
-  public addList(automobile: Automobile): void {
+  public isEmpty(): boolean {
+    return this.list.length === 0;
+  }
+
+  public contrains(data: Automobile): boolean {
+    if (!this.isEmpty()) {
+      this.list.forEach(element => {
+        if (element.id === data.id) { return true; }
+      });
+    }
+    return false;
+  }
+
+  public insert(automobile: Automobile): void {
     this.list.push(automobile);
   }
 
-  public delList(index: number): void {
-    if (index !== -1) {
+  public remove(index: number): void {
+    if (index !== -1 && !this.isEmpty()) {
       this.list.splice(index, 1);
     }
+  }
+
+  public clear(): void {
+    this.list = new Array<Automobile>();
   }
 
   public setList(data: any): void {
@@ -107,8 +124,25 @@ export class AutomobileService {
     return this.listBrand;
   }
 
-  public isEmpty(): boolean {
-    return this.list.length === 0;
+  public getName(id: string): string {
+    return this.list[this.find(id)].brand + ' ' +
+    this.list[this.find(id)].model + ' ' +
+    this.list[this.find(id)].colour;
+  }
+
+  public find(id: string): number {
+    let i = 0;
+    while (i < this.list.length) {
+      if (this.list[i].id === id) { return i; }
+      i += 1;
+    }
+    return -1;
+  }
+
+  public retrive(index: number): Automobile {
+    if (index !== -1 && !this.isEmpty()) {
+      return this.list[index];
+    }
   }
 
   public setItemList(automobile: Automobile): void {
@@ -140,5 +174,9 @@ export class AutomobileService {
 
   public get(id: string): any {
     return this.http.get<Response>(this.url + 'automobile/' + id, httpOptions);
+  }
+
+  public getAll(): any {
+    return this.http.get<Response>(this.url + 'automobile', httpOptions);
   }
 }

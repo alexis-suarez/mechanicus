@@ -136,8 +136,8 @@ export class ClientViewComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log(response);
       if (response.success) {
         this.client = response.data;
+        this.rerender();
       }
-      this.rerender();
     }, error => {
       console.log(error);
     });
@@ -148,8 +148,8 @@ export class ClientViewComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log(response);
       if (response.success) {
         this.service.setList(response.data);
+        this.rerender();
       }
-      this.rerender();
     }, error => {
       console.log(error);
     });

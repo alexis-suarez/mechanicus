@@ -132,7 +132,7 @@ export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit
         this.service.delete(id).subscribe(response => {
           console.log(response);
           if (response.success) {
-            this.service.delList(index);
+            this.service.remove(index);
           }
         }, error => {
           console.log(error);

@@ -127,6 +127,7 @@ export class UserViewComponent implements AfterViewInit, OnDestroy, OnInit {
     this.service.getUser(id).subscribe(response => {
       if (response.status) {
         this.user = response.data;
+        this.rerender();
       }
     }, error => {
       console.log(error);
@@ -137,8 +138,8 @@ export class UserViewComponent implements AfterViewInit, OnDestroy, OnInit {
     this.service.viewUser().subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);
+        this.rerender();
       }
-      this.rerender();
     }, error => {
       console.log(error);
     });

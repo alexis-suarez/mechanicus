@@ -10,9 +10,9 @@ import { User } from '../models/user';
 export class AuthService {
 
   constructor(public router: Router) {
-    localStorage.setItem('id', 'aslsas03');
-    localStorage.setItem('username', 'Alexis Suárez Llamas');
-    localStorage.setItem('role', 'ADMIN');
+    // localStorage.setItem('id', 'aslsas03');
+    // localStorage.setItem('username', 'Alexis Suárez Llamas');
+    // localStorage.setItem('role', 'ADMIN');
   }
 
   public logint(user: User): void {

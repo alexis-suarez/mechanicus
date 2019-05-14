@@ -33,7 +33,6 @@ export class ClientService {
   }
 
   // Function for List
-
   public isEmpty(): boolean {
     return this.list.length === 0;
   }
@@ -67,6 +66,10 @@ export class ClientService {
 
   public getList(): Array<Client> {
     return this.list;
+  }
+
+  public getName(id: string): string {
+    return this.list[this.find(id)].name;
   }
 
   public find(id: string): number {

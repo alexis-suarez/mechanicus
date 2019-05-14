@@ -5,6 +5,8 @@ import { Service } from 'src/app/models/service';
 // Service
 import { AuthService } from 'src/app/services/auth.service';
 import { ServiceService } from 'src/app/services/service.service';
+import { ClientService } from 'src/app/services/client.service';
+import { AutomobileService } from 'src/app/services/automobile.service';
 
 // Sweet Alert2 Import
 import Swal from 'sweetalert2';
@@ -20,7 +22,9 @@ export class HomeViewComponent implements OnInit {
   private status: boolean;
 
   constructor(private auth: AuthService,
-              private service: ServiceService) { }
+    private auto: AutomobileService,
+    private client: ClientService,
+    private service: ServiceService) { }
 
   ngOnInit() {
     if (this.service.isEmpty()) {
@@ -140,6 +144,22 @@ export class HomeViewComponent implements OnInit {
   }
 
   public get(): void {
+    this.client.get().subscribe(response => {
+      console.log(response);
+      if (response.success) {
+        this.client.setList(response.data);
+      }
+    }, error => {
+      console.log(error);
+    });
+    this.auto.getAll().subscribe(response => {
+      console.log(response);
+      if (response.success) {
+        this.auto.setList(response.data);
+      }
+    }, error => {
+      console.log(error);
+    });
     this.service.get().subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);
@@ -147,5 +167,13 @@ export class HomeViewComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  public getClient(id: string): string {
+    return this.client.getName(id);
+  }
+
+  public getAuto(id: string): string {
+    return this.auto.getName(id);
   }
 }

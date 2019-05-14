@@ -63,7 +63,7 @@ export class AutomobileFormComponent implements OnInit {
     const data = this.automobile;
     this.service.post(this.automobile).subscribe(response => {
       if (response.success) {
-        this.service.addList(data);
+        this.service.insert(data);
         Swal({
           position: 'top-end',
           type: 'success',
