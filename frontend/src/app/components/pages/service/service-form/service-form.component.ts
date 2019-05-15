@@ -34,7 +34,7 @@ export class ServiceFormComponent implements OnInit {
   constructor(private serServ: ServiceService,
     private auto: AutomobileService,
     private client: ClientService,
-    private empServ: EmployeeService) { }
+    private employee: EmployeeService) { }
 
   ngOnInit() {
     // Initialize Model
@@ -52,7 +52,7 @@ export class ServiceFormComponent implements OnInit {
 
   // Return the list of employees
   public getListEmp(): Array<Employee> {
-    return this.empServ.getList();
+    return this.employee.getList();
   }
 
   // Clear and Initialize Model
@@ -62,6 +62,14 @@ export class ServiceFormComponent implements OnInit {
       console.log(response);
       if (response.success) {
         this.client.setList(response.data);
+      }
+    }, error => {
+      console.log(error);
+    });
+    this.employee.get().subscribe(response => {
+      console.log(response);
+      if (response.success) {
+        this.employee.setList(response.data);
       }
     }, error => {
       console.log(error);
@@ -79,7 +87,7 @@ export class ServiceFormComponent implements OnInit {
   public closeModal(): void {
     $(function () {
       $('#modal').modal('toggle');
-   });
+    });
   }
 
   public onChange(value: string): void {
@@ -94,6 +102,8 @@ export class ServiceFormComponent implements OnInit {
       console.log(response);
       if (response.status) {
         this.serServ.addList(data);
+        this.initializer();
+        this.closeModal();
         Swal({
           position: 'top-end',
           type: 'success',
@@ -112,8 +122,6 @@ export class ServiceFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.initializer();
-    this.closeModal();
   }
 
   public put(id: string): void {
@@ -121,6 +129,8 @@ export class ServiceFormComponent implements OnInit {
     this.serServ.put(this.servic.id, this.servic).subscribe(response => {
       if (response.status) {
         this.serServ.setItemList(data);
+        this.initializer();
+        this.closeModal();
         Swal({
           position: 'top-end',
           type: 'success',
@@ -139,12 +149,21 @@ export class ServiceFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.initializer();
-    this.closeModal();
+  }
+
+  public get(): void {
+    this.serServ.get().subscribe(response => {
+      if (response.status) {
+        this.serServ.setList(response.data);
+      }
+    }, error => {
+      console.log(error);
+    });
   }
 
   public getAutomobile(id: string): void {
     this.auto.get(id).subscribe(response => {
+      console.log(response);
       if (response.success) {
         this.auto.setList(response.data);
       }

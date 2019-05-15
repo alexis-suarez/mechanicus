@@ -21,21 +21,13 @@ export class HomeViewComponent implements OnInit {
   private servic: Service;
   private status: boolean;
 
-  constructor(private auth: AuthService,
-    private auto: AutomobileService,
+  constructor(private auto: AutomobileService,
     private client: ClientService,
     private service: ServiceService) { }
 
   ngOnInit() {
-    // Load the data on the table
-    this.get();
-
     // Initialize Model
     this.initializer();
-  }
-
-  public getAuth(): AuthService {
-    return this.auth;
   }
 
   // Return the list
@@ -74,13 +66,15 @@ export class HomeViewComponent implements OnInit {
   // Clear and Initialize Model
   public initializer(): void {
     this.servic = new Service();
+    // Load the data on the table
+    this.get();
   }
 
   // Function for CRUD
   public delete(id: string, index: number): void {
     Swal({
       title: '¿Seguro de Cancelar?',
-      text: 'No se podrá recuperar despues',
+      text: 'No se podrá recuperar después',
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -134,7 +128,31 @@ export class HomeViewComponent implements OnInit {
   }
 
   public deliver(id: string, index: number): void {
-    console.log(id);
+    Swal({
+      title: 'Entregar Servicio',
+      text: 'Pasará a lista de Terminados',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, Finalizar!'
+    }).then((result) => {
+      if (result.value) {
+        this.service.deliver(id).subscribe(response => {
+          if (response.status) {
+            this.service.delList(index);
+            this.get();
+          }
+        }, error => {
+          console.log(error);
+        });
+        Swal(
+          'Entregado!',
+          '',
+          'success'
+        );
+      }
+    });
   }
 
   public getService(id: string): void {
