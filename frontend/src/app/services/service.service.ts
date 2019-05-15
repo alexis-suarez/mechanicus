@@ -105,27 +105,27 @@ export class ServiceService {
   }
 
   // Http Request
-  public post(service: Service): any {
-    return this.http.post<Response>(this.url + 'service', JSON.stringify(service), httpOptions);
+  public post(data: Service): any {
+    return this.http.post<Response>(this.url + 'service', JSON.stringify(data), httpOptions);
   }
 
   public delete(id: string): any {
     return this.http.delete<Response>(this.url + 'service/' + id, httpOptions);
   }
 
-  public delServiceDeliver(id: string): any {
+  public deliver(id: string): any {
     return this.http.delete<Response>(this.url + 'service/deliver/' + id, httpOptions);
   }
 
-  public delServiceFinish(id: string): any {
+  public finish(id: string): any {
     return this.http.delete<Response>(this.url + 'service/finish/' + id, httpOptions);
   }
 
-  public updService(id: string, service: Service): any {
-    return this.http.put<Response>(this.url + 'service/' + id, JSON.stringify(Service), httpOptions);
+  public put(id: string, data: Service): any {
+    return this.http.put<Response>(this.url + 'service/' + id, JSON.stringify(data), httpOptions);
   }
 
-  public getService(id: string): any {
+  public getOne(id: string): any {
     return this.http.get<Response>(this.url + 'service/' + id);
   }
 

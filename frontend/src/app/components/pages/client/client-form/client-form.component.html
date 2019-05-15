@@ -43,9 +43,9 @@
     </form>
     <div class="modal-footer">
       <!-- Botton to Cancel -->
-      <button *ngIf="status != 0" (click)="clrModel()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      <button *ngIf="status != 0" (click)="initializer()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       <!-- Botton to Register -->
-      <button *ngIf="status == 1" [disabled]="!form.form.valid" (click)="newClient()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
+      <button *ngIf="status == 1" [disabled]="!form.form.valid" (click)="post()" type="button" class="btn btn-success" data-dismiss="modal">Guardar</button>
       <!-- Botton to Edite -->
-      <button *ngIf="status == -1" [disabled]="!form.form.valid" (click)="updClient(client.id)" type="button" class="btn btn-success" data-dismiss="modal">Actualizar</button>
+      <button *ngIf="status == -1" [disabled]="!form.form.valid" (click)="put(client.id)" type="button" class="btn btn-success" data-dismiss="modal">Actualizar</button>
     </div>

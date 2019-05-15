@@ -16,9 +16,9 @@
 </form>
 <div class="modal-footer">
   <!-- Botton to Cancel -->
-  <button (click)="clrModel()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+  <button (click)="initializer()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
   <!-- Botton to Register -->
-  <button *ngIf="status" [disabled]="!Form.form.valid" (click)="newUser()" type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+  <button *ngIf="status" [disabled]="!Form.form.valid" (click)="post()" type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
   <!-- Botton to Edite -->
-  <button *ngIf="!status" [disabled]="!Form.form.valid" (click)="updUser()" type="button" class="btn btn-primary" data-dismiss="modal">Actualizar</button>
+  <button *ngIf="!status" [disabled]="!Form.form.valid" (click)="put()" type="button" class="btn btn-primary" data-dismiss="modal">Actualizar</button>
 </div>

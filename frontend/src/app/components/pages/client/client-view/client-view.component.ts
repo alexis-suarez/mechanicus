@@ -35,11 +35,11 @@ export class ClientViewComponent implements AfterViewInit, OnDestroy, OnInit {
   ngOnInit() {
     if (this.service.isEmpty()) {
       // Load the data on the table
-      this.viewClient();
+      this.get();
     }
 
     // Initialize Model
-    this.clrModel();
+    this.initializer();
 
     this.dtOptions = {
       dom: '<\'row mt-4\'<\'col-sm-12 col-md-6\'lB><\'col-sm-12 col-md-6\'f>>' +
@@ -98,12 +98,12 @@ export class ClientViewComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   // Clear and Initialize Model
-  public clrModel(): void {
+  public initializer(): void {
     this.client = new Client();
   }
 
   // Function for CRUD
-  public delClient(id: string, index: number): void {
+  public delete(id: string, index: number): void {
     Swal({
       title: '¿Seguro de Borrar?',
       text: 'No se podrá recuperar despues',
@@ -131,19 +131,18 @@ export class ClientViewComponent implements AfterViewInit, OnDestroy, OnInit {
     });
   }
 
-  public getClient(id: string): void {
+  public getOne(id: string): void {
     this.service.getOne(id).subscribe(response => {
       console.log(response);
       if (response.success) {
         this.client = response.data;
-        this.rerender();
       }
     }, error => {
       console.log(error);
     });
   }
 
-  private viewClient(): void {
+  private get(): void {
     this.service.get().subscribe(response => {
       console.log(response);
       if (response.success) {

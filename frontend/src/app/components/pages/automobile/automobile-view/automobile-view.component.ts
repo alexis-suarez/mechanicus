@@ -40,13 +40,8 @@ export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit
   }
 
   ngOnInit() {
-    if (this.service.isEmpty()) {
-      // Load the data on the table
-      this.get(this.id);
-    }
-
     // Initialize Model
-    this.clrModel();
+    this.initializer();
 
     this.dtOptions = {
       dom: '<\'row mt-4\'<\'col-sm-12 col-md-6\'lB><\'col-sm-12 col-md-6\'f>>' +
@@ -106,15 +101,20 @@ export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit
     this.status = value;
   }
 
-  // Clear and Initialize Model
-  public clrModel(): void {
-    this.automobile = new Automobile();
-  }
-
   // Go Back
   public goBack(): void {
     this.router.navigate(['/client-view']);
     this.service.setList([]);
+  }
+
+  // Clear and Initialize Model
+  public initializer(): void {
+    this.automobile = new Automobile();
+
+    if (this.service.isEmpty()) {
+      // Load the data on the table
+      this.get(this.id);
+    }
   }
 
   // Function for CRUD
@@ -152,7 +152,6 @@ export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit
       if (response.success) {
         this.automobile = response.data;
       }
-      // this.rerender();
     }, error => {
       console.log(error);
     });
@@ -162,8 +161,8 @@ export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit
     this.service.get(id).subscribe(response => {
       if (response.success) {
         this.service.setList(response.data);
+        this.rerender();
       }
-      this.rerender();
     }, error => {
       console.log(error);
     });

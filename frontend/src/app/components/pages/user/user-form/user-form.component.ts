@@ -26,10 +26,10 @@ export class UserFormComponent implements OnInit {
   constructor(private service: UserService) { }
 
   ngOnInit() {
-    this.clrModel();
+    this.initializer();
   }
 
-  public clrModel(): void {
+  public initializer(): void {
     this.user = new User();
   }
 
@@ -39,9 +39,9 @@ export class UserFormComponent implements OnInit {
    });
   }
 
-  public newUser(): void {
+  public post(): void {
     const data = this.user;
-    this.service.newUser(this.user).subscribe(response => {
+    this.service.post(this.user).subscribe(response => {
       if (response.status) {
         this.service.addList(data);
         swal({
@@ -62,13 +62,13 @@ export class UserFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.clrModel();
+    this.initializer();
     this.closeModal();
   }
 
-  public updUser(id: string): void {
+  public put(id: string): void {
     const data = this.user;
-    this.service.updUser(this.user.id, this.user).subscribe(response => {
+    this.service.put(this.user.id, this.user).subscribe(response => {
       if (response.status) {
         this.service.setItemList(data);
         swal({
@@ -89,7 +89,7 @@ export class UserFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.clrModel();
+    this.initializer();
     this.closeModal();
   }
 }

@@ -29,27 +29,25 @@ export class ServiceFormComponent implements OnInit {
   @Input() servic: Service;
   @Input() status: boolean;
 
-  private client = new Client();
+  private object = new Client();
 
   constructor(private serServ: ServiceService,
-              private cliServ: ClientService,
-              private empServ: EmployeeService,
-              private autServ: AutomobileService) { }
+    private auto: AutomobileService,
+    private client: ClientService,
+    private empServ: EmployeeService) { }
 
   ngOnInit() {
     // Initialize Model
-    this.clrModel();
-    this.viewClient();
-    this.viewEmployee();
+    this.initializer();
   }
 
   // Return the list of clients
   public getListCli(): Array<Client> {
-    return this.cliServ.getList();
+    return this.client.getList();
   }
 
   public getListAut(): Array<Automobile> {
-    return this.autServ.getList();
+    return this.auto.getList();
   }
 
   // Return the list of employees
@@ -58,8 +56,24 @@ export class ServiceFormComponent implements OnInit {
   }
 
   // Clear and Initialize Model
-  public clrModel(): void {
+  public initializer(): void {
     this.servic = new Service();
+    this.client.get().subscribe(response => {
+      console.log(response);
+      if (response.success) {
+        this.client.setList(response.data);
+      }
+    }, error => {
+      console.log(error);
+    });
+    this.auto.getAll().subscribe(response => {
+      console.log(response);
+      if (response.success) {
+        this.auto.setList(response.data);
+      }
+    }, error => {
+      console.log(error);
+    });
   }
 
   public closeModal(): void {
@@ -69,12 +83,12 @@ export class ServiceFormComponent implements OnInit {
   }
 
   public onChange(value: string): void {
-    this.autServ.setList([]);
+    this.auto.setList([]);
     this.getAutomobile(value);
   }
 
   // Function for CRUD
-  public newService(): void {
+  public post(): void {
     const data = this.servic;
     this.serServ.post(this.servic).subscribe(response => {
       console.log(response);
@@ -98,13 +112,13 @@ export class ServiceFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.clrModel();
+    this.initializer();
     this.closeModal();
   }
 
-  public updService(id: string): void {
+  public put(id: string): void {
     const data = this.servic;
-    this.serServ.updService(this.servic.id, this.servic).subscribe(response => {
+    this.serServ.put(this.servic.id, this.servic).subscribe(response => {
       if (response.status) {
         this.serServ.setItemList(data);
         Swal({
@@ -125,31 +139,15 @@ export class ServiceFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.clrModel();
+    this.initializer();
     this.closeModal();
   }
 
-  public viewClient(): void {
-    this.cliServ.get().subscribe(response => {
-      this.cliServ.setList(response.data);
-    }, error => {
-      console.log(error);
-    });
-  }
-
   public getAutomobile(id: string): void {
-    this.autServ.get(id).subscribe(response => {
+    this.auto.get(id).subscribe(response => {
       if (response.success) {
-        this.autServ.setList(response.data);
+        this.auto.setList(response.data);
       }
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  public viewEmployee(): void {
-    this.empServ.viewEmployee().subscribe(response => {
-      this.empServ.setList(response.data);
     }, error => {
       console.log(error);
     });

@@ -28,10 +28,10 @@ export class ClientFormComponent implements OnInit {
     private state: AddressService) { }
 
   ngOnInit() {
-    this.clrModel();
+    this.initializer();
   }
 
-  public clrModel(): void {
+  public initializer(): void {
     this.client = new Client();
   }
 
@@ -45,7 +45,7 @@ export class ClientFormComponent implements OnInit {
    });
   }
 
-  public newClient(): void {
+  public post(): void {
     const data = this.client;
     this.service.post(this.client).subscribe(response => {
       if (response.success) {
@@ -68,12 +68,12 @@ export class ClientFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.clrModel();
+    this.initializer();
     this.closeModal();
-    this.viewClient();
+    this.get();
   }
 
-  public updClient(id: string): void {
+  public put(id: string): void {
     const data = this.client;
     this.service.put(id, this.client).subscribe(response => {
       if (response.success) {
@@ -96,12 +96,12 @@ export class ClientFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.clrModel();
+    this.initializer();
     this.closeModal();
-    this.viewClient();
+    this.get();
   }
 
-  private viewClient(): void {
+  private get(): void {
     this.service.get().subscribe(response => {
       console.log(response);
       if (response.success) {

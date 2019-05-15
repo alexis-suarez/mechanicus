@@ -78,11 +78,11 @@ export class EmployeeService {
     return this.http.put<Response>(this.url + 'employee/' + id, JSON.stringify(employee), httpOptions);
   }
 
-  public get(id: string): any {
+  public getOne(id: string): any {
     return this.http.get<Response>(this.url + 'employee/' + id);
   }
 
-  public viewEmployee(): any {
+  public get(): any {
     return this.http.get<Response>(this.url + 'employee', httpOptions);
   }
 }

@@ -36,11 +36,11 @@ export class AutomobileFormComponent implements OnInit {
 
   ngOnInit() {
     // Initialize Model
-    this.clrModel();
+    this.initializer();
   }
 
   // Clear and Initialize Model
-  public clrModel(): void {
+  public initializer(): void {
     this.automobile = new Automobile();
   }
 
@@ -82,7 +82,7 @@ export class AutomobileFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.clrModel();
+    this.initializer();
     this.closeModal();
   }
 
@@ -109,7 +109,7 @@ export class AutomobileFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.clrModel();
+    this.initializer();
     this.closeModal();
   }
 }

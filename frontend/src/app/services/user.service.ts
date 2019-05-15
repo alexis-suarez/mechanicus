@@ -66,23 +66,23 @@ export class UserService {
   }
 
   // Http Request
-  public newUser(user: User): any {
+  public post(user: User): any {
     return this.http.post<Response>(this.url + 'user', JSON.stringify(user), httpOptions);
   }
 
-  public delUser(id: string): any {
+  public delete(id: string): any {
     return this.http.delete<Response>(this.url + 'user/' + id, httpOptions);
   }
 
-  public updUser(id: string, user: User): any {
+  public put(id: string, user: User): any {
     return this.http.put<Response>(this.url + 'user/' + id, JSON.stringify(user), httpOptions);
   }
 
-  public getUser(id: string): any {
+  public getOne(id: string): any {
     return this.http.get<Response>(this.url + 'user/' + id);
   }
 
-  public viewUser(): any {
+  public get(): any {
     return this.http.get<Response>(this.url + 'user', httpOptions);
   }
 

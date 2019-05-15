@@ -33,11 +33,11 @@ export class EmployeeFormComponent implements OnInit {
 
   ngOnInit() {
     // Initialize Model
-    this.clrModel();
+    this.initializer();
   }
 
   // Clear and Initialize Model
-  public clrModel(): void {
+  public initializer(): void {
     this.employee = new Employee();
   }
 
@@ -76,9 +76,8 @@ export class EmployeeFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.clrModel();
+    this.initializer();
     this.closeModal();
-    // this.viewEmployee();
     this.reflesh.emit(1);
   }
 
@@ -106,14 +105,13 @@ export class EmployeeFormComponent implements OnInit {
         timer: 1500
       });
     });
-    this.clrModel();
+    this.initializer();
     this.closeModal();
-    // this.viewEmployee();
     this.reflesh.emit(1);
   }
 
-  public viewEmployee(): void {
-    this.service.viewEmployee().subscribe(response => {
+  public get(): void {
+    this.service.get().subscribe(response => {
       console.log(response);
       if (response.success) {
         this.service.setList(response.data);

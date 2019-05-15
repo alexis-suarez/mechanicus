@@ -34,11 +34,11 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
   ngOnInit() {
     if (this.service.isEmpty()) {
       // Load the data on the table
-      this.viewEmployee();
+      this.get();
     }
 
     // Initialize Model
-    this.clrModel();
+    this.initializer();
 
     this.dtOptions = {
       dom: '<\'row mt-4\'<\'col-sm-12 col-md-6\'lB><\'col-sm-12 col-md-6\'f>>' +
@@ -92,12 +92,12 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   // Clear and Initialize Model
-  public clrModel(): void {
+  public initializer(): void {
     this.employee = new Employee();
   }
 
   // Function for CRUD
-  public delEmployee(id: string, index: number): void {
+  public delete(id: string, index: number): void {
     Swal({
       title: '¿Seguro de Borrar?',
       text: 'No se podrá recuperar despues',
@@ -125,8 +125,8 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
     });
   }
 
-  public getEmployee(id: string): void {
-    this.service.get(id).subscribe(response => {
+  public getOne(id: string): void {
+    this.service.getOne(id).subscribe(response => {
       console.log(response);
       if (response.success) {
         this.employee = response.data;
@@ -137,8 +137,8 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
     });
   }
 
-  public viewEmployee(): void {
-    this.service.viewEmployee().subscribe(response => {
+  public get(): void {
+    this.service.get().subscribe(response => {
       console.log(response);
       if (response.success) {
         this.service.setList(response.data);

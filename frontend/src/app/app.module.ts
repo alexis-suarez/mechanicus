@@ -26,7 +26,6 @@ import { BackgroundComponent } from './components/background/background.componen
 
 // Pages Components
 import { HomeViewComponent } from './components/pages/home/home-view/home-view.component';
-import { HomeFormComponent } from './components/pages/home/home-form/home-form.component';
 import { ClientFormComponent } from './components/pages/client/client-form/client-form.component';
 import { ClientViewComponent } from './components/pages/client/client-view/client-view.component';
 import { ServiceViewComponent } from './components/pages/service/service-view/service-view.component';
@@ -68,8 +67,7 @@ import { UserFormComponent } from './components/pages/user/user-form/user-form.c
     AutomobileViewComponent,
     AutomobileFormComponent,
     UserViewComponent,
-    UserFormComponent,
-    HomeFormComponent
+    UserFormComponent
   ],
   imports: [
     FormsModule,

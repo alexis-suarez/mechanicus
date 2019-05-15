@@ -27,13 +27,11 @@ export class HomeViewComponent implements OnInit {
     private service: ServiceService) { }
 
   ngOnInit() {
-    if (this.service.isEmpty()) {
-      // Load the data on the table
-      this.get();
-    }
+    // Load the data on the table
+    this.get();
 
     // Initialize Model
-    this.clrModel();
+    this.initializer();
   }
 
   public getAuth(): AuthService {
@@ -74,12 +72,12 @@ export class HomeViewComponent implements OnInit {
   }
 
   // Clear and Initialize Model
-  public clrModel(): void {
+  public initializer(): void {
     this.servic = new Service();
   }
 
   // Function for CRUD
-  public delService(id: string, index: number): void {
+  public delete(id: string, index: number): void {
     Swal({
       title: '¿Seguro de Cancelar?',
       text: 'No se podrá recuperar despues',
@@ -93,6 +91,7 @@ export class HomeViewComponent implements OnInit {
         this.service.delete(id).subscribe(response => {
           if (response.status) {
             this.service.delList(index);
+            this.get();
           }
         }, error => {
           console.log(error);
@@ -106,7 +105,7 @@ export class HomeViewComponent implements OnInit {
     });
   }
 
-  public delServiceFinish(id: string, index: number): void {
+  public finish(id: string, index: number): void {
     Swal({
       title: 'Finalizar Servicio',
       text: 'Quedará pendiente por Entregar',
@@ -117,9 +116,10 @@ export class HomeViewComponent implements OnInit {
       confirmButtonText: '¡Sí, Finalizar!'
     }).then((result) => {
       if (result.value) {
-        this.service.delServiceFinish(id).subscribe(response => {
+        this.service.finish(id).subscribe(response => {
           if (response.status) {
             this.service.delList(index);
+            this.get();
           }
         }, error => {
           console.log(error);
@@ -133,8 +133,12 @@ export class HomeViewComponent implements OnInit {
     });
   }
 
+  public deliver(id: string, index: number): void {
+    console.log(id);
+  }
+
   public getService(id: string): void {
-    this.service.getService(id).subscribe(response => {
+    this.service.getOne(id).subscribe(response => {
       if (response.status) {
         this.servic = response.data;
       }

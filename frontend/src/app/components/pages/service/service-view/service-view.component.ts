@@ -9,6 +9,7 @@ import { Service } from 'src/app/models/service';
 
 // Services
 import { ServiceService } from 'src/app/services/service.service';
+import { AutomobileService } from 'src/app/services/automobile.service';
 
 // Sweet Alert2 Import
 import swal from 'sweetalert2';
@@ -29,7 +30,8 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
   private servic: Service;
   private status: boolean;
 
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService,
+    private auto: AutomobileService) { }
 
   ngOnInit() {
     // if (this.service.isEmpty()) {
@@ -38,7 +40,7 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
     this.get();
 
     // Initialize Model
-    this.clrModel();
+    this.initializer();
 
     this.dtOptions = {
       dom: '<\'row mt-4\'<\'col-sm-12 col-md-6\'lB><\'col-sm-12 col-md-6\'f>>' +
@@ -94,12 +96,12 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   // Clear and Initialize Model
-  public clrModel(): void {
+  public initializer(): void {
     this.servic = new Service();
   }
 
   // Function for CRUD
-  public delService(id: string, index: number): void {
+  public delete(id: string, index: number): void {
     swal({
       title: '¿Seguro de Borrar?',
       text: 'No se podrá recuperar despues',
@@ -127,12 +129,11 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
     });
   }
 
-  public getService(id: string): void {
-    this.service.getService(id).subscribe(response => {
+  public getOne(id: string): void {
+    this.service.getOne(id).subscribe(response => {
       if (response.status) {
         this.servic = response.data;
       }
-      this.rerender();
     }, error => {
       console.log(error);
     });
@@ -142,11 +143,14 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
     this.service.get().subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);
+        this.rerender();
       }
-      this.rerender();
     }, error => {
       console.log(error);
     });
   }
 
+  public getAuto(id: string): string {
+    return this.auto.getName(id);
+  }
 }
