@@ -135,6 +135,16 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   public get(): void {
+    this.auto.getAll().subscribe(response => {
+      console.log(response);
+      if (response.success) {
+        this.auto.setList(response.data.filter(item => {
+          return item.status === true;
+        }));
+      }
+    }, error => {
+      console.log(error);
+    });
     this.service.get().subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);

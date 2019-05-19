@@ -4,12 +4,12 @@
   <!-- -->
   <div class="row">
     <div class="col-2">
-      <!-- Botton to register new Service -->
+      <!-- Botton to register new Service
       <button (click)="initializer(); setStatus(1)" class="btn btn-lg btn-primary" data-toggle="modal"
-        data-target="#modal"><i class="fas fa-plus"></i></button>
+        data-target="#modal"><i class="fas fa-plus"></i></button> -->
     </div>
     <div class="col-10">
-      <h1 class="display-4">Terminados</h1>
+      <h1 class="styles-test">Entregados</h1>
     </div>
   </div>
   <ng-template [ngIf]="!isEmptyListDelivered()" [ngIfElse]="exception">
@@ -46,22 +46,4 @@
       ¡No hay información en la Aplicación!
     </div>
   </ng-template>
-</div>
-
-<!-- Modal From Service -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-center" id="modalTitle">Formulario</h5>
-        <button (click)="initializer()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Form to Register -->
-        <app-service-form></app-service-form>
-      </div>
-    </div>
-  </div>
 </div>

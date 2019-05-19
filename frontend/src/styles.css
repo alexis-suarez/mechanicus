@@ -60,6 +60,10 @@
   animation-fill-mode: both;
 }
 
+.fadeIn {
+  animation-name: fadeIn;
+}
+
 @keyframes fadeIn {
   from {
       opacity: 0;
@@ -70,6 +74,9 @@
   }
 }
 
-.fadeIn {
-  animation-name: fadeIn;
+.styles-test {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }

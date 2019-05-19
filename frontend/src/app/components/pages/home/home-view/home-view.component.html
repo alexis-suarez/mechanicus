@@ -4,8 +4,9 @@
     <!-- Header Container -->
     <div class="row">
         <div class="col-2">
-            <!-- <button (click)="initializer(); setStatus(1)" class="btn btn-lg btn-primary" data-toggle="modal"
-                data-target="#modal"><i class="fas fa-plus"></i></button> -->
+            <!-- Botton to register new Service -->
+            <button (click)="initializer(); setStatus(1)" class="btn btn-lg btn-primary" data-toggle="modal"
+                data-target="#modal"><i class="fas fa-plus"></i></button>
         </div>
         <div class="col-4"></div>
         <div class="col-2"></div>
@@ -13,7 +14,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <h1 class="display-4 text-center">Pendientes</h1>
+            <h1 class="styles-test text-center">Pendientes</h1>
             <hr>
             <ng-template [ngIf]="!isEmptyListPending()" [ngIfElse]="exception">
                 <ul class="list-unstyled">
@@ -49,7 +50,7 @@
         </div>
 
         <div class="col-sm-6">
-            <h1 class="display-4 text-center">Terminados</h1>
+            <h1 class="styles-test text-center">Terminados</h1>
             <hr>
             <ng-template [ngIf]="!isEmptyListFinished()" [ngIfElse]="exception">
                 <ul class="list-unstyled">
@@ -96,7 +97,7 @@
             </div>
             <div class="modal-body">
                 <!-- Form to Register -->
-                <app-service-form></app-service-form>
+                <app-service-form [servic]="getModel()" [status]="getStatus()"></app-service-form>
             </div>
         </div>
     </div>

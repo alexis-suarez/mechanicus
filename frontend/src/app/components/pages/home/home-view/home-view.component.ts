@@ -167,7 +167,7 @@ export class HomeViewComponent implements OnInit {
     this.client.get().subscribe(response => {
       console.log(response);
       if (response.success) {
-        this.client.setList(response.datafilter(item => {
+        this.client.setList(response.data.filter(item => {
           return item.status === true;
         }));
       }

@@ -29,7 +29,7 @@ export class ServiceFormComponent implements OnInit {
   @Input() servic: Service;
   @Input() status: number;
 
-  private object = new Client();
+  private listAuto: Array<any>;
 
   constructor(private serServ: ServiceService,
     private auto: AutomobileService,
@@ -47,7 +47,7 @@ export class ServiceFormComponent implements OnInit {
   }
 
   public getListAut(): Array<Automobile> {
-    return this.auto.getList();
+    return this.listAuto;
   }
 
   // Return the list of employees
@@ -55,10 +55,20 @@ export class ServiceFormComponent implements OnInit {
     return this.employee.getList();
   }
 
+  public closeModal(): void {
+    $(function () {
+      $('#modal').modal('toggle');
+    });
+  }
+
+  public onChange(value: string): void {
+    this.listAuto = [];
+    this.getAutomobile(value);
+  }
+
   // Clear and Initialize Model
   public initializer(): void {
     this.servic = new Service();
-    this.get();
     this.client.get().subscribe(response => {
       console.log(response);
       if (response.success) {
@@ -75,25 +85,6 @@ export class ServiceFormComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-    this.auto.getAll().subscribe(response => {
-      console.log(response);
-      if (response.success) {
-        this.auto.setList(response.data);
-      }
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  public closeModal(): void {
-    $(function () {
-      $('#modal').modal('toggle');
-    });
-  }
-
-  public onChange(value: string): void {
-    this.auto.setList([]);
-    this.getAutomobile(value);
   }
 
   // Function for CRUD
@@ -164,7 +155,7 @@ export class ServiceFormComponent implements OnInit {
     this.auto.get(id).subscribe(response => {
       console.log(response);
       if (response.success) {
-        this.auto.setList(response.data);
+        this.listAuto = response.data;
       }
     }, error => {
       console.log(error);

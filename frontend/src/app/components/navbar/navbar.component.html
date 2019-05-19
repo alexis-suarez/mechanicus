@@ -5,29 +5,36 @@
     <i class="fas fa-wrench"></i> Mechanicus
   </a>
   <!-- Botton in Mobile size -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <!-- List of Links -->
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <!-- Routers Links Actived -->
-      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')" class="nav-item" routerLinkActive="active">
+      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')"
+        class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['home-view']"><i class="fas fa-home"></i> Inicio</a>
       </li>
-      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')" class="nav-item" routerLinkActive="active">
+      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')"
+        class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['service-view']"><i class="fas fa-toolbox"></i> Servicios</a>
       </li>
-      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')" class="nav-item" routerLinkActive="active">
+      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')"
+        class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['client-view']"><i class="fas fa-wallet"></i> Clientes</a>
       </li>
-      <li *ngIf="getAuth().isAuthenticated() && getAuth().getRole() == 'ADMIN'" class="nav-item" routerLinkActive="active">
+      <li *ngIf="getAuth().isAuthenticated() && getAuth().getRole() == 'ADMIN'" class="nav-item"
+        routerLinkActive="active">
         <a class="nav-link" [routerLink]="['employee-view']"><i class="fas fa-users"></i> Empleados</a>
       </li>
-      <li *ngIf="getAuth().isAuthenticated() && getAuth().getRole() == 'ADMIN'" class="nav-item" routerLinkActive="active">
+      <li *ngIf="getAuth().isAuthenticated() && getAuth().getRole() == 'ADMIN'" class="nav-item"
+        routerLinkActive="active">
         <a class="nav-link" [routerLink]="['settings-view']"><i class="fas fa-cog"></i> Ajustes</a>
       </li>
-      <li *ngIf="getAuth().isAuthenticated() && getAuth().getRole() == 'ADMIN'" class="nav-item" routerLinkActive="active">
+      <li *ngIf="getAuth().isAuthenticated() && getAuth().getRole() == 'ADMIN'" class="nav-item"
+        routerLinkActive="active">
         <a class="nav-link" [routerLink]="['analytics-view']"><i class="fas fa-chart-bar"></i> Análisis</a>
       </li>
     </ul>
@@ -35,14 +42,16 @@
     <form class="form-inline my-2 my-lg-0 text-white">
       <!-- Sign out -->
       <div *ngIf="getAuth().isAuthenticated()">
-          <div class="dropdown">
-            <div class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-user"></i> Usuario: {{ getAuth().getUserName() | uppercase }}
-            </div>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <button (click)="signOut()" class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i> SignOut</button>        
-            </div>
+        <div class="dropdown">
+          <div class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fas fa-user"></i> Usuario: {{ getAuth().getUserName() | uppercase }}
           </div>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <button (click)="signOut()" class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i>
+              SignOut</button>
+          </div>
+        </div>
       </div>
     </form>
   </div>
