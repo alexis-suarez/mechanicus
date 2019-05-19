@@ -4,8 +4,8 @@
     <!-- Header Container -->
     <div class="row">
         <div class="col-2">
-            <button (click)="initializer(); setStatus(true)" class="btn btn-lg btn-primary" data-toggle="modal"
-                data-target="#modal"><i class="fas fa-plus"></i></button>
+            <!-- <button (click)="initializer(); setStatus(1)" class="btn btn-lg btn-primary" data-toggle="modal"
+                data-target="#modal"><i class="fas fa-plus"></i></button> -->
         </div>
         <div class="col-4"></div>
         <div class="col-2"></div>
@@ -13,8 +13,6 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <!-- <button (click)="setStatus(true)" class="btn btn-primary" data-toggle="modal"
-                data-target="#modal"><i class="fas fa-plus"></i></button> -->
             <h1 class="display-4 text-center">Pendientes</h1>
             <hr>
             <ng-template [ngIf]="!isEmptyListPending()" [ngIfElse]="exception">
@@ -33,7 +31,8 @@
                         </div>
                         <div class="media-body text-left text-uppercase">
                             <h5 class="mt-0 mb-1"><i class="fas fa-car"></i> {{ getAuto(item.auto) }}</h5>
-                            <p class="card-text"><i class="fas fa-user-tie"></i> Cliente: {{ getClient(item.client) }}</p>
+                            <p class="card-text"><i class="fas fa-user-tie"></i> Cliente: {{ getClient(item.client) }}
+                            </p>
                             <p class="card-text "><i class="far fa-calendar-alt"></i> Fecha: {{ item.entreDate | date }}
                             </p>
                             <p class="card-text"><i class="fas fa-user"></i> Empleado: {{ item.employee }}</p>
@@ -66,8 +65,10 @@
                         </div>
                         <div class="media-body text-left text-uppercase">
                             <h5 class="mt-0 mb-1"><i class="fas fa-car"></i> {{ getAuto(item.auto) }}</h5>
-                            <p class="card-text"><i class="fas fa-user-tie"></i> Cliente: {{ getClient(item.client) }}</p>
-                            <p class="card-text "><i class="far fa-calendar-alt"></i> Fecha: {{ item.entreDate | date }} Fecha: {{ item.endedDate | date }}</p>
+                            <p class="card-text"><i class="fas fa-user-tie"></i> Cliente: {{ getClient(item.client) }}
+                            </p>
+                            <p class="card-text "><i class="far fa-calendar-alt"></i> Fecha: {{ item.entreDate | date }}
+                                Fecha: {{ item.endedDate | date }}</p>
                             <p class="card-text"><i class="fas fa-user"></i> Empleado: {{ item.employee }}</p>
                             <i class="fas fa-align-justify"></i> {{ item.description }}
                         </div>
@@ -95,7 +96,7 @@
             </div>
             <div class="modal-body">
                 <!-- Form to Register -->
-                <app-service-form [status]="getStatus()" [servic]="getModel()"></app-service-form>
+                <app-service-form></app-service-form>
             </div>
         </div>
     </div>

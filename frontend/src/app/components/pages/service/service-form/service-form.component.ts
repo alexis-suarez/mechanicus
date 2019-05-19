@@ -27,7 +27,7 @@ declare var jQuery: any;
 export class ServiceFormComponent implements OnInit {
 
   @Input() servic: Service;
-  @Input() status: boolean;
+  @Input() status: number;
 
   private object = new Client();
 

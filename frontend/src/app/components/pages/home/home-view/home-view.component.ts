@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 export class HomeViewComponent implements OnInit {
 
   private servic: Service;
-  private status: boolean;
+  private status: number;
 
   constructor(private auto: AutomobileService,
     private client: ClientService,
@@ -56,12 +56,12 @@ export class HomeViewComponent implements OnInit {
   }
 
   // Get Status
-  public getStatus(): boolean {
+  public getStatus(): number {
     return this.status;
   }
 
   // Set Status
-  public setStatus(value: boolean): void {
+  public setStatus(value: number): void {
     this.status = value;
   }
 

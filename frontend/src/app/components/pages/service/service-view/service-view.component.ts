@@ -28,7 +28,7 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
   dtTrigger: Subject<any> = new Subject();
 
   private servic: Service;
-  private status: boolean;
+  private status: number;
 
   constructor(private service: ServiceService,
     private auto: AutomobileService) { }
@@ -81,12 +81,12 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   // Get Status
-  public getStatus(): boolean {
+  public getStatus(): number {
     return this.status;
   }
 
   // Set Status
-  public setStatus(value: boolean): void {
+  public setStatus(value: number): void {
     this.status = value;
   }
 
