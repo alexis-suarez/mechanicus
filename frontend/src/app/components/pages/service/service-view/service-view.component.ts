@@ -34,11 +34,8 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
     private auto: AutomobileService) { }
 
   ngOnInit() {
-    // if (this.service.isEmpty()) {
-    //   // Load the data on the table
-    // }
+    // Load the data on the table
     this.get();
-
     // Initialize Model
     this.initializer();
 
@@ -48,8 +45,6 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
       '<\'row\'<\'col-sm-12 col-md-5\'i><\'col-sm-12 col-md-7\'p>>',
       pagingType: 'full_numbers'
     };
-
-    // this.rerender();
   }
 
   ngAfterViewInit(): void {
@@ -115,7 +110,7 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
         this.service.delete(id).subscribe(response => {
           console.log(response);
           if (response.status) {
-            this.service.delList(index);
+            this.get();
           }
         }, error => {
           console.log(error);
@@ -143,7 +138,6 @@ export class ServiceViewComponent implements AfterViewInit, OnDestroy, OnInit {
     this.service.get().subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);
-        this.rerender();
       }
     }, error => {
       console.log(error);

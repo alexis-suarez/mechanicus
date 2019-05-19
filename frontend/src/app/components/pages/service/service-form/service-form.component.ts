@@ -58,6 +58,7 @@ export class ServiceFormComponent implements OnInit {
   // Clear and Initialize Model
   public initializer(): void {
     this.servic = new Service();
+    this.get();
     this.client.get().subscribe(response => {
       console.log(response);
       if (response.success) {
@@ -97,11 +98,10 @@ export class ServiceFormComponent implements OnInit {
 
   // Function for CRUD
   public post(): void {
-    const data = this.servic;
     this.serServ.post(this.servic).subscribe(response => {
       console.log(response);
       if (response.status) {
-        this.serServ.addList(data);
+        this.get();
         this.initializer();
         this.closeModal();
         Swal({
@@ -125,10 +125,9 @@ export class ServiceFormComponent implements OnInit {
   }
 
   public put(id: string): void {
-    const data = this.servic;
     this.serServ.put(this.servic.id, this.servic).subscribe(response => {
       if (response.status) {
-        this.serServ.setItemList(data);
+        this.get();
         this.initializer();
         this.closeModal();
         Swal({

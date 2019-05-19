@@ -33,11 +33,6 @@ export class ClientViewComponent implements AfterViewInit, OnDestroy, OnInit {
   constructor(private service: ClientService, private route: Router) { }
 
   ngOnInit() {
-    if (this.service.isEmpty()) {
-      // Load the data on the table
-      this.get();
-    }
-
     // Initialize Model
     this.initializer();
 
@@ -100,6 +95,7 @@ export class ClientViewComponent implements AfterViewInit, OnDestroy, OnInit {
   // Clear and Initialize Model
   public initializer(): void {
     this.client = new Client();
+    this.get();
   }
 
   // Function for CRUD
@@ -117,7 +113,7 @@ export class ClientViewComponent implements AfterViewInit, OnDestroy, OnInit {
         this.service.delete(id).subscribe(response => {
           console.log(response);
           if (response.success) {
-            this.service.remove(index);
+            this.get();
           }
         }, error => {
           console.log(error);
@@ -147,7 +143,6 @@ export class ClientViewComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log(response);
       if (response.success) {
         this.service.setList(response.data);
-        this.rerender();
       }
     }, error => {
       console.log(error);

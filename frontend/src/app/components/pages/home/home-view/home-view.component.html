@@ -4,7 +4,7 @@
     <!-- Header Container -->
     <div class="row">
         <div class="col-2">
-            <button (click)="setStatus(true)" class="btn btn-lg btn-primary" data-toggle="modal"
+            <button (click)="initializer(); setStatus(true)" class="btn btn-lg btn-primary" data-toggle="modal"
                 data-target="#modal"><i class="fas fa-plus"></i></button>
         </div>
         <div class="col-4"></div>
@@ -95,7 +95,7 @@
             </div>
             <div class="modal-body">
                 <!-- Form to Register -->
-                <app-service-form></app-service-form>
+                <app-service-form [status]="getStatus()" [servic]="getModel()"></app-service-form>
             </div>
         </div>
     </div>

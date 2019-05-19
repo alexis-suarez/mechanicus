@@ -46,10 +46,9 @@ export class ClientFormComponent implements OnInit {
   }
 
   public post(): void {
-    const data = this.client;
     this.service.post(this.client).subscribe(response => {
       if (response.success) {
-        this.service.insert(data);
+        this.get();
         Swal({
           position: 'top-end',
           type: 'success',
@@ -70,14 +69,12 @@ export class ClientFormComponent implements OnInit {
     });
     this.initializer();
     this.closeModal();
-    this.get();
   }
 
   public put(id: string): void {
-    const data = this.client;
     this.service.put(id, this.client).subscribe(response => {
       if (response.success) {
-        this.service.setItemList(data);
+        this.get();
         Swal({
           position: 'top-end',
           type: 'success',
@@ -98,7 +95,6 @@ export class ClientFormComponent implements OnInit {
     });
     this.initializer();
     this.closeModal();
-    this.get();
   }
 
   private get(): void {

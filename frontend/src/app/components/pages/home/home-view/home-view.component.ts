@@ -26,6 +26,8 @@ export class HomeViewComponent implements OnInit {
     private service: ServiceService) { }
 
   ngOnInit() {
+    // Load the data on the table
+    this.get();
     // Initialize Model
     this.initializer();
   }
@@ -66,8 +68,6 @@ export class HomeViewComponent implements OnInit {
   // Clear and Initialize Model
   public initializer(): void {
     this.servic = new Service();
-    // Load the data on the table
-    this.get();
   }
 
   // Function for CRUD
@@ -112,7 +112,6 @@ export class HomeViewComponent implements OnInit {
       if (result.value) {
         this.service.finish(id).subscribe(response => {
           if (response.status) {
-            this.service.delList(index);
             this.get();
           }
         }, error => {
@@ -140,7 +139,6 @@ export class HomeViewComponent implements OnInit {
       if (result.value) {
         this.service.deliver(id).subscribe(response => {
           if (response.status) {
-            this.service.delList(index);
             this.get();
           }
         }, error => {
@@ -169,7 +167,9 @@ export class HomeViewComponent implements OnInit {
     this.client.get().subscribe(response => {
       console.log(response);
       if (response.success) {
-        this.client.setList(response.data);
+        this.client.setList(response.datafilter(item => {
+          return item.status === true;
+        }));
       }
     }, error => {
       console.log(error);
@@ -177,7 +177,9 @@ export class HomeViewComponent implements OnInit {
     this.auto.getAll().subscribe(response => {
       console.log(response);
       if (response.success) {
-        this.auto.setList(response.data);
+        this.auto.setList(response.data.filter(item => {
+          return item.status === true;
+        }));
       }
     }, error => {
       console.log(error);

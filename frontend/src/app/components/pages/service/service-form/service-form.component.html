@@ -1,43 +1,42 @@
 <form #form="ngForm">
   <div class="form-row">
-      <div class="form-group col-md-4"></div>
-      <div class="form-group col-md-4"></div>
-      <div class="form-group col-md-4"></div>
+    <div class="form-group col-md-4"></div>
+    <div class="form-group col-md-4"></div>
+    <div class="form-group col-md-4"></div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-4">
-      <!-- Botton to register new Client -->
-      <!-- <button (click)="initializer(); setStatus(1)" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-plus"></i></button> -->
       <label for="inputclient">Client</label>
-      <select [(ngModel)]="servic.client" name="client" id="inputclient" class="form-control text-uppercase" (change)="onChange($event.target.value);" required>
-        <!-- <option selected>Choose...</option> -->
+      <select [(ngModel)]="servic.client" name="client" id="inputclient" class="form-control text-uppercase"
+        (change)="onChange($event.target.value);" required>
         <option *ngFor="let client of getListCli()" [value]="client.id">{{ client.name }}</option>
       </select>
     </div>
     <div class="form-group col-md-4">
       <label for="inputautomobile">Vehiculo</label>
       <select [(ngModel)]="servic.auto" name="auto" id="inputautomobile" class="form-control text-uppercase" required>
-        <option *ngFor="let item of getListAut()" [value]="item.id">{{ item.brand }}</option>
+        <option *ngFor="let item of getListAut()" [value]="item.id">{{ item.brand }} {{ item.model }}</option>
       </select>
     </div>
     <div class="form-group col-md-4">
       <label for="inputemployee">Empleado</label>
-      <select [(ngModel)]="servic.employee" name="employee" id="inputemployee" class="form-control text-uppercase" required>
-        <!-- <option selected>Choose...</option> -->
+      <select [(ngModel)]="servic.employee" name="employee" id="inputemployee" class="form-control text-uppercase"
+        required>
         <option *ngFor="let employee of getListEmp()" [value]="employee.name">{{ employee.name }}</option>
       </select>
     </div>
   </div>
-    <div class="form-row">
-      <div class="form-group col">
-          <label for="exampleFormControlTextarea1">Descripción</label>
-          <textarea [(ngModel)]="servic.description" name="description" class="form-control text-uppercase" id="exampleFormControlTextarea1" rows="3" required></textarea>
-        </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label for="exampleFormControlTextarea1">Descripción</label>
+      <textarea [(ngModel)]="servic.description" name="description" class="form-control text-uppercase"
+        id="exampleFormControlTextarea1" rows="3" required></textarea>
+    </div>
   </div>
 </form>
 <div class="modal-footer">
   <!-- Botton to Cancel -->
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+  <button (click)="initializer()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
   <!-- Botton to Register -->
-  <button [disabled]="!form.form.valid" (click)="post()" type="button" class="btn btn-success">Guardar</button>
+  <button [disabled]="!form.form.valid" (click)="post(); initializer()" type="button" class="btn btn-success">Guardar</button>
 </div>

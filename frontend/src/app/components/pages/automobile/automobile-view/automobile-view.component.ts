@@ -160,8 +160,9 @@ export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit
   private get(id: string): void {
     this.service.get(id).subscribe(response => {
       if (response.success) {
-        this.service.setList(response.data);
-        this.rerender();
+        this.service.setList(response.data.filter(item => {
+          return item.status === true;
+        }));
       }
     }, error => {
       console.log(error);

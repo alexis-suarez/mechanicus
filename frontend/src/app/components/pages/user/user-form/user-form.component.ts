@@ -40,10 +40,9 @@ export class UserFormComponent implements OnInit {
   }
 
   public post(): void {
-    const data = this.user;
     this.service.post(this.user).subscribe(response => {
       if (response.status) {
-        this.service.addList(data);
+        this.get();
         swal({
           position: 'top-end',
           type: 'success',
@@ -67,10 +66,9 @@ export class UserFormComponent implements OnInit {
   }
 
   public put(id: string): void {
-    const data = this.user;
     this.service.put(this.user.id, this.user).subscribe(response => {
       if (response.status) {
-        this.service.setItemList(data);
+        this.get();
         swal({
           position: 'top-end',
           type: 'success',
@@ -91,5 +89,15 @@ export class UserFormComponent implements OnInit {
     });
     this.initializer();
     this.closeModal();
+  }
+
+  public get(): void {
+    this.service.get().subscribe(response => {
+      if (response.status) {
+        this.service.setList(response.data);
+      }
+    }, error => {
+      console.log(error);
+    });
   }
 }

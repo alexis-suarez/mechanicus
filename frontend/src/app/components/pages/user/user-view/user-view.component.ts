@@ -32,11 +32,6 @@ export class UserViewComponent implements AfterViewInit, OnDestroy, OnInit {
   constructor(private service: UserService) { }
 
   ngOnInit() {
-    // Load the data on the table
-    if (this.service.isEmpty()) {
-      this.get();
-    }
-
     // Initialize Model
     this.initializer();
 
@@ -94,6 +89,7 @@ export class UserViewComponent implements AfterViewInit, OnDestroy, OnInit {
   // Clear and Initialize Model
   public initializer(): void {
     this.user = new User();
+    this.get();
   }
 
   // Function for CRUD
@@ -110,8 +106,7 @@ export class UserViewComponent implements AfterViewInit, OnDestroy, OnInit {
       if (result.value) {
         this.service.delete(id).subscribe(response => {
           if (response.status) {
-            this.service.delList(index);
-            this.rerender();
+            this.get();
           }
         }, error => {
           console.log(error);
@@ -129,7 +124,6 @@ export class UserViewComponent implements AfterViewInit, OnDestroy, OnInit {
     this.service.getOne(id).subscribe(response => {
       if (response.status) {
         this.user = response.data;
-        this.rerender();
       }
     }, error => {
       console.log(error);
@@ -140,7 +134,6 @@ export class UserViewComponent implements AfterViewInit, OnDestroy, OnInit {
     this.service.get().subscribe(response => {
       if (response.status) {
         this.service.setList(response.data);
-        this.rerender();
       }
     }, error => {
       console.log(error);

@@ -112,4 +112,13 @@ export class AutomobileFormComponent implements OnInit {
     this.initializer();
     this.closeModal();
   }
+
+  private get(id: string): void {
+    this.service.get(id).subscribe(response => {
+      if (response.success) {
+        this.service.setList(response.data);      }
+    }, error => {
+      console.log(error);
+    });
+  }
 }

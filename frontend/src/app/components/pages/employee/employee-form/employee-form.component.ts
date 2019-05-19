@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, } from '@angular/core';
 
 // Models
 import { Employee } from 'src/app/models/employee';
@@ -24,11 +24,9 @@ export class EmployeeFormComponent implements OnInit {
   @Input() employee: Employee;
   @Input() status: number;
 
-  @Output() reflesh: EventEmitter<any>;
 
   constructor(private service: EmployeeService,
     private state: AddressService) {
-      this.reflesh = new EventEmitter();
     }
 
   ngOnInit() {
@@ -53,11 +51,10 @@ export class EmployeeFormComponent implements OnInit {
 
   // Function for CRUD
   public post(): void {
-    const data = this.employee;
     this.service.post(this.employee).subscribe(response => {
       console.log(response);
       if (response.success) {
-        this.service.addList(data);
+        this.get();
         Swal({
           position: 'top-end',
           type: 'success',
@@ -78,15 +75,13 @@ export class EmployeeFormComponent implements OnInit {
     });
     this.initializer();
     this.closeModal();
-    this.reflesh.emit(1);
   }
 
   public put(id: string): void {
-    const data = this.employee;
     this.service.put(id, this.employee).subscribe(response => {
       console.log(response);
       if (response.success) {
-        this.service.setItemList(data);
+        this.get();
         Swal({
           position: 'top-end',
           type: 'success',
@@ -107,7 +102,6 @@ export class EmployeeFormComponent implements OnInit {
     });
     this.initializer();
     this.closeModal();
-    this.reflesh.emit(1);
   }
 
   public get(): void {

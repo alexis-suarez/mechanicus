@@ -32,11 +32,6 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
   constructor(private service: EmployeeService) { }
 
   ngOnInit() {
-    if (this.service.isEmpty()) {
-      // Load the data on the table
-      this.get();
-    }
-
     // Initialize Model
     this.initializer();
 
@@ -94,6 +89,7 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
   // Clear and Initialize Model
   public initializer(): void {
     this.employee = new Employee();
+    this.get();
   }
 
   // Function for CRUD
@@ -130,7 +126,6 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log(response);
       if (response.success) {
         this.employee = response.data;
-        this.rerender();
       }
     }, error => {
       console.log(error);
@@ -142,7 +137,6 @@ export class EmployeeViewComponent implements AfterViewInit, OnDestroy, OnInit {
       console.log(response);
       if (response.success) {
         this.service.setList(response.data);
-        this.rerender();
       }
     }, error => {
       console.log(error);
