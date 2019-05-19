@@ -9,9 +9,10 @@ import { User } from 'src/app/models/user';
 
 // Service
 import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 // Sweet Alert2 Import
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-view',
@@ -29,7 +30,8 @@ export class UserViewComponent implements AfterViewInit, OnDestroy, OnInit {
   private user: User;
   private status: boolean;
 
-  constructor(private service: UserService) { }
+  constructor(private service: UserService,
+    private auth: AuthService) { }
 
   ngOnInit() {
     // Initialize Model
@@ -94,30 +96,40 @@ export class UserViewComponent implements AfterViewInit, OnDestroy, OnInit {
 
   // Function for CRUD
   public delete(id: string, index: number): void {
-    swal({
-      title: '¿Seguro de Borrar?',
-      text: 'No se podrá recuperar despues',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '¡Sí, Eliminar!'
-    }).then((result) => {
-      if (result.value) {
-        this.service.delete(id).subscribe(response => {
-          if (response.status) {
-            this.get();
-          }
-        }, error => {
-          console.log(error);
-        });
-        swal(
-          '¡Borrado!',
-          'Información Borrada Correctamente :D',
-          'success'
-        );
-      }
-    });
+    if (id !== this.auth.getId()) {
+      Swal({
+        title: '¿Seguro de Borrar?',
+        text: 'No se podrá recuperar despues',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, Eliminar!'
+      }).then((result) => {
+        if (result.value) {
+          this.service.delete(id).subscribe(response => {
+            if (response.status) {
+              this.get();
+            }
+          }, error => {
+            console.log(error);
+          });
+          Swal(
+            '¡Borrado!',
+            'Información Borrada Correctamente :D',
+            'success'
+          );
+        }
+      });
+    } else {
+      Swal({
+        position: 'top-end',
+        type: 'error',
+        title: 'Error, Estas Logueado con este Usuario :(',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
   }
 
   public getOne(id: string): void {

@@ -35,6 +35,10 @@ export class AuthService {
     return localStorage.getItem('id') !== null;
   }
 
+  public getId(): string {
+    return localStorage.getItem('id');
+  }
+
   public getUserName(): string {
     return localStorage.getItem('username');
   }

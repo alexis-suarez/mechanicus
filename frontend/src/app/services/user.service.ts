@@ -55,6 +55,15 @@ export class UserService {
     return this.list.length === 0;
   }
 
+  public contrains(value: string): boolean {
+    if (!this.isEmpty()) {
+      this.list.forEach(element => {
+        if (element.id === value) { return true; }
+      });
+    }
+    return false;
+  }
+
   public setItemList(user: User): void {
     let i = 0;
     while (i < this.list.length) {
