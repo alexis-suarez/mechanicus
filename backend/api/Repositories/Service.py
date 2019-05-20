@@ -2,6 +2,8 @@
 from flask import jsonify, request
 from flask_restful import Resource
 
+import datetime
+
 # Id for MongoDb
 from bson.objectid import ObjectId
 
@@ -93,7 +95,7 @@ class ServiceFinish(Resource):
     def delete(self, id):
         try:
             where = {'_id':ObjectId(id)}
-            value = {'$set':{'finished':True}}
+            value = {'$set':{'endedDate':str(datetime.datetime.now()),'finished':True}}
             connector.collection('service').update_one(where, value)
             return jsonify({'message':'success', 'status':True})
         except:
