@@ -1,13 +1,22 @@
 import math
+# Connector to MongoDB
+from Connector import connector
 
-#A = [63, 67, 67, 37, 41, 56, 62, 57, 63, 53, 57, 56, 56]
-#B = [233, 286, 229, 250, 204, 236, 268, 354, 254, 203, 192, 294, 256]
+# ListA = [85, 80, 83, 70, 81, 65, 64, 72, 69, 75, 75, 72, 81, 71]
+# ListB = [85, 90, 86, 96, 80, 70, 65, 95, 70, 80, 70, 81, 75, 91]
 
-#tem = [83, 64, 72, 81, 70, 68, 65, 75, 71, 85, 80, 72, 69, 75]
-#hum = [86, 65, 90, 75, 96, 80, 70, 80, 91, 85, 90, 95, 70, 70]
+ListA = []
+ListB = []
 
-Temperatura = [85, 80, 83, 70, 81, 65, 64, 72, 69, 75, 75, 72, 81, 71]
-Humedad = [85, 90, 86, 96, 80, 70, 65, 95, 70, 80, 70, 81, 75, 91]
+document = connector.collection('automobile').find({'status':True})
+for item in document:
+    ListA.append(int(item['year']))
+print(ListA)
+
+document = connector.collection('automobile').find({'status':True})
+for item in document:
+    ListB.append(int(item['cilinder']))
+print(ListB)
 
 def Media(Lista):
     Total = 0
@@ -30,15 +39,26 @@ def Sumatoria(A, B, MA, MB):
         i += 1
     return Suma
 
-MedianaTemperatura = Media(Temperatura)
-MedianaHumedad = Media(Humedad)
+# z-score
+def z_score(List):
+    media = Media(List)
+    desvi = DesviacionEstandar(List, media)
+    temp = []
+    for elemento in List:
+        temp.append((elemento - media) / desvi)
+    print(temp)
+    List = temp
 
-Suma = Sumatoria(Temperatura, Humedad, MedianaTemperatura, MedianaHumedad)
+z_score(ListA)
+z_score(ListB)
+MedianaListA = Media(ListA)
+MedianaListB = Media(ListB)
 
-DesTemperatura = DesviacionEstandar(Temperatura, MedianaTemperatura)
-DesHumedad = DesviacionEstandar(Humedad, MedianaHumedad)
+Suma = Sumatoria(ListA, ListB, MedianaListA, MedianaListB)
 
-valor = len(Humedad) * DesTemperatura * DesHumedad
+DesListA = DesviacionEstandar(ListA, MedianaListA)
+DesListB = DesviacionEstandar(ListB, MedianaListB)
 
-print("Correlación :D")
+valor = len(ListB) * DesListA * DesListB
+
 print(Suma / valor)

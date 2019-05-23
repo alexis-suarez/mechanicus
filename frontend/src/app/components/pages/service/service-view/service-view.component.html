@@ -20,8 +20,8 @@
         <tr class="text-center">
           <th scope="col">Automovil</th>
           <th scope="col">Descripción</th>
+          <th scope="col">Empleado</th>
           <th scope="col">Ingreso</th>
-          <th scope="col">Salida</th>
           <th scope="col">Acción</th>
         </tr>
       </thead>
@@ -30,8 +30,8 @@
         <tr *ngFor="let item of getList(); let i = index;">
           <td class="text-center text-uppercase">{{ getAuto(item.auto) }}</td>
           <td class="text-uppercase">{{ item.description }}</td>
+          <td class="text-uppercase">{{ item.employee }}</td>
           <td class="text-center">{{ item.entreDate | date }}</td>
-          <td class="text-center">{{ item.endedDate | date }}</td>
           <td class="d-flex justify-content-center">
             <!-- Botton to delete a Service -->
             <button (click)="delete(item.id, i)" class="ml-1 btn-sm btn btn-danger" data-toggle="modal"

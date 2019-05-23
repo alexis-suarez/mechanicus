@@ -1,23 +1,37 @@
 <!-- Main div Container -->
 <br>
-<div class="container-fluid mt-5 shadow-lg p-3 mb-5 bg-white rounded op-4">
+<div class="container mt-5 shadow-lg p-3 mb-5 bg-white rounded op-4">
   <!-- Header Container -->
   <div class="row">
     <div class="col-2"></div>
-    <div class="col-10"><h1 class="styles-test">Análisis</h1></div>
+    <div class="col-10">
+      <h1 class="styles-test">Análisis</h1>
+    </div>
   </div>
   <hr>
   <div class="row">
-    <div class="col-6"><app-line-chart></app-line-chart></div>
-    <div class="col-6"></div>
+    <h1 class="ml-5 lead">Agrupamiento por Marca y Caja de Cambios</h1>
+    {{radarChartData[0][0]}}
+    <div class="col">
+      <app-radar-chart [radarChartData]="radarChartData"></app-radar-chart>
+    </div>
   </div>
   <div class="row">
-    <div class="col-6"><app-bar-chart></app-bar-chart></div>
-    <div class="col-6"></div>
+    <h1 class="ml-5 lead">Servicos por Empleados</h1>
+    {{barChartLabels[0][0]}}
+    {{barChartData[0][0]}}
+    <div class="col">
+      <app-bar-chart [barChartLabels]="barChartLabels" [barChartData]="barChartData"></app-bar-chart>
+    </div>
   </div>
   <hr>
   <div class="row">
-    <div class="col-6"><app-polar-area-chart></app-polar-area-chart></div>
-    <div class="col-6"><app-radar-chart></app-radar-chart></div>
+    <h1 class="ml-5 lead">Correlación de Atributos</h1>
+    {{polarAreaChartLabels[0][0]}}
+    {{polarAreaChartData[0][0]}}
+    <div class="col">
+      <app-polar-area-chart [polarAreaChartLabels]="polarAreaChartLabels" [polarAreaChartData]="polarAreaChartData">
+      </app-polar-area-chart>
+    </div>
   </div>
 </div>

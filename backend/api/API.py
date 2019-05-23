@@ -9,7 +9,7 @@ from Repositories.Client import Client, ClientParams
 from Repositories.Employee import Employee, EmployeeParams
 from Repositories.Service import Service, ServiceParams, ServiceDeliver, ServiceFinish
 from Repositories.User import User, UserParams, UserLogin
-from Repositories.Analytics import Analytics
+from Repositories.Analytics import Analytics, Transmision, AmountService, Correlation
 
 # Flask Application and API
 app = Flask(__name__)
@@ -40,6 +40,9 @@ api.add_resource(UserParams, '/user/<string:id>')
 api.add_resource(UserLogin, '/user/chck/<string:username>/<string:password>')
 # Analytics
 api.add_resource(Analytics, '/analytics')
+api.add_resource(Transmision, '/transmision')
+api.add_resource(AmountService, '/amountservice')
+api.add_resource(Correlation, '/correlation')
 
 # Main fuction in debug Mode
 if __name__ == "__main__":

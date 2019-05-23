@@ -1,10 +1,4 @@
-import { Component } from '@angular/core';
-
-// Models
-import { Automobile } from 'src/app/models/automobile';
-
-// Service
-import { AutomobileService } from 'src/app/services/automobile.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-radar-chart',
@@ -13,15 +7,17 @@ import { AutomobileService } from 'src/app/services/automobile.service';
 })
 export class RadarChartComponent {
 
-  constructor(private service: AutomobileService) { }
   // Radar
   public radarChartLabels: string[] = ['Automatico', 'Automatizadas o secuenciales', 'Automatizada de doble embrague', 'CVT'];
   public radarOptions: any = {
     responsive: true
   };
-  public radarChartData: any = [
-    {data: [65, 59, 90, 81], label: 'Series A'},
-  ];
+
+  @Input() radarChartData: any = [];
+
+  // public radarChartData: any = [
+  //   {data: [65, 59, 90, 81], label: 'Series A'}
+  // ];
   public radarChartType = 'radar';
 
   // events

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-bar-chart',
@@ -10,14 +10,11 @@ export class BarChartComponent {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  @Input() barChartLabels: string[];
   public barChartType = 'bar';
   public barChartLegend = true;
 
-  public barChartData: any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-  ];
+  @Input() barChartData: any = [];
 
   // events
   public chartClicked(e: any): void {
@@ -30,17 +27,17 @@ export class BarChartComponent {
 
   public randomize(): void {
     // Only Change 3 values
-    const data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
-    const clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = data;
-    this.barChartData = clone;
+    // const data = [
+    //   Math.round(Math.random() * 100),
+    //   59,
+    //   80,
+    //   (Math.random() * 100),
+    //   56,
+    //   (Math.random() * 100),
+    //   40];
+    // const clone = JSON.parse(JSON.stringify(this.barChartData));
+    // clone[0].data = data;
+    // this.barChartData = clone;
     /**
      * (My guess), for Angular to recognize the change in the dataset
      * it has to change the dataset variable directly,

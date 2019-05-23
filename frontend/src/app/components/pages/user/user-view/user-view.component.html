@@ -31,7 +31,7 @@
           <button (click)="getOne(user.id); setStatus(false)" class="mr-1 btn-sm btn btn-warning" data-toggle="modal"
             data-target="#modal"><i class="fas fa-edit"></i></button>
           <!-- Botton to delete a User -->
-          <button *ngIf="user.role != 'ROOT'" (click)="delete(user.id, i)" class="ml-1 btn-sm btn btn-danger"><i
+          <button (click)="delete(user.id, i)" class="ml-1 btn-sm btn btn-danger"><i
               class="fas fa-trash-alt"></i></button>
         </td>
       </tr>
@@ -45,7 +45,7 @@
 </ng-template>
 
 <!-- Modal From User's Cars -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">

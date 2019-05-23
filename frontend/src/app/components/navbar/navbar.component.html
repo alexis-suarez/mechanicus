@@ -13,15 +13,15 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <!-- Routers Links Actived -->
-      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')"
+      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO' || getAuth().getRole == 'CAJA')"
         class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['home-view']"><i class="fas fa-home"></i> Inicio</a>
       </li>
-      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')"
+      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO' || getAuth().getRole == 'CAJA')"
         class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['service-view']"><i class="fas fa-toolbox"></i> Servicios</a>
       </li>
-      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO')"
+      <li *ngIf="getAuth().isAuthenticated() && (getAuth().getRole() == 'ADMIN' || getAuth().getRole() == 'MECANICO' || getAuth().getRole == 'CAJA')"
         class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['client-view']"><i class="fas fa-wallet"></i> Clientes</a>
       </li>

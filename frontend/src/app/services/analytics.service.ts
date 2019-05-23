@@ -4,6 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 // API's
 import { environment } from 'src/environments/environment';
 
+// Models
+import { Response } from '../models/response';
+
 // Header Options
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,4 +25,16 @@ export class AnalyticsService {
   private url = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
+
+  public getTransmision(): any {
+    return this.http.get<Response>(this.url + 'transmision', httpOptions);
+  }
+
+  public getAmountService(): any {
+    return this.http.get<Response>(this.url + 'amountservice', httpOptions);
+  }
+
+  public getCorrelation(): any {
+    return this.http.get<Response>(this.url + 'correlation', httpOptions);
+  }
 }

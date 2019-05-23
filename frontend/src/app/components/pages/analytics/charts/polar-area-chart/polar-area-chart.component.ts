@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-polar-area-chart',
@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class PolarAreaChartComponent {
   // PolarArea
-  public polarAreaChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
-  public polarAreaChartData: number[] = [300, 500, 100, 40, 120];
+  @Input() polarAreaChartLabels: string[];
+  @Input() polarAreaChartData: number[];
   public polarAreaLegend = true;
   public polarAreaOptions: any = {
     responsive: true

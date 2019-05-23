@@ -110,11 +110,7 @@ export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit
   // Clear and Initialize Model
   public initializer(): void {
     this.automobile = new Automobile();
-
-    if (this.service.isEmpty()) {
-      // Load the data on the table
-      this.get(this.id);
-    }
+    this.get(this.id);
   }
 
   // Function for CRUD
@@ -161,7 +157,7 @@ export class AutomobileViewComponent implements AfterViewInit, OnDestroy, OnInit
     this.service.get(id).subscribe(response => {
       if (response.success) {
         this.service.setList(response.data.filter(item => {
-          return item.status === true;
+          return item.status === true && item.client === id;
         }));
       }
     }, error => {
